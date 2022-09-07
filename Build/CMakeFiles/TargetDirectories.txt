@@ -1,0 +1,3 @@
+/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/main.dir
+/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/edit_cache.dir
+/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/rebuild_cache.dir

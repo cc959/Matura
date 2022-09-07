@@ -1,0 +1,167 @@
+// #include "opencv2/imgproc.hpp"
+// #include "opencv2/highgui.hpp"
+// #include "opencv2/videoio.hpp"
+// #include "opencv2/features2d.hpp"
+// #include "glm/glm.hpp"
+
+// #include <bits/stdc++.h>
+// using namespace cv;
+// const int max_value_H = 360 / 2;
+// const int max_value = 255;
+// const String window_capture_name = "Video Capture";
+// const String window_detection_name = "Object Detection";
+// int low_H = 110, low_S = 148, low_V = 139;
+// int high_H = 130, high_S = max_value, high_V = max_value;
+// static void on_low_H_thresh_trackbar(int, void *)
+// {
+// 	low_H = min(high_H - 1, low_H);
+// 	setTrackbarPos("Low H", window_detection_name, low_H);
+// }
+// static void on_high_H_thresh_trackbar(int, void *)
+// {
+// 	high_H = max(high_H, low_H + 1);
+// 	setTrackbarPos("High H", window_detection_name, high_H);
+// }
+// static void on_low_S_thresh_trackbar(int, void *)
+// {
+// 	low_S = min(high_S - 1, low_S);
+// 	setTrackbarPos("Low S", window_detection_name, low_S);
+// }
+// static void on_high_S_thresh_trackbar(int, void *)
+// {
+// 	high_S = max(high_S, low_S + 1);
+// 	setTrackbarPos("High S", window_detection_name, high_S);
+// }
+// static void on_low_V_thresh_trackbar(int, void *)
+// {
+// 	low_V = min(high_V - 1, low_V);
+// 	setTrackbarPos("Low V", window_detection_name, low_V);
+// }
+// static void on_high_V_thresh_trackbar(int, void *)
+// {
+// 	high_V = max(high_V, low_V + 1);
+// 	setTrackbarPos("High V", window_detection_name, high_V);
+// }
+// int main()
+// {
+// 	VideoCapture cap("/dev/video2");
+
+// 	namedWindow(window_capture_name);
+// 	namedWindow(window_detection_name);
+// 	// Trackbars to set thresholds for HSV values
+// 	createTrackbar("Low H", window_detection_name, &low_H, max_value_H, on_low_H_thresh_trackbar);
+// 	createTrackbar("High H", window_detection_name, &high_H, max_value_H, on_high_H_thresh_trackbar);
+// 	createTrackbar("Low S", window_detection_name, &low_S, max_value, on_low_S_thresh_trackbar);
+// 	createTrackbar("High S", window_detection_name, &high_S, max_value, on_high_S_thresh_trackbar);
+// 	createTrackbar("Low V", window_detection_name, &low_V, max_value, on_low_V_thresh_trackbar);
+// 	createTrackbar("High V", window_detection_name, &high_V, max_value, on_high_V_thresh_trackbar);
+
+// 	SimpleBlobDetector::Params params;
+// 	memset(&params, 0, sizeof(SimpleBlobDetector::Params));
+
+// 	params.minThreshold = 250;
+// 	params.maxThreshold = 256;
+// 	params.thresholdStep = 1;
+// 	params.minRepeatability = 1;
+
+// 	params.filterByArea = true;
+// 	params.minArea = 100;
+// 	params.maxArea = 1000000;
+
+// 	params.filterByColor = true;
+// 	params.blobColor = 255;
+
+// 	params.filterByCircularity = true;
+// 	params.minCircularity = 0.3;
+// 	params.maxCircularity = 1;
+
+// 	// params.filterByCircularity = true;
+// 	// params.minCircularity = 0.8f;
+
+// 	Ptr<SimpleBlobDetector> detector = SimpleBlobDetector::create(params);
+
+// 	Mat frame, frame_HSV, frame_threshold;
+// 	while (true)
+// 	{
+// 		cap >> frame;
+// 		if (frame.empty())
+// 		{
+// 			break;
+// 		}
+// 		// Convert from BGR to HSV colorspace
+// 		cvtColor(frame, frame_HSV, COLOR_RGB2HSV);
+// 		// Detect the object based on HSV Range Values
+// 		inRange(frame_HSV, Scalar(low_H, low_S, low_V), Scalar(high_H, high_S, high_V), frame_threshold);
+// 		// Show the frames
+
+// 		std::vector<KeyPoint> points;
+// 		detector->detect(frame_threshold, points);
+
+// 		for (auto pnt : points)
+// 		{
+// 			std::cout << pnt.pt.x << " " << pnt.pt.y << " " << pnt.size << "\n";
+// 		}
+
+// 		Mat im_with_keypoints;
+// 		drawKeypoints(frame_threshold, points, frame_threshold, Scalar(255, 0, 0), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+// 		drawKeypoints(frame, points, im_with_keypoints, Scalar(255, 0, 0), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+
+// 		imshow(window_capture_name, im_with_keypoints);
+// 		imshow(window_detection_name, frame_threshold);
+
+// 		char key = (char)waitKey(1);
+// 		if (key == 'q' || key == 27)
+// 		{
+// 			break;
+// 		}
+// 	}
+// 	return 0;
+// }
+
+// #include <bits/stdc++.h>
+
+// using namespace std;
+
+// int main()
+// {
+
+// 	fstream file;
+
+// 	file.open("/dev/ttyACM0", fstream::out);
+// 	sleep(5);
+
+// 	while (true)
+// 	{
+// 		int32_t speed, shoulder, elbow;
+// 		cin >> speed >> shoulder >> elbow;
+
+// 		unsigned char out[3][4];
+// 		(*(int *)out[0]) = speed;
+// 		(*(int *)out[1]) = shoulder;
+// 		(*(int *)out[2]) = elbow;
+// 		file.write((char *)out, 12);
+
+// 		file.flush();
+// 	}
+
+// 	sleep(5);
+
+// 	file.close();
+// 	return 0;
+// }
+
+#include <SerialCom.h>
+#include <colmap/base/camera_models.h>
+
+using namespace colmap;
+
+int main()
+{
+	// focal length (px), width (px), height (px), distortion constant
+	vector<double> params = {687.24040445392779, 320, 240, 0.018704251415279191};
+
+	double u, v;
+	SimpleRadialCameraModel::ImageToWorld<double>(&params[0], 0, 0, &u, &v);
+
+	cout << u << " " << v;
+}

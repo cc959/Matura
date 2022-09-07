@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.8)
+project( Matura )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} ./ )
+add_executable( main main.cpp SerialCom.cpp SerialCom.h )
+target_link_libraries( main ${OpenCV_LIBS} )
+add_compile_options( -std=c++20 )
