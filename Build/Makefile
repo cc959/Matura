@@ -129,6 +129,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+RadialCamera.o: RadialCamera.cpp.o
+.PHONY : RadialCamera.o
+
+# target to build an object file
+RadialCamera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/RadialCamera.cpp.o
+.PHONY : RadialCamera.cpp.o
+
+RadialCamera.i: RadialCamera.cpp.i
+.PHONY : RadialCamera.i
+
+# target to preprocess a source file
+RadialCamera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/RadialCamera.cpp.i
+.PHONY : RadialCamera.cpp.i
+
+RadialCamera.s: RadialCamera.cpp.s
+.PHONY : RadialCamera.s
+
+# target to generate assembly for a file
+RadialCamera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/RadialCamera.cpp.s
+.PHONY : RadialCamera.cpp.s
+
 SerialCom.o: SerialCom.cpp.o
 .PHONY : SerialCom.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... RadialCamera.o"
+	@echo "... RadialCamera.i"
+	@echo "... RadialCamera.s"
 	@echo "... SerialCom.o"
 	@echo "... SerialCom.i"
 	@echo "... SerialCom.s"

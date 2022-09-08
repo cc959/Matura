@@ -150,18 +150,29 @@
 // 	return 0;
 // }
 
-#include <SerialCom.h>
+#include "SerialCom.h"
+#include "RadialCamera.h"
 #include <colmap/base/camera_models.h>
 
 using namespace colmap;
 
-int main()
+int main(int argc, char const *argv[])
 {
-	// focal length (px), width (px), height (px), distortion constant
-	vector<double> params = {687.24040445392779, 320, 240, 0.018704251415279191};
+	string cameraPath;
+	if (argc < 2)
+	{
+		cout << "Enter the camera data path: ";
+		cout.flush();
 
-	double u, v;
-	SimpleRadialCameraModel::ImageToWorld<double>(&params[0], 0, 0, &u, &v);
+		cin >> cameraPath;
+	}
+	else
+	{
+		cameraPath = string(argv[0]);
+	}
 
-	cout << u << " " << v;
+	vector<RadialCamera> cameras = RadialCamera::loadCameras(cameraPath);
+
+	cout << cameras.size() << "\n"
+		 << cameras[0].params[0] << "\n";
 }

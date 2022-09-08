@@ -6,7 +6,6 @@ using namespace std;
 
 class SerialCom
 {
-
 public:
 	SerialCom(string path);
 

@@ -8,5 +8,10 @@
   "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
   "command": "/usr/bin/g++  -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -isystem /usr/local/include/opencv4 -g -o CMakeFiles/main.dir/SerialCom.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/SerialCom.cpp",
   "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/SerialCom.cpp"
+},
+{
+  "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
+  "command": "/usr/bin/g++  -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -isystem /usr/local/include/opencv4 -g -o CMakeFiles/main.dir/RadialCamera.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/RadialCamera.cpp",
+  "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/RadialCamera.cpp"
 }
 ]

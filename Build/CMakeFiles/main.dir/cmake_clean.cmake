@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/main.dir/RadialCamera.cpp.o"
+  "CMakeFiles/main.dir/RadialCamera.cpp.o.d"
   "CMakeFiles/main.dir/SerialCom.cpp.o"
   "CMakeFiles/main.dir/SerialCom.cpp.o.d"
   "CMakeFiles/main.dir/main.cpp.o"

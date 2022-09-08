@@ -1,7 +1,7 @@
 CMakeFiles/main.dir/SerialCom.cpp.o: \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/SerialCom.cpp \
  /usr/include/stdc-predef.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./SerialCom.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/SerialCom.h \
  /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.1.1/cassert \
  /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
