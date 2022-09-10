@@ -552,4 +552,10 @@ CMakeFiles/main.dir/RadialCamera.cpp.o: \
  /usr/include/ceres/numeric_diff_first_order_function.h \
  /usr/include/ceres/ordered_groups.h /usr/include/ceres/problem.h \
  /usr/include/ceres/product_manifold.h /usr/include/ceres/solver.h \
- /usr/include/ceres/sphere_manifold.h /usr/include/ceres/version.h
+ /usr/include/ceres/sphere_manifold.h /usr/include/ceres/version.h \
+ /usr/include/colmap/base/image.h /usr/include/colmap/base/camera.h \
+ /usr/include/colmap/util/types.h /usr/include/colmap/util/alignment.h \
+ /usr/include/Eigen/Geometry /usr/include/colmap/base/point2d.h \
+ /usr/include/colmap/base/visibility_pyramid.h \
+ /usr/include/colmap/util/logging.h /usr/include/colmap/util/string.h \
+ /usr/include/colmap/util/math.h

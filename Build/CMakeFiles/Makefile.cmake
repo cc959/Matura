@@ -11,10 +11,22 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.23.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.23.3/CMakeSystem.cmake"
   "../CMakeLists.txt"
+  "/usr/lib64/cmake/SDL2/SDL2Config.cmake"
+  "/usr/lib64/cmake/SDL2/SDL2ConfigVersion.cmake"
+  "/usr/lib64/cmake/SDL2/SDL2Targets-noconfig.cmake"
+  "/usr/lib64/cmake/SDL2/SDL2Targets.cmake"
+  "/usr/lib64/cmake/SDL2/SDL2mainTargets-noconfig.cmake"
+  "/usr/lib64/cmake/SDL2/SDL2mainTargets.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVConfig.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVModules-release.cmake"
   "/usr/local/lib/cmake/opencv4/OpenCVModules.cmake"
+  "/usr/share/cmake/Corrade/CorradeConfig.cmake"
+  "/usr/share/cmake/Corrade/CorradeLibSuffix.cmake"
+  "/usr/share/cmake/Corrade/FindCorrade.cmake"
+  "/usr/share/cmake/Corrade/UseCorrade.cmake"
+  "/usr/share/cmake/Magnum/FindMagnum.cmake"
+  "/usr/share/cmake/Magnum/MagnumConfig.cmake"
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
@@ -27,6 +39,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake/Modules/FindOpenGL.cmake"
   "/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake"
@@ -49,5 +62,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/main.dir/DependInfo.cmake"
+  "CMakeFiles/Matura.dir/DependInfo.cmake"
   )

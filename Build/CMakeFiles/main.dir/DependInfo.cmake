@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/CApp.cpp" "CMakeFiles/main.dir/CApp.cpp.o" "gcc" "CMakeFiles/main.dir/CApp.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/RadialCamera.cpp" "CMakeFiles/main.dir/RadialCamera.cpp.o" "gcc" "CMakeFiles/main.dir/RadialCamera.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/SerialCom.cpp" "CMakeFiles/main.dir/SerialCom.cpp.o" "gcc" "CMakeFiles/main.dir/SerialCom.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"

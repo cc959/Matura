@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -isystem /usr/local/include/opencv4
+CXX_INCLUDES = -I/usr/include/SDL2 -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -isystem /usr/local/include/opencv4
 
 CXX_FLAGS = -g
 

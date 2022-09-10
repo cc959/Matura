@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/Build/main",
+			"program": "${workspaceFolder}/Build/Matura",
 			// "program": "/usr/bin/bash",
 			// "args": [
 			// 	"-c",

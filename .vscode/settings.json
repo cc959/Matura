@@ -92,6 +92,9 @@
 		"expected": "cpp",
 		"spanstream": "cpp",
 		"stacktrace": "cpp",
-		"core": "cpp"
+		"core": "cpp",
+		"*.ipp": "cpp",
+		"*.def": "cpp",
+		"*.inc": "cpp"
 	}
 }

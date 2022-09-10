@@ -1,7 +1,18 @@
 cmake_minimum_required(VERSION 3.8)
 project( Matura )
 find_package( OpenCV REQUIRED )
-include_directories( ${OpenCV_INCLUDE_DIRS} ./ )
-add_executable( main main.cpp SerialCom.cpp SerialCom.h RadialCamera.cpp RadialCamera.h )
-target_link_libraries( main ${OpenCV_LIBS} )
-add_compile_options( -std=c++20 )
+find_package( Corrade REQUIRED Main )
+find_package( Magnum REQUIRED GL MeshTools Shaders SceneGraph Trade Sdl2Application )
+
+set_directory_properties(PROPERTIES CORRADE_USE_PEDANTIC_FLAGS ON)
+
+
+include_directories( ${OpenCV_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS} ./ /usr/include/colmap )
+add_executable( ${PROJECT_NAME} main.cpp SerialCom.h RadialCamera.h TextureShader.h )
+
+target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} )
+
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} Corrade::Main Magnum::Application Magnum::GL Magnum::Magnum Magnum::MeshTools Magnum::SceneGraph Magnum::Shaders Magnum::Trade)
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${MAGNUM_BINARY_INSTALL_DIR})
+add_compile_options( -std=c++20 ) 
