@@ -8,7 +8,7 @@ set_directory_properties(PROPERTIES CORRADE_USE_PEDANTIC_FLAGS ON)
 
 
 include_directories( ${OpenCV_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS} ./ /usr/include/colmap )
-add_executable( ${PROJECT_NAME} main.cpp SerialCom.h RadialCamera.h TextureShader.h )
+add_executable( ${PROJECT_NAME} main.cpp SerialCom.h RadialCamera.h TextureShader.h Joystick.h )
 
 target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} )
 

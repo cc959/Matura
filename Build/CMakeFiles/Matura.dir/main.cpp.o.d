@@ -245,4 +245,193 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/Corrade/Utility/Endianness.h \
  /usr/include/Corrade/Utility/utilities.h /usr/include/c++/12.1.1/cstring \
  /usr/include/Magnum/Trade/SceneData.h \
- /usr/include/Magnum/Trade/TextureData.h
+ /usr/include/Magnum/Trade/TextureData.h /usr/include/Magnum/Timeline.h \
+ /usr/include/c++/12.1.1/chrono /usr/include/c++/12.1.1/bits/chrono.h \
+ /usr/include/c++/12.1.1/ratio /usr/include/c++/12.1.1/limits \
+ /usr/include/c++/12.1.1/ctime /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/timex.h \
+ /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h \
+ /usr/include/c++/12.1.1/bits/parse_numbers.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
+ /usr/include/c++/12.1.1/cassert /usr/include/assert.h \
+ /usr/include/c++/12.1.1/cfloat /usr/include/c++/12.1.1/climits \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.1/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.1/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/pthread_stack_min-dynamic.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/uio_lim.h /usr/include/c++/12.1.1/csetjmp \
+ /usr/include/setjmp.h /usr/include/bits/setjmp.h \
+ /usr/include/bits/types/struct___jmp_buf_tag.h \
+ /usr/include/c++/12.1.1/csignal /usr/include/signal.h \
+ /usr/include/bits/signum-generic.h /usr/include/bits/signum-arch.h \
+ /usr/include/bits/types/sig_atomic_t.h \
+ /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
+ /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
+ /usr/include/bits/siginfo-consts-arch.h \
+ /usr/include/bits/types/sigval_t.h /usr/include/bits/types/sigevent_t.h \
+ /usr/include/bits/sigevent-consts.h /usr/include/bits/sigaction.h \
+ /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
+ /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
+ /usr/include/bits/sigstksz.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/bits/ss_flags.h \
+ /usr/include/bits/types/struct_sigstack.h /usr/include/bits/sigthread.h \
+ /usr/include/bits/signal_ext.h /usr/include/c++/12.1.1/cstdarg \
+ /usr/include/c++/12.1.1/cwctype /usr/include/wctype.h \
+ /usr/include/bits/wctype-wchar.h /usr/include/c++/12.1.1/ccomplex \
+ /usr/include/c++/12.1.1/complex /usr/include/c++/12.1.1/sstream \
+ /usr/include/c++/12.1.1/istream /usr/include/c++/12.1.1/ios \
+ /usr/include/c++/12.1.1/exception \
+ /usr/include/c++/12.1.1/bits/exception_ptr.h \
+ /usr/include/c++/12.1.1/bits/cxxabi_init_exception.h \
+ /usr/include/c++/12.1.1/bits/nested_exception.h \
+ /usr/include/c++/12.1.1/bits/ios_base.h \
+ /usr/include/c++/12.1.1/ext/atomicity.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/gthr.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
+ /usr/include/sys/single_threaded.h \
+ /usr/include/c++/12.1.1/bits/locale_classes.h \
+ /usr/include/c++/12.1.1/bits/locale_classes.tcc \
+ /usr/include/c++/12.1.1/system_error \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/error_constants.h \
+ /usr/include/c++/12.1.1/stdexcept /usr/include/c++/12.1.1/streambuf \
+ /usr/include/c++/12.1.1/bits/streambuf.tcc \
+ /usr/include/c++/12.1.1/bits/basic_ios.h \
+ /usr/include/c++/12.1.1/bits/locale_facets.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/ctype_base.h \
+ /usr/include/c++/12.1.1/bits/streambuf_iterator.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
+ /usr/include/c++/12.1.1/bits/locale_facets.tcc \
+ /usr/include/c++/12.1.1/bits/basic_ios.tcc \
+ /usr/include/c++/12.1.1/ostream /usr/include/c++/12.1.1/bits/ostream.tcc \
+ /usr/include/c++/12.1.1/bits/istream.tcc \
+ /usr/include/c++/12.1.1/bits/sstream.tcc /usr/include/c++/12.1.1/cfenv \
+ /usr/include/c++/12.1.1/fenv.h /usr/include/fenv.h \
+ /usr/include/bits/fenv.h /usr/include/c++/12.1.1/cinttypes \
+ /usr/include/c++/12.1.1/cstdalign \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.1/include/stdalign.h \
+ /usr/include/c++/12.1.1/cstdbool \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.1/include/stdbool.h \
+ /usr/include/c++/12.1.1/ctgmath /usr/include/c++/12.1.1/cuchar \
+ /usr/include/uchar.h /usr/include/c++/12.1.1/algorithm \
+ /usr/include/c++/12.1.1/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/12.1.1/pstl/execution_defs.h \
+ /usr/include/c++/12.1.1/bitset /usr/include/c++/12.1.1/deque \
+ /usr/include/c++/12.1.1/bits/stl_deque.h \
+ /usr/include/c++/12.1.1/bits/deque.tcc /usr/include/c++/12.1.1/fstream \
+ /usr/include/c++/12.1.1/bits/codecvt.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
+ /usr/include/c++/12.1.1/bits/fstream.tcc /usr/include/c++/12.1.1/iomanip \
+ /usr/include/c++/12.1.1/locale \
+ /usr/include/c++/12.1.1/bits/locale_facets_nonio.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/time_members.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/messages_members.h \
+ /usr/include/libintl.h \
+ /usr/include/c++/12.1.1/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/12.1.1/bits/locale_conv.h \
+ /usr/include/c++/12.1.1/bits/quoted_string.h \
+ /usr/include/c++/12.1.1/iostream /usr/include/c++/12.1.1/iterator \
+ /usr/include/c++/12.1.1/bits/stream_iterator.h \
+ /usr/include/c++/12.1.1/list /usr/include/c++/12.1.1/bits/stl_list.h \
+ /usr/include/c++/12.1.1/bits/allocated_ptr.h \
+ /usr/include/c++/12.1.1/bits/list.tcc /usr/include/c++/12.1.1/map \
+ /usr/include/c++/12.1.1/bits/stl_tree.h \
+ /usr/include/c++/12.1.1/bits/stl_map.h \
+ /usr/include/c++/12.1.1/bits/stl_multimap.h \
+ /usr/include/c++/12.1.1/memory \
+ /usr/include/c++/12.1.1/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/12.1.1/bits/align.h /usr/include/c++/12.1.1/bit \
+ /usr/include/c++/12.1.1/bits/unique_ptr.h \
+ /usr/include/c++/12.1.1/bits/shared_ptr.h \
+ /usr/include/c++/12.1.1/bits/shared_ptr_base.h \
+ /usr/include/c++/12.1.1/ext/concurrence.h \
+ /usr/include/c++/12.1.1/bits/shared_ptr_atomic.h \
+ /usr/include/c++/12.1.1/bits/atomic_base.h \
+ /usr/include/c++/12.1.1/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/12.1.1/backward/auto_ptr.h \
+ /usr/include/c++/12.1.1/pstl/glue_memory_defs.h \
+ /usr/include/c++/12.1.1/numeric \
+ /usr/include/c++/12.1.1/bits/stl_numeric.h \
+ /usr/include/c++/12.1.1/pstl/glue_numeric_defs.h \
+ /usr/include/c++/12.1.1/queue /usr/include/c++/12.1.1/bits/stl_queue.h \
+ /usr/include/c++/12.1.1/set /usr/include/c++/12.1.1/bits/stl_set.h \
+ /usr/include/c++/12.1.1/bits/stl_multiset.h \
+ /usr/include/c++/12.1.1/stack /usr/include/c++/12.1.1/bits/stl_stack.h \
+ /usr/include/c++/12.1.1/valarray \
+ /usr/include/c++/12.1.1/bits/valarray_array.h \
+ /usr/include/c++/12.1.1/bits/valarray_array.tcc \
+ /usr/include/c++/12.1.1/bits/valarray_before.h \
+ /usr/include/c++/12.1.1/bits/slice_array.h \
+ /usr/include/c++/12.1.1/bits/valarray_after.h \
+ /usr/include/c++/12.1.1/bits/gslice.h \
+ /usr/include/c++/12.1.1/bits/gslice_array.h \
+ /usr/include/c++/12.1.1/bits/mask_array.h \
+ /usr/include/c++/12.1.1/bits/indirect_array.h \
+ /usr/include/c++/12.1.1/atomic /usr/include/c++/12.1.1/codecvt \
+ /usr/include/c++/12.1.1/condition_variable \
+ /usr/include/c++/12.1.1/bits/std_mutex.h \
+ /usr/include/c++/12.1.1/bits/unique_lock.h \
+ /usr/include/c++/12.1.1/forward_list \
+ /usr/include/c++/12.1.1/bits/forward_list.h \
+ /usr/include/c++/12.1.1/bits/forward_list.tcc \
+ /usr/include/c++/12.1.1/future /usr/include/c++/12.1.1/mutex \
+ /usr/include/c++/12.1.1/bits/atomic_futex.h \
+ /usr/include/c++/12.1.1/bits/std_thread.h /usr/include/c++/12.1.1/random \
+ /usr/include/c++/12.1.1/bits/random.h \
+ /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/opt_random.h \
+ /usr/include/c++/12.1.1/bits/random.tcc /usr/include/c++/12.1.1/regex \
+ /usr/include/c++/12.1.1/bits/regex_constants.h \
+ /usr/include/c++/12.1.1/bits/regex_error.h \
+ /usr/include/c++/12.1.1/bits/regex_automaton.h \
+ /usr/include/c++/12.1.1/bits/regex_automaton.tcc \
+ /usr/include/c++/12.1.1/bits/regex_scanner.h \
+ /usr/include/c++/12.1.1/bits/regex_scanner.tcc \
+ /usr/include/c++/12.1.1/bits/regex_compiler.h \
+ /usr/include/c++/12.1.1/bits/regex_compiler.tcc \
+ /usr/include/c++/12.1.1/bits/regex.h \
+ /usr/include/c++/12.1.1/bits/regex.tcc \
+ /usr/include/c++/12.1.1/bits/regex_executor.h \
+ /usr/include/c++/12.1.1/bits/regex_executor.tcc \
+ /usr/include/c++/12.1.1/scoped_allocator /usr/include/c++/12.1.1/thread \
+ /usr/include/c++/12.1.1/bits/this_thread_sleep.h \
+ /usr/include/c++/12.1.1/typeindex /usr/include/c++/12.1.1/unordered_set \
+ /usr/include/c++/12.1.1/bits/unordered_set.h \
+ /usr/include/c++/12.1.1/shared_mutex /usr/include/c++/12.1.1/any \
+ /usr/include/c++/12.1.1/charconv /usr/include/c++/12.1.1/filesystem \
+ /usr/include/c++/12.1.1/bits/fs_fwd.h \
+ /usr/include/c++/12.1.1/bits/fs_path.h \
+ /usr/include/c++/12.1.1/bits/fs_dir.h \
+ /usr/include/c++/12.1.1/bits/fs_ops.h /usr/include/c++/12.1.1/optional \
+ /usr/include/c++/12.1.1/memory_resource \
+ /usr/include/c++/12.1.1/bits/uses_allocator_args.h \
+ /usr/include/c++/12.1.1/variant \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/Joystick.h \
+ /usr/include/linux/joystick.h /usr/include/linux/types.h \
+ /usr/include/asm/types.h /usr/include/asm-generic/types.h \
+ /usr/include/asm-generic/int-ll64.h /usr/include/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h /usr/include/asm/posix_types.h \
+ /usr/include/asm/posix_types_64.h /usr/include/asm-generic/posix_types.h \
+ /usr/include/linux/input.h /usr/include/sys/time.h \
+ /usr/include/sys/ioctl.h /usr/include/bits/ioctls.h \
+ /usr/include/asm/ioctls.h /usr/include/asm-generic/ioctls.h \
+ /usr/include/linux/ioctl.h /usr/include/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h /usr/include/bits/ioctl-types.h \
+ /usr/include/sys/ttydefaults.h /usr/include/linux/input-event-codes.h \
+ /usr/include/sys/stat.h /usr/include/bits/stat.h \
+ /usr/include/bits/struct_stat.h /usr/include/bits/statx.h \
+ /usr/include/linux/stat.h /usr/include/bits/statx-generic.h \
+ /usr/include/bits/types/struct_statx_timestamp.h \
+ /usr/include/bits/types/struct_statx.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/linux/falloc.h \
+ /usr/include/poll.h /usr/include/sys/poll.h /usr/include/bits/poll.h

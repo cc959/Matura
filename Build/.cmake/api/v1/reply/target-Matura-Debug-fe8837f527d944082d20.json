@@ -460,7 +460,8 @@
 			[
 				1,
 				2,
-				3
+				3,
+				4
 			]
 		}
 	],
@@ -485,6 +486,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "TextureShader.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Joystick.h",
 			"sourceGroupIndex" : 1
 		}
 	],
