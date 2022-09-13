@@ -252,7 +252,8 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/bits/time.h /usr/include/bits/timex.h \
  /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_itimerspec.h \
- /usr/include/c++/12.1.1/bits/parse_numbers.h \
+ /usr/include/c++/12.1.1/bits/parse_numbers.h /usr/include/Magnum/Image.h \
+ /usr/include/Magnum/GL/PixelFormat.h \
  /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.1.1/cassert /usr/include/assert.h \
  /usr/include/c++/12.1.1/cfloat /usr/include/c++/12.1.1/climits \

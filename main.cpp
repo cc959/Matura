@@ -179,6 +179,8 @@
 #include <Magnum/Trade/SceneData.h>
 #include <Magnum/Trade/TextureData.h>
 #include <Magnum/Timeline.h>
+#include <Magnum/Image.h>
+#include <Magnum/GL/PixelFormat.h>
 
 #include <bits/stdc++.h>
 #include "Joystick.h"
@@ -192,61 +194,72 @@ using namespace Math::Literals;
 typedef SceneGraph::Object<SceneGraph::MatrixTransformation3D> Object3D;
 typedef SceneGraph::Scene<SceneGraph::MatrixTransformation3D> Scene3D;
 
-class ColoredDrawable : public SceneGraph::Drawable3D
+class MyDrawable : public SceneGraph::Drawable3D
 {
 public:
-	explicit ColoredDrawable(Object3D &object, Shaders::PhongGL &shader, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _shader(shader), _mesh(mesh), _material{material} {}
+	explicit MyDrawable(Object3D &object, Shaders::PhongGL &shader, GL::Mesh &mesh, Containers::Array<Containers::Optional<GL::Texture2D>> &textures, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _shader(shader), _mesh(mesh), _textures(textures), _material{material}
+	{
+		auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
+		Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, move(diffuseData));
+
+		defaultDiffuse
+			.setMagnificationFilter(SamplerFilter::Linear)
+			.setMinificationFilter(SamplerFilter::Linear, SamplerMipmap::Linear)
+			.setWrapping(GL::SamplerWrapping::ClampToEdge)
+			.setStorage(1, GL::textureFormat(Magnum::PixelFormat::RGBA8Unorm), Vector2i(1, 1))
+			.setSubImage(0, {}, diffuseImage)
+			.generateMipmap();
+
+		auto normalData = Containers::array<char>({0, 0, -1, -1});
+		Image2D normalImage(PixelFormat::RGBA8Unorm, {1, 1}, move(normalData));
+
+		defaultNormal
+			.setMagnificationFilter(SamplerFilter::Linear)
+			.setMinificationFilter(SamplerFilter::Linear, SamplerMipmap::Linear)
+			.setWrapping(GL::SamplerWrapping::ClampToEdge)
+			.setStorage(1, GL::textureFormat(Magnum::PixelFormat::RGBA8Unorm), Vector2i(1, 1))
+			.setSubImage(0, {}, normalImage)
+			.generateMipmap();
+	}
 
 private:
-	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override;
+	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override
+	{
+		if (_material.hasAttribute(Trade::MaterialAttribute::DiffuseTexture) && _textures[_material.diffuseTexture()])
+			_shader.bindDiffuseTexture(*_textures[_material.diffuseTexture()]);
+		else
+			_shader.bindDiffuseTexture(defaultDiffuse);
+
+		if (_material.hasAttribute(Trade::MaterialAttribute::NormalTexture) && _textures[_material.normalTexture()])
+			_shader.bindNormalTexture(*_textures[_material.normalTexture()]);
+		else
+			_shader.bindNormalTexture(defaultNormal);
+
+		_shader
+			.setShininess(max(_material.shininess(), 1.f)) // 0.01f because shader acts wierd at  0
+			.setSpecularColor(_material.specularColor())
+			.setDiffuseColor(_material.diffuseColor())
+			.setLightPositions({{camera.cameraMatrix().transformPoint({-3.0f, 10.0f, 10.0f}), 0.0f}})
+			.setTransformationMatrix(transformationMatrix)
+			.setNormalMatrix(transformationMatrix.normalMatrix())
+			.setProjectionMatrix(camera.projectionMatrix())
+			.draw(_mesh);
+	}
 
 	Shaders::PhongGL &_shader;
+	GL::Mesh &_mesh;
+	Containers::Array<Containers::Optional<GL::Texture2D>> &_textures;
+
 	Trade::PhongMaterialData &_material;
-	GL::Mesh &_mesh;
+
+	GL::Texture2D defaultDiffuse, defaultNormal;
 };
-
-class TexturedDrawable : public SceneGraph::Drawable3D
-{
-public:
-	explicit TexturedDrawable(Object3D &object, Shaders::PhongGL &shader, GL::Mesh &mesh, GL::Texture2D &texture, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _shader(shader), _mesh(mesh), _texture(texture) {}
-
-private:
-	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override;
-
-	Shaders::PhongGL &_shader;
-	GL::Mesh &_mesh;
-	GL::Texture2D &_texture;
-};
-
-void ColoredDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera)
-{
-
-	_shader
-		.setDiffuseColor(_material.diffuseColor())
-		.setShininess(max(_material.shininess(), 0.1f)) // 0.01f because shader acts wierd at  0
-		.setLightPositions({{camera.cameraMatrix().transformPoint({-3.0f, 10.0f, 10.0f}), 0.0f}})
-		.setTransformationMatrix(transformationMatrix)
-		.setNormalMatrix(transformationMatrix.normalMatrix())
-		.setProjectionMatrix(camera.projectionMatrix())
-		.draw(_mesh);
-}
-
-void TexturedDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera)
-{
-	_shader
-		.bindDiffuseTexture(_texture)
-		.setLightPositions({{camera.cameraMatrix().transformPoint({-3.0f, 10.0f, 10.0f}), 0.0f}})
-		.setTransformationMatrix(transformationMatrix)
-		.setNormalMatrix(transformationMatrix.normalMatrix())
-		.setProjectionMatrix(camera.projectionMatrix())
-		.draw(_mesh);
-}
 
 class ViewerExample : public Platform::Application
 {
 public:
 #pragma region hlep_constructor_too_big
-	explicit ViewerExample(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Magnum Viewer Example").addWindowFlags(Configuration::WindowFlag::Borderless).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4)}
+	explicit ViewerExample(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Magnum Viewer Example").setSize(Vector2i(1280, 720), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Borderless).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4)}
 	{
 		// Utility::Arguments args;
 		// args.addArgument("file");
@@ -272,20 +285,15 @@ public:
 		GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
 		GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
 
-		_coloredShader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
+		_PhongShader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
 			.setSpecularColor(Color4(1, 1, 1, 1))
-			.setShininess(80.f);
-		_texturedShader
-			.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
-			.setSpecularColor(Color4(0.1, 0.1, 0.1, 1))
 			.setShininess(80.f);
 
 		std::string path = "/home/elias/Downloads/untitled.fbx";
 		// std::getline(std::cin, path);
 
 		PluginManager::Manager<Trade::AbstractImporter> manager;
-		Containers::Pointer<Trade::AbstractImporter> importer =
-			manager.loadAndInstantiate("AnySceneImporter");
+		Containers::Pointer<Trade::AbstractImporter> importer = manager.loadAndInstantiate("AnySceneImporter");
 		// manager.loadAndInstantiate(args.value("importer"));
 
 		// if (!importer || !importer->openFile(args.value("file")))
@@ -314,6 +322,10 @@ public:
 						  << importer->image2DName(textureData->image());
 				continue;
 			}
+			else
+			{
+				Debug{} << "Loaded image" << importer->image2DName(textureData->image());
+			}
 
 			(*(_textures[i] = GL::Texture2D{}))
 				.setMagnificationFilter(textureData->magnificationFilter())
@@ -324,6 +336,8 @@ public:
 							GL::textureFormat(imageData->format()), imageData->size())
 				.setSubImage(0, {}, *imageData)
 				.generateMipmap();
+
+			Debug{} << imageData->format();
 		}
 
 		_materials = Containers::Array<Containers::Optional<Trade::PhongMaterialData>>{importer->materialCount()};
@@ -352,8 +366,11 @@ public:
 				continue;
 			}
 
+			for (int i = 0; i < meshData->attributeCount(); i++)
+				Debug{} << meshData->attributeName(i);
+
 			MeshTools::CompileFlags flags;
-			if (meshData->hasAttribute(Trade::MeshAttribute::Normal))
+			if (!meshData->hasAttribute(Trade::MeshAttribute::Normal))
 				flags |= MeshTools::CompileFlag::GenerateFlatNormals;
 			_meshes[i] = MeshTools::compile(*meshData, flags);
 		}
@@ -406,15 +423,10 @@ public:
 					// new ColoredDrawable{*object, _coloredShader, *mesh, 0xffffff_rgbf,
 					// 					_drawables};
 				}
-				else if (_materials[materialId]->hasAttribute(Trade::MaterialAttribute::DiffuseTexture) && _textures[_materials[materialId]->diffuseTexture()])
-				{
-					/* Textured material, if the texture loaded correctly */
-					new TexturedDrawable{*object, _texturedShader, *mesh, *_textures[_materials[materialId]->diffuseTexture()], _drawables};
-				}
 				else
 				{
 					/* Color-only material */
-					new ColoredDrawable{*object, _coloredShader, *mesh, (*_materials[materialId]), _drawables};
+					new MyDrawable{*object, _PhongShader, *mesh, _textures, (*_materials[materialId]), _drawables};
 				}
 			}
 		}
@@ -506,8 +518,8 @@ private:
 		_cameraObject.translate(Vector3(0, 0, pow(1.15f, factor * 10.f) - _cameraObject.transformation().translation().z()));
 	}
 
-	Shaders::PhongGL _coloredShader,
-		_texturedShader{Shaders::PhongGL::Flag::DiffuseTexture};
+	Shaders::PhongGL _PhongShader{Shaders::PhongGL::Flag::DiffuseTexture | Shaders::PhongGL::Flag::NormalTexture | Shaders::PhongGL::Flag::Bitangent};
+
 	Containers::Array<Containers::Optional<GL::Mesh>> _meshes;
 	Containers::Array<Containers::Optional<GL::Texture2D>> _textures;
 	Containers::Array<Containers::Optional<Trade::PhongMaterialData>> _materials;

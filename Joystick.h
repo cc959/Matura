@@ -1,3 +1,5 @@
+#pragma once
+
 #include <bits/stdc++.h>
 #include <linux/joystick.h>
 #include <sys/stat.h>

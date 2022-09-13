@@ -349,6 +349,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
   /usr/include/bits/types/struct_tm.h \
   /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/c++/12.1.1/bits/parse_numbers.h \
+  /usr/include/Magnum/Image.h \
+  /usr/include/Magnum/GL/PixelFormat.h \
   /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
   /usr/include/c++/12.1.1/cassert \
   /usr/include/assert.h \
@@ -688,6 +690,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/bits/regex.tcc:
 
+/usr/include/c++/12.1.1/bits/regex_compiler.tcc:
+
 /usr/include/SDL2/SDL_config.h:
 
 /usr/include/linux/ioctl.h:
@@ -796,6 +800,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/Magnum/configure.h:
 
+/usr/include/Magnum/Image.h:
+
 /usr/include/Magnum/Types.h:
 
 /usr/include/bits/mathcalls-narrow.h:
@@ -889,8 +895,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/byteswap.h:
 
 /usr/include/SDL2/SDL_video.h:
-
-/usr/include/c++/12.1.1/bits/regex_compiler.tcc:
 
 /usr/include/c++/12.1.1/bits/stl_construct.h:
 
@@ -1024,8 +1028,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.1/include/stddef.h:
 
-/usr/include/Magnum/Math/Matrix4.h:
-
 /usr/include/c++/12.1.1/bits/ptr_traits.h:
 
 /usr/include/bits/thread-shared-types.h:
@@ -1079,6 +1081,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/linux/input.h:
 
 /usr/include/c++/12.1.1/bits/char_traits.h:
+
+/usr/include/Magnum/Math/Matrix4.h:
+
+/usr/include/Magnum/GL/PixelFormat.h:
 
 /usr/include/c++/12.1.1/algorithm:
 
@@ -1376,6 +1382,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/bits/ostream_insert.h:
 
+/usr/include/c++/12.1.1/bits/regex.h:
+
+/usr/include/strings.h:
+
 /usr/include/bits/atomic_wide_counter.h:
 
 /usr/include/signal.h:
@@ -1637,10 +1647,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/Magnum/DimensionTraits.h:
 
 /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h:
-
-/usr/include/strings.h:
-
-/usr/include/c++/12.1.1/bits/regex.h:
 
 /usr/include/bits/fcntl.h:
 
