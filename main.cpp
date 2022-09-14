@@ -171,6 +171,7 @@
 #include <Magnum/SceneGraph/Drawable.h>
 #include <Magnum/SceneGraph/MatrixTransformation3D.h>
 #include <Magnum/SceneGraph/Scene.h>
+#include <Magnum/SceneGraph/Object.h>
 #include <Magnum/Shaders/PhongGL.h>
 #include <Magnum/Trade/AbstractImporter.h>
 #include <Magnum/Trade/ImageData.h>
@@ -178,9 +179,13 @@
 #include <Magnum/Trade/PhongMaterialData.h>
 #include <Magnum/Trade/SceneData.h>
 #include <Magnum/Trade/TextureData.h>
+#include <Magnum/Trade/AnimationData.h>
 #include <Magnum/Timeline.h>
 #include <Magnum/Image.h>
+#include <Magnum/Animation/Animation.h>
+#include <Magnum/Animation/Player.h>
 #include <Magnum/GL/PixelFormat.h>
+#include <Magnum/Math/Quaternion.h>
 
 #include <bits/stdc++.h>
 #include "Joystick.h"
@@ -189,20 +194,21 @@
 
 using namespace Magnum;
 
+using namespace Containers;
 using namespace Math::Literals;
 
 typedef SceneGraph::Object<SceneGraph::MatrixTransformation3D> Object3D;
 typedef SceneGraph::Scene<SceneGraph::MatrixTransformation3D> Scene3D;
 
-class MyDrawable : public SceneGraph::Drawable3D
+class PhongDrawable : public SceneGraph::Drawable3D
 {
 public:
-	explicit MyDrawable(Object3D &object, Shaders::PhongGL &shader, GL::Mesh &mesh, Containers::Array<Containers::Optional<GL::Texture2D>> &textures, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _shader(shader), _mesh(mesh), _textures(textures), _material{material}
+	explicit PhongDrawable(Object3D &object, GL::Mesh &mesh, Containers::Array<Optional<GL::Texture2D>> &textures, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _mesh(mesh), _textures(textures), _material{material}
 	{
 		auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
 		Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, move(diffuseData));
 
-		defaultDiffuse
+		_defaultDiffuse
 			.setMagnificationFilter(SamplerFilter::Linear)
 			.setMinificationFilter(SamplerFilter::Linear, SamplerMipmap::Linear)
 			.setWrapping(GL::SamplerWrapping::ClampToEdge)
@@ -210,34 +216,33 @@ public:
 			.setSubImage(0, {}, diffuseImage)
 			.generateMipmap();
 
-		auto normalData = Containers::array<char>({0, 0, -1, -1});
-		Image2D normalImage(PixelFormat::RGBA8Unorm, {1, 1}, move(normalData));
+		_hasNormals = _material.hasAttribute(Trade::MaterialAttribute::NormalTexture) && _material.normalTexture() < _textures.size() && _textures[_material.normalTexture()];
 
-		defaultNormal
-			.setMagnificationFilter(SamplerFilter::Linear)
-			.setMinificationFilter(SamplerFilter::Linear, SamplerMipmap::Linear)
-			.setWrapping(GL::SamplerWrapping::ClampToEdge)
-			.setStorage(1, GL::textureFormat(Magnum::PixelFormat::RGBA8Unorm), Vector2i(1, 1))
-			.setSubImage(0, {}, normalImage)
-			.generateMipmap();
+		if (_hasNormals)
+			_shader = Shaders::PhongGL{Shaders::PhongGL::Flag::DiffuseTexture | Shaders::PhongGL::Flag::NormalTexture | Shaders::PhongGL::Flag::Bitangent};
+		else
+			_shader = Shaders::PhongGL{Shaders::PhongGL::Flag::DiffuseTexture};
+
+		_shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
+			.setSpecularColor(Color4(1, 1, 1, 1))
+			.setShininess(80.f);
 	}
 
 private:
 	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override
 	{
+
 		if (_material.hasAttribute(Trade::MaterialAttribute::DiffuseTexture) && _textures[_material.diffuseTexture()])
 			_shader.bindDiffuseTexture(*_textures[_material.diffuseTexture()]);
 		else
-			_shader.bindDiffuseTexture(defaultDiffuse);
+			_shader.bindDiffuseTexture(_defaultDiffuse);
 
-		if (_material.hasAttribute(Trade::MaterialAttribute::NormalTexture) && _textures[_material.normalTexture()])
+		if (_hasNormals)
 			_shader.bindNormalTexture(*_textures[_material.normalTexture()]);
-		else
-			_shader.bindNormalTexture(defaultNormal);
 
 		_shader
 			.setShininess(max(_material.shininess(), 1.f)) // 0.01f because shader acts wierd at  0
-			.setSpecularColor(_material.specularColor())
+			.setSpecularColor({_material.shininess() / 100.f, _material.shininess() / 100.f, _material.shininess() / 100.f, 1})
 			.setDiffuseColor(_material.diffuseColor())
 			.setLightPositions({{camera.cameraMatrix().transformPoint({-3.0f, 10.0f, 10.0f}), 0.0f}})
 			.setTransformationMatrix(transformationMatrix)
@@ -246,13 +251,15 @@ private:
 			.draw(_mesh);
 	}
 
-	Shaders::PhongGL &_shader;
+	Shaders::PhongGL _shader;
 	GL::Mesh &_mesh;
-	Containers::Array<Containers::Optional<GL::Texture2D>> &_textures;
+	Containers::Array<Optional<GL::Texture2D>> &_textures;
 
 	Trade::PhongMaterialData &_material;
 
-	GL::Texture2D defaultDiffuse, defaultNormal;
+	GL::Texture2D _defaultDiffuse;
+
+	bool _hasNormals;
 };
 
 class ViewerExample : public Platform::Application
@@ -285,11 +292,7 @@ public:
 		GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
 		GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
 
-		_PhongShader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
-			.setSpecularColor(Color4(1, 1, 1, 1))
-			.setShininess(80.f);
-
-		std::string path = "/home/elias/Downloads/untitled.fbx";
+		std::string path = "/home/elias/Downloads/scene.glb";
 		// std::getline(std::cin, path);
 
 		PluginManager::Manager<Trade::AbstractImporter> manager;
@@ -300,11 +303,11 @@ public:
 		if (!importer || !importer->openFile(path))
 			std::exit(1);
 
-		_textures = Containers::Array<Containers::Optional<GL::Texture2D>>{
+		_textures = Containers::Array<Optional<GL::Texture2D>>{
 			importer->textureCount()};
 		for (UnsignedInt i = 0; i != importer->textureCount(); ++i)
 		{
-			Containers::Optional<Trade::TextureData> textureData =
+			Optional<Trade::TextureData> textureData =
 				importer->texture(i);
 			if (!textureData || textureData->type() != Trade::TextureType::Texture2D)
 			{
@@ -313,7 +316,7 @@ public:
 				continue;
 			}
 
-			Containers::Optional<Trade::ImageData2D> imageData =
+			Optional<Trade::ImageData2D> imageData =
 				importer->image2D(textureData->image());
 
 			if (!imageData /*|| !imageData->isCompressed()*/)
@@ -340,11 +343,11 @@ public:
 			Debug{} << imageData->format();
 		}
 
-		_materials = Containers::Array<Containers::Optional<Trade::PhongMaterialData>>{importer->materialCount()};
+		_materials = Containers::Array<Optional<Trade::PhongMaterialData>>{importer->materialCount()};
 
 		for (UnsignedInt i = 0; i != importer->materialCount(); ++i)
 		{
-			Containers::Optional<Trade::MaterialData> materialData;
+			Optional<Trade::MaterialData> materialData;
 			if (!(materialData = importer->material(i)))
 			{
 				Warning{} << "Cannot load material" << i
@@ -355,11 +358,11 @@ public:
 			_materials[i] = std::move(*materialData).as<Trade::PhongMaterialData>();
 		}
 
-		_meshes = Containers::Array<Containers::Optional<GL::Mesh>>{
+		_meshes = Containers::Array<Optional<GL::Mesh>>{
 			importer->meshCount()};
 		for (UnsignedInt i = 0; i != importer->meshCount(); ++i)
 		{
-			Containers::Optional<Trade::MeshData> meshData;
+			Optional<Trade::MeshData> meshData;
 			if (!(meshData = importer->mesh(i)))
 			{
 				Warning{} << "Cannot load mesh" << i << importer->meshName(i);
@@ -384,33 +387,33 @@ public:
 		}
 		else
 		{
-			Containers::Optional<Trade::SceneData> scene;
+			Optional<Trade::SceneData> scene;
 			if (!(scene = importer->scene(importer->defaultScene())) || !scene->is3D() || !scene->hasField(Trade::SceneField::Parent) || !scene->hasField(Trade::SceneField::Mesh))
 			{
 				Fatal{} << "Cannot load scene" << importer->defaultScene() << importer->sceneName(importer->defaultScene());
 			}
 
-			Containers::Array<Object3D *> objects{std::size_t(scene->mappingBound())};
+			_objects = Containers::Array<Object3D *>{std::size_t(scene->mappingBound())};
 
 			Containers::Array<Containers::Pair<UnsignedInt, Int>> parents = scene->parentsAsArray(); // object index, parent
 
 			for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // instantiate objects
-				objects[parent.first()] = new Object3D{};
+				_objects[parent.first()] = new Object3D{};
 
 			for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // set parents of objects
-				objects[parent.first()]->setParent(parent.second() == -1 ? &_manipulator : objects[parent.second()]);
+				_objects[parent.first()]->setParent(parent.second() == -1 ? &_manipulator : _objects[parent.second()]);
 
 			for (const Containers::Pair<UnsignedInt, Matrix4> &transformation : scene->transformations3DAsArray()) // object index, transformations
 			{
-				if (Object3D *object = objects[transformation.first()])
+				if (Object3D *object = _objects[transformation.first()])
 					object->setTransformation(transformation.second());
 			}
 
 			for (const Containers::Pair<UnsignedInt, Containers::Pair<UnsignedInt, Int>> &
 					 meshMaterial : scene->meshesMaterialsAsArray())
 			{
-				Object3D *object = objects[meshMaterial.first()];							   // object to assign material to
-				Containers::Optional<GL::Mesh> &mesh = _meshes[meshMaterial.second().first()]; // mesh to assign material to
+				Object3D *object = _objects[meshMaterial.first()];				   // object to assign material to
+				Optional<GL::Mesh> &mesh = _meshes[meshMaterial.second().first()]; // mesh to assign material to
 				if (!object || !mesh)
 					continue;
 
@@ -426,12 +429,63 @@ public:
 				else
 				{
 					/* Color-only material */
-					new MyDrawable{*object, _PhongShader, *mesh, _textures, (*_materials[materialId]), _drawables};
+					new PhongDrawable{*object, *mesh, _textures, (*_materials[materialId]), _drawables};
+				}
+			}
+		}
+
+		for (int i = 0; i < importer->animationCount(); i++)
+		{
+			Debug{} << importer->animationName(i);
+			Optional<Trade::AnimationData> data = importer->animation(i);
+
+			if (!data)
+			{
+				Warning{} << "Unable to import animation " << importer->animationName(i);
+				continue;
+			}
+
+			for (UnsignedInt i = 0; i != data->trackCount(); ++i)
+			{
+				Object3D &animatedObject = *_objects[data->trackTarget(i)];
+				Debug{} << data->trackTarget(i);
+				if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Translation3D)
+				{
+					const auto callback = [](Float, const Vector3 &translation, Object3D &object)
+					{
+						Debug{} << translation;
+						object.translate(translation - object.transformation().translation());
+					};
+					CORRADE_INTERNAL_ASSERT(data->trackType(i) == Trade::AnimationTrackType::Vector3);
+					player.addWithCallback(data->track<Vector3>(i), callback, animatedObject);
+				}
+
+				if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Rotation3D)
+				{
+					const auto callback = [](Float, const Quaternion &rotation, Object3D &object)
+					{
+						object.rotate(rotation - Quaternion::fromMatrix(object.transformation().rotation()));
+					};
+					assert(data->trackType(i) == Trade::AnimationTrackType::Quaternion);
+					player.addWithCallback(data->track<Quaternion>(i), callback, animatedObject);
+				}
+
+				if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Scaling3D)
+				{
+					const auto callback = [](Float, const Vector3 &scaling, Object3D &object)
+					{
+						object.scale(scaling / object.transformation().scaling());
+					};
+					CORRADE_INTERNAL_ASSERT(data->trackType(i) ==
+											Trade::AnimationTrackType::Vector3);
+					player.addWithCallback(data->track<Vector3>(i), callback, animatedObject);
 				}
 			}
 		}
 
 		timeline.start();
+		player.setPlayCount(0);
+		player.play(std::chrono::system_clock::now().time_since_epoch());
 	}
 
 #pragma endregion
@@ -439,8 +493,9 @@ public:
 private:
 	void drawEvent() override
 	{
-
 		GL::defaultFramebuffer.clear(GL::FramebufferClear::Color | GL::FramebufferClear::Depth);
+
+		player.advance(std::chrono::system_clock::now().time_since_epoch());
 
 		applyJoystick();
 
@@ -518,11 +573,12 @@ private:
 		_cameraObject.translate(Vector3(0, 0, pow(1.15f, factor * 10.f) - _cameraObject.transformation().translation().z()));
 	}
 
-	Shaders::PhongGL _PhongShader{Shaders::PhongGL::Flag::DiffuseTexture | Shaders::PhongGL::Flag::NormalTexture | Shaders::PhongGL::Flag::Bitangent};
+	Containers::Array<Optional<GL::Mesh>> _meshes;
+	Containers::Array<Optional<GL::Texture2D>> _textures;
+	Containers::Array<Optional<Trade::PhongMaterialData>> _materials;
+	Containers::Array<Object3D *> _objects;
 
-	Containers::Array<Containers::Optional<GL::Mesh>> _meshes;
-	Containers::Array<Containers::Optional<GL::Texture2D>> _textures;
-	Containers::Array<Containers::Optional<Trade::PhongMaterialData>> _materials;
+	Animation::Player<std::chrono::nanoseconds, Float> player;
 
 	Scene3D _scene;
 	Object3D _manipulator, _cameraObject;

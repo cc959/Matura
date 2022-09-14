@@ -245,15 +245,21 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/Corrade/Utility/Endianness.h \
  /usr/include/Corrade/Utility/utilities.h /usr/include/c++/12.1.1/cstring \
  /usr/include/Magnum/Trade/SceneData.h \
- /usr/include/Magnum/Trade/TextureData.h /usr/include/Magnum/Timeline.h \
- /usr/include/c++/12.1.1/chrono /usr/include/c++/12.1.1/bits/chrono.h \
- /usr/include/c++/12.1.1/ratio /usr/include/c++/12.1.1/limits \
- /usr/include/c++/12.1.1/ctime /usr/include/time.h \
- /usr/include/bits/time.h /usr/include/bits/timex.h \
+ /usr/include/Magnum/Trade/TextureData.h \
+ /usr/include/Magnum/Trade/AnimationData.h \
+ /usr/include/Magnum/Animation/Track.h \
+ /usr/include/Magnum/Animation/Animation.h \
+ /usr/include/Magnum/Animation/Interpolation.h \
+ /usr/include/Magnum/Timeline.h /usr/include/c++/12.1.1/chrono \
+ /usr/include/c++/12.1.1/bits/chrono.h /usr/include/c++/12.1.1/ratio \
+ /usr/include/c++/12.1.1/limits /usr/include/c++/12.1.1/ctime \
+ /usr/include/time.h /usr/include/bits/time.h /usr/include/bits/timex.h \
  /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_itimerspec.h \
  /usr/include/c++/12.1.1/bits/parse_numbers.h /usr/include/Magnum/Image.h \
+ /usr/include/Magnum/Animation/Player.h \
  /usr/include/Magnum/GL/PixelFormat.h \
+ /usr/include/Magnum/Math/Quaternion.h \
  /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.1.1/cassert /usr/include/assert.h \
  /usr/include/c++/12.1.1/cfloat /usr/include/c++/12.1.1/climits \

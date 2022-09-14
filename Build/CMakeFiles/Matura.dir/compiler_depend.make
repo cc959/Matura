@@ -337,6 +337,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/12.1.1/cstring \
   /usr/include/Magnum/Trade/SceneData.h \
   /usr/include/Magnum/Trade/TextureData.h \
+  /usr/include/Magnum/Trade/AnimationData.h \
+  /usr/include/Magnum/Animation/Track.h \
+  /usr/include/Magnum/Animation/Animation.h \
+  /usr/include/Magnum/Animation/Interpolation.h \
   /usr/include/Magnum/Timeline.h \
   /usr/include/c++/12.1.1/chrono \
   /usr/include/c++/12.1.1/bits/chrono.h \
@@ -350,7 +354,9 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
   /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/c++/12.1.1/bits/parse_numbers.h \
   /usr/include/Magnum/Image.h \
+  /usr/include/Magnum/Animation/Player.h \
   /usr/include/Magnum/GL/PixelFormat.h \
+  /usr/include/Magnum/Math/Quaternion.h \
   /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
   /usr/include/c++/12.1.1/cassert \
   /usr/include/assert.h \
@@ -692,6 +698,14 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/bits/regex_compiler.tcc:
 
+/usr/include/c++/12.1.1/bits/regex_compiler.h:
+
+/usr/include/c++/12.1.1/bits/regex_scanner.tcc:
+
+/usr/include/c++/12.1.1/bits/regex_automaton.h:
+
+/usr/include/c++/12.1.1/bits/regex_error.h:
+
 /usr/include/SDL2/SDL_config.h:
 
 /usr/include/linux/ioctl.h:
@@ -726,6 +740,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/Magnum/Math/Matrix.h:
 
+/usr/include/Magnum/Animation/Interpolation.h:
+
 /usr/include/Magnum/Math/Color.h:
 
 /usr/include/Magnum/Trade/Trade.h:
@@ -743,8 +759,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/string_view:
 
 /usr/include/Corrade/Containers/StringView.h:
-
-/usr/include/c++/12.1.1/bits/regex_error.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.1/include-fixed/syslimits.h:
 
@@ -817,8 +831,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/bits/uses_allocator.h:
 
 /usr/include/c++/12.1.1/tuple:
-
-/usr/include/c++/12.1.1/streambuf:
 
 /usr/include/c++/12.1.1/bits/stl_multimap.h:
 
@@ -938,8 +950,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/Corrade/Utility/DebugAssert.h:
 
-/usr/include/c++/12.1.1/bits/stl_iterator_base_funcs.h:
-
 /usr/include/fcntl.h:
 
 /usr/include/c++/12.1.1/bits/cxxabi_forced.h:
@@ -949,6 +959,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/bits/this_thread_sleep.h:
 
 /usr/include/bits/types/clockid_t.h:
+
+/usr/include/c++/12.1.1/bits/regex_scanner.h:
+
+/usr/include/c++/12.1.1/bits/stl_list.h:
 
 /usr/include/endian.h:
 
@@ -979,8 +993,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/bits/node_handle.h:
 
 /usr/include/c++/12.1.1/istream:
-
-/usr/include/c++/12.1.1/bits/regex_automaton.h:
 
 /usr/include/Magnum/Math/Functions.h:
 
@@ -1134,6 +1146,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/sys/cdefs.h:
 
+/usr/include/c++/12.1.1/bits/stl_iterator_base_funcs.h:
+
+/usr/include/Magnum/Animation/Player.h:
+
 /usr/include/poll.h:
 
 /usr/include/c++/12.1.1/bits/gslice_array.h:
@@ -1143,6 +1159,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/Magnum/Trade/MeshData.h:
 
 /usr/include/bits/pthreadtypes-arch.h:
+
+/usr/include/Magnum/Math/Quaternion.h:
 
 /usr/include/Magnum/GL/TextureFormat.h:
 
@@ -1280,10 +1298,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/bits/types/wint_t.h:
 
-/usr/include/c++/12.1.1/bits/stl_list.h:
-
-/usr/include/c++/12.1.1/bits/regex_scanner.h:
-
 /usr/include/locale.h:
 
 /usr/include/c++/12.1.1/bits/erase_if.h:
@@ -1306,8 +1320,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/bits/types/FILE.h:
 
-/usr/include/c++/12.1.1/bits/regex_compiler.h:
-
 /usr/include/Corrade/Utility/Macros.h:
 
 /usr/include/bits/types/mbstate_t.h:
@@ -1325,6 +1337,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/bits/cpp_type_traits.h:
 
 /usr/include/Corrade/Containers/constructHelpers.h:
+
+/usr/include/Magnum/Animation/Track.h:
 
 /usr/include/Corrade/Containers/Pair.h:
 
@@ -1380,6 +1394,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/bits/waitflags.h:
 
+/usr/include/Magnum/Trade/AnimationData.h:
+
 /usr/include/c++/12.1.1/bits/ostream_insert.h:
 
 /usr/include/c++/12.1.1/bits/regex.h:
@@ -1429,8 +1445,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/bits/fs_fwd.h:
 
 /usr/include/c++/12.1.1/bits/stl_algo.h:
-
-/usr/include/c++/12.1.1/bits/regex_scanner.tcc:
 
 /usr/include/c++/12.1.1/bits/stl_tempbuf.h:
 
@@ -1499,6 +1513,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/types/__FILE.h:
 
 /usr/include/c++/12.1.1/bits/forward_list.tcc:
+
+/usr/include/c++/12.1.1/streambuf:
+
+/usr/include/Magnum/Animation/Animation.h:
 
 /usr/include/c++/12.1.1/bits/chrono.h:
 
@@ -1588,9 +1606,9 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/bits/posix_opt.h:
 
-/usr/include/c++/12.1.1/bits/stl_function.h:
-
 /usr/include/c++/12.1.1/bits/regex_automaton.tcc:
+
+/usr/include/c++/12.1.1/bits/stl_function.h:
 
 /usr/include/bits/confname.h:
 

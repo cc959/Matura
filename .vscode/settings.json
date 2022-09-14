@@ -95,6 +95,10 @@
 		"core": "cpp",
 		"*.ipp": "cpp",
 		"*.def": "cpp",
-		"*.inc": "cpp"
+		"*.inc": "cpp",
+		"hash_map": "cpp",
+		"hash_set": "cpp",
+		"strstream": "cpp",
+		"ios": "cpp"
 	}
 }
