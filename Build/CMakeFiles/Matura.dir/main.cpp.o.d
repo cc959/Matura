@@ -223,6 +223,8 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/Magnum/SceneGraph/AbstractTranslation.h \
  /usr/include/Magnum/SceneGraph/AbstractTransformation.h \
  /usr/include/Magnum/SceneGraph/Object.h \
+ /usr/include/Magnum/SceneGraph/TranslationRotationScalingTransformation3D.h \
+ /usr/include/Magnum/Math/Quaternion.h \
  /usr/include/Magnum/SceneGraph/Scene.h \
  /usr/include/Magnum/Shaders/PhongGL.h \
  /usr/include/Magnum/GL/AbstractShaderProgram.h \
@@ -259,7 +261,10 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/c++/12.1.1/bits/parse_numbers.h /usr/include/Magnum/Image.h \
  /usr/include/Magnum/Animation/Player.h \
  /usr/include/Magnum/GL/PixelFormat.h \
- /usr/include/Magnum/Math/Quaternion.h \
+ /usr/include/MagnumPlugins/AnySceneImporter/AnySceneImporter.h \
+ /usr/include/MagnumPlugins/AnySceneImporter/configure.h \
+ /usr/include/MagnumPlugins/GltfImporter/GltfImporter.h \
+ /usr/include/MagnumPlugins/GltfImporter/configure.h \
  /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.1.1/cassert /usr/include/assert.h \
  /usr/include/c++/12.1.1/cfloat /usr/include/c++/12.1.1/climits \

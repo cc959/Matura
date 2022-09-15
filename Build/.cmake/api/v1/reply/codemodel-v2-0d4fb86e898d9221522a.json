@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-65f05552846e86b2de74.json",
+					"jsonFile" : "directory-.-Debug-8e2f7d26d346682e7afe.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.8"
@@ -40,7 +40,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Matura::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Matura-Debug-fe8837f527d944082d20.json",
+					"jsonFile" : "target-Matura-Debug-fbbace790f594b2b3c7b.json",
 					"name" : "Matura",
 					"projectIndex" : 0
 				}

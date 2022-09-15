@@ -24,6 +24,8 @@
 			"CMakeLists.txt",
 			"/usr/share/cmake/Magnum/FindMagnum.cmake",
 			"/usr/share/cmake/Magnum/MagnumConfig.cmake",
+			"/usr/share/cmake/MagnumPlugins/FindMagnumPlugins.cmake",
+			"/usr/share/cmake/MagnumPlugins/MagnumPluginsConfig.cmake",
 			"/usr/share/cmake/Corrade/UseCorrade.cmake",
 			"/usr/share/cmake/Corrade/FindCorrade.cmake",
 			"/usr/share/cmake/Corrade/CorradeConfig.cmake"
@@ -36,25 +38,25 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 11,
+				"line" : 12,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 17,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 13,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 15,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
@@ -86,13 +88,39 @@
 			{
 				"command" : 6,
 				"file" : 1,
-				"line" : 925,
+				"line" : 873,
 				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"file" : 4,
+				"parent" : 11
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 26,
+				"parent" : 12
+			},
+			{
+				"file" : 3,
+				"parent" : 13
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 513,
+				"parent" : 14
 			},
 			{
 				"command" : 6,
 				"file" : 1,
-				"line" : 873,
+				"line" : 925,
 				"parent" : 8
 			},
 			{
@@ -108,45 +136,45 @@
 				"parent" : 0
 			},
 			{
-				"file" : 5,
-				"parent" : 13
+				"file" : 7,
+				"parent" : 18
 			},
 			{
 				"command" : 4,
-				"file" : 5,
+				"file" : 7,
 				"line" : 27,
-				"parent" : 14
+				"parent" : 19
 			},
 			{
-				"file" : 4,
-				"parent" : 15
+				"file" : 6,
+				"parent" : 20
 			},
 			{
 				"command" : 4,
-				"file" : 4,
+				"file" : 6,
 				"line" : 626,
-				"parent" : 16
+				"parent" : 21
 			},
 			{
-				"file" : 3,
-				"parent" : 17
+				"file" : 5,
+				"parent" : 22
 			},
 			{
 				"command" : 6,
-				"file" : 3,
+				"file" : 5,
 				"line" : 315,
-				"parent" : 18
+				"parent" : 23
 			},
 			{
 				"command" : 6,
-				"file" : 3,
+				"file" : 5,
 				"line" : 320,
-				"parent" : 18
+				"parent" : 23
 			},
 			{
 				"command" : 7,
 				"file" : 0,
-				"line" : 10,
+				"line" : 11,
 				"parent" : 0
 			}
 		]
@@ -160,74 +188,74 @@
 					"fragment" : "-g"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wall"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wextra"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wold-style-cast"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Winit-self"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Werror=return-type"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wmissing-declarations"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wpedantic"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-fvisibility=hidden"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-fvisibility-inlines-hidden"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wzero-as-null-pointer-constant"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 24,
 					"fragment" : "-Wdouble-promotion"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 20,
+					"backtrace" : 25,
 					"define" : "CORRADE_IS_DEBUG_BUILD"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 21,
+					"backtrace" : 26,
 					"path" : "/run/media/elias/01D5A94471A88F00/GitHub/Matura/."
 				},
 				{
-					"backtrace" : 21,
+					"backtrace" : 26,
 					"path" : "/usr/include/colmap"
 				},
 				{
-					"backtrace" : 21,
+					"backtrace" : 26,
 					"isSystem" : true,
 					"path" : "/usr/local/include/opencv4"
 				},
 				{
-					"backtrace" : 21,
+					"backtrace" : 26,
 					"isSystem" : true,
 					"path" : "/usr/include/SDL2"
 				}
@@ -267,7 +295,7 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/usr/local/lib:",
+				"fragment" : "-Wl,-rpath,/usr/local/lib:/usr/lib/magnum/importers:",
 				"role" : "libraries"
 			},
 			{
@@ -356,6 +384,16 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 4,
+				"fragment" : "/usr/lib/magnum/importers/AnySceneImporter.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/lib/magnum/importers/GltfImporter.so",
+				"role" : "libraries"
+			},
+			{
 				"backtrace" : 3,
 				"fragment" : "/usr/local/lib/libopencv_imgcodecs.so.4.6.0",
 				"role" : "libraries"
@@ -401,18 +439,23 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 10,
-				"fragment" : "/usr/lib/libCorradePluginManager.so",
-				"role" : "libraries"
-			},
-			{
 				"backtrace" : 4,
 				"fragment" : "/usr/lib/libMagnumGL.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 11,
+				"backtrace" : 10,
 				"fragment" : "/usr/lib/libOpenGL.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/usr/lib/magnum/importers/AnyImageImporter.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/lib/libMagnumTrade.so",
 				"role" : "libraries"
 			},
 			{
@@ -421,12 +464,17 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 12,
+				"backtrace" : 16,
+				"fragment" : "/usr/lib/libCorradePluginManager.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
 				"fragment" : "/usr/lib/libCorradeUtility.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 12,
+				"backtrace" : 17,
 				"fragment" : "/usr/lib/libCorradeUtility.so",
 				"role" : "libraries"
 			},

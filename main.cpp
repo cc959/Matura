@@ -170,6 +170,7 @@
 #include <Magnum/SceneGraph/Camera.h>
 #include <Magnum/SceneGraph/Drawable.h>
 #include <Magnum/SceneGraph/MatrixTransformation3D.h>
+#include <Magnum/SceneGraph/TranslationRotationScalingTransformation3D.h>
 #include <Magnum/SceneGraph/Scene.h>
 #include <Magnum/SceneGraph/Object.h>
 #include <Magnum/Shaders/PhongGL.h>
@@ -186,6 +187,8 @@
 #include <Magnum/Animation/Player.h>
 #include <Magnum/GL/PixelFormat.h>
 #include <Magnum/Math/Quaternion.h>
+#include <MagnumPlugins/AnySceneImporter/AnySceneImporter.h>
+#include <MagnumPlugins/GltfImporter/GltfImporter.h>
 
 #include <bits/stdc++.h>
 #include "Joystick.h"
@@ -197,8 +200,8 @@ using namespace Magnum;
 using namespace Containers;
 using namespace Math::Literals;
 
-typedef SceneGraph::Object<SceneGraph::MatrixTransformation3D> Object3D;
-typedef SceneGraph::Scene<SceneGraph::MatrixTransformation3D> Scene3D;
+typedef SceneGraph::Object<SceneGraph::TranslationRotationScalingTransformation3D> Object3D;
+typedef SceneGraph::Scene<SceneGraph::TranslationRotationScalingTransformation3D> Scene3D;
 
 class PhongDrawable : public SceneGraph::Drawable3D
 {
@@ -211,7 +214,7 @@ public:
 		_defaultDiffuse
 			.setMagnificationFilter(SamplerFilter::Linear)
 			.setMinificationFilter(SamplerFilter::Linear, SamplerMipmap::Linear)
-			.setWrapping(GL::SamplerWrapping::ClampToEdge)
+			.setWrapping(GL::SamplerWrapping::Repeat)
 			.setStorage(1, GL::textureFormat(Magnum::PixelFormat::RGBA8Unorm), Vector2i(1, 1))
 			.setSubImage(0, {}, diffuseImage)
 			.generateMipmap();
@@ -280,7 +283,8 @@ public:
 		joystick.Load("/dev/input/js0");
 
 		_cameraObject.setParent(&_scene);
-		_cameraObject.translate(Vector3::zAxis(5.0f));
+		_cameraObject.setTranslation(Vector3(0, 3, 5));
+		_cameraObject.setRotation(Quaternion::fromMatrix(Matrix4::lookAt(Vector3(0, 3, 5), Vector3(0, 0, 0), Vector3::yAxis(1)).rotation()));
 
 		(*(_camera = new SceneGraph::Camera3D{_cameraObject}))
 			.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
@@ -292,15 +296,16 @@ public:
 		GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
 		GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
 
-		std::string path = "/home/elias/Downloads/scene.glb";
+		std::string path = "/home/elias/Downloads/untitled.fbx";
 		// std::getline(std::cin, path);
 
 		PluginManager::Manager<Trade::AbstractImporter> manager;
 		Containers::Pointer<Trade::AbstractImporter> importer = manager.loadAndInstantiate("AnySceneImporter");
-		// manager.loadAndInstantiate(args.value("importer"));
+		// Magnum::Trade::AnySceneImporter importer(manager);
+		//  manager.loadAndInstantiate(args.value("importer"));
 
-		// if (!importer || !importer->openFile(args.value("file")))
-		if (!importer || !importer->openFile(path))
+		// if (!importer || !  importer->openFile(args.value("file")))
+		if (!importer->openFile(path))
 			std::exit(1);
 
 		_textures = Containers::Array<Optional<GL::Texture2D>>{
@@ -334,7 +339,7 @@ public:
 				.setMagnificationFilter(textureData->magnificationFilter())
 				.setMinificationFilter(textureData->minificationFilter(),
 									   textureData->mipmapFilter())
-				.setWrapping(textureData->wrapping().xy())
+				.setWrapping(GL::SamplerWrapping::Repeat)
 				.setStorage(Math::log2(imageData->size().max()) + 1,
 							GL::textureFormat(imageData->format()), imageData->size())
 				.setSubImage(0, {}, *imageData)
@@ -397,6 +402,8 @@ public:
 
 			Containers::Array<Containers::Pair<UnsignedInt, Int>> parents = scene->parentsAsArray(); // object index, parent
 
+			Debug{} << parents;
+
 			for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // instantiate objects
 				_objects[parent.first()] = new Object3D{};
 
@@ -434,47 +441,53 @@ public:
 			}
 		}
 
-		for (int i = 0; i < importer->animationCount(); i++)
+		_animationData = Containers::Array<Optional<Trade::AnimationData>>(importer->animationCount());
+
+		for (int j = 0; j < importer->animationCount(); j++)
 		{
-			Debug{} << importer->animationName(i);
-			Optional<Trade::AnimationData> data = importer->animation(i);
+			Debug{} << importer->animationName(j);
+			_animationData[j] = importer->animation(j);
+
+			auto &data = _animationData[j];
 
 			if (!data)
 			{
-				Warning{} << "Unable to import animation " << importer->animationName(i);
+				Warning{} << "Unable to import animation " << importer->animationName(j);
 				continue;
 			}
 
 			for (UnsignedInt i = 0; i != data->trackCount(); ++i)
 			{
 				Object3D &animatedObject = *_objects[data->trackTarget(i)];
-				Debug{} << data->trackTarget(i);
+				Debug{} << data->trackTarget(i) << ":" << data->trackTargetType(i);
 				if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Translation3D)
 				{
 					const auto callback = [](Float, const Vector3 &translation, Object3D &object)
 					{
-						Debug{} << translation;
-						object.translate(translation - object.transformation().translation());
+						object.setTranslation(translation);
 					};
 					CORRADE_INTERNAL_ASSERT(data->trackType(i) == Trade::AnimationTrackType::Vector3);
 					player.addWithCallback(data->track<Vector3>(i), callback, animatedObject);
+					// Debug{} << data->track<Vector3>(i).values();
 				}
 
 				if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Rotation3D)
 				{
 					const auto callback = [](Float, const Quaternion &rotation, Object3D &object)
 					{
-						object.rotate(rotation - Quaternion::fromMatrix(object.transformation().rotation()));
+						object.setRotation(rotation);
 					};
 					assert(data->trackType(i) == Trade::AnimationTrackType::Quaternion);
 					player.addWithCallback(data->track<Quaternion>(i), callback, animatedObject);
+
+					// Debug{} << data->track<Quaternion>(i).values();
 				}
 
 				if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Scaling3D)
 				{
 					const auto callback = [](Float, const Vector3 &scaling, Object3D &object)
 					{
-						object.scale(scaling / object.transformation().scaling());
+						object.setScaling(scaling);
 					};
 					CORRADE_INTERNAL_ASSERT(data->trackType(i) ==
 											Trade::AnimationTrackType::Vector3);
@@ -484,8 +497,9 @@ public:
 		}
 
 		timeline.start();
-		player.setPlayCount(0);
-		player.play(std::chrono::system_clock::now().time_since_epoch());
+		// player.setPlayCount(0);
+		// player.play(timeline.previousFrameTime());
+		// player.setDuration(Range1D{0, player.duration().max()});
 	}
 
 #pragma endregion
@@ -495,9 +509,9 @@ private:
 	{
 		GL::defaultFramebuffer.clear(GL::FramebufferClear::Color | GL::FramebufferClear::Depth);
 
-		player.advance(std::chrono::system_clock::now().time_since_epoch());
-
 		applyJoystick();
+
+		// player.advance(timeline.previousFrameTime());
 
 		_camera->draw(_drawables);
 
@@ -567,10 +581,14 @@ private:
 	void applyJoystick()
 	{
 		_manipulator.rotateYLocal(-Math::Rad(joystick.GetAxisValue(2) / 60.f));
-		_manipulator.rotateX(-Math::Rad(joystick.GetAxisValue(1) / 60.f));
+		_manipulator.rotateX(-Math::Rad(joystick.GetAxisValue(0) / 60.f));
+
+		_objects[14]->rotateX(Math::Rad(joystick.GetAxisValue(1) / 60.f));
+		_objects[19]->rotateX(Math::Rad(joystick.GetAxisValue(5) / 60.f));
+		_objects[6]->rotateZ(Math::Rad(joystick.GetAxisValue(4) / 60.f));
 
 		float factor = (joystick.GetAxisValue(3) + 1.f) / 2.f;
-		_cameraObject.translate(Vector3(0, 0, pow(1.15f, factor * 10.f) - _cameraObject.transformation().translation().z()));
+		_cameraObject.setTranslation(_cameraObject.translation().normalized() * pow(1.15f, factor * 10.f));
 	}
 
 	Containers::Array<Optional<GL::Mesh>> _meshes;
@@ -578,7 +596,8 @@ private:
 	Containers::Array<Optional<Trade::PhongMaterialData>> _materials;
 	Containers::Array<Object3D *> _objects;
 
-	Animation::Player<std::chrono::nanoseconds, Float> player;
+	Animation::Player<Float> player;
+	Containers::Array<Optional<Trade::AnimationData>> _animationData;
 
 	Scene3D _scene;
 	Object3D _manipulator, _cameraObject;

@@ -310,6 +310,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
   /usr/include/Magnum/SceneGraph/AbstractTranslation.h \
   /usr/include/Magnum/SceneGraph/AbstractTransformation.h \
   /usr/include/Magnum/SceneGraph/Object.h \
+  /usr/include/Magnum/SceneGraph/TranslationRotationScalingTransformation3D.h \
+  /usr/include/Magnum/Math/Quaternion.h \
   /usr/include/Magnum/SceneGraph/Scene.h \
   /usr/include/Magnum/Shaders/PhongGL.h \
   /usr/include/Magnum/GL/AbstractShaderProgram.h \
@@ -356,7 +358,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
   /usr/include/Magnum/Image.h \
   /usr/include/Magnum/Animation/Player.h \
   /usr/include/Magnum/GL/PixelFormat.h \
-  /usr/include/Magnum/Math/Quaternion.h \
+  /usr/include/MagnumPlugins/AnySceneImporter/AnySceneImporter.h \
+  /usr/include/MagnumPlugins/AnySceneImporter/configure.h \
+  /usr/include/MagnumPlugins/GltfImporter/GltfImporter.h \
+  /usr/include/MagnumPlugins/GltfImporter/configure.h \
   /usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/stdc++.h \
   /usr/include/c++/12.1.1/cassert \
   /usr/include/assert.h \
@@ -706,6 +711,14 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/bits/regex_error.h:
 
+/usr/include/c++/12.1.1/bits/regex_constants.h:
+
+/usr/include/c++/12.1.1/variant:
+
+/usr/include/c++/12.1.1/bits/random.tcc:
+
+/usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/opt_random.h:
+
 /usr/include/SDL2/SDL_config.h:
 
 /usr/include/linux/ioctl.h:
@@ -836,6 +849,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/Corrade/Utility/DebugStl.h:
 
+/usr/include/MagnumPlugins/GltfImporter/configure.h:
+
 /usr/include/c++/12.1.1/cstdarg:
 
 /usr/include/c++/12.1.1/bits/streambuf_iterator.h:
@@ -859,6 +874,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/uio_lim.h:
 
 /usr/include/Corrade/Utility/StlForwardVector.h:
+
+/usr/include/MagnumPlugins/AnySceneImporter/AnySceneImporter.h:
 
 /usr/include/c++/12.1.1/bits/charconv.h:
 
@@ -891,8 +908,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/libc-header-start.h:
 
 /usr/include/bits/errno.h:
-
-/usr/include/c++/12.1.1/x86_64-pc-linux-gnu/bits/opt_random.h:
 
 /usr/include/bits/types/__fpos64_t.h:
 
@@ -999,10 +1014,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/types.h:
 
 /usr/include/bits/typesizes.h:
-
-/usr/include/Corrade/Utility/StlForwardString.h:
-
-/usr/include/bits/uintn-identity.h:
 
 /usr/include/SDL2/begin_code.h:
 
@@ -1149,6 +1160,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/bits/stl_iterator_base_funcs.h:
 
 /usr/include/Magnum/Animation/Player.h:
+
+/usr/include/c++/12.1.1/bits/random.h:
+
+/usr/include/Magnum/Math/Tags.h:
 
 /usr/include/poll.h:
 
@@ -1354,6 +1369,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/bits/ios_base.h:
 
+/usr/include/MagnumPlugins/GltfImporter/GltfImporter.h:
+
 /usr/include/c++/12.1.1/bits/std_abs.h:
 
 /usr/include/c++/12.1.1/typeinfo:
@@ -1414,6 +1431,8 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/math.h:
 
+/usr/include/Magnum/SceneGraph/TranslationRotationScalingTransformation3D.h:
+
 /usr/include/Corrade/Utility/Math.h:
 
 /usr/include/bits/types/__locale_t.h:
@@ -1429,6 +1448,10 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/system_error:
 
 /usr/include/SDL2/SDL_rect.h:
+
+/usr/include/c++/12.1.1/regex:
+
+/usr/include/SDL2/SDL_rwops.h:
 
 /usr/include/c++/12.1.1/backward/binders.h:
 
@@ -1484,8 +1507,6 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/12.1.1/ostream:
 
-/usr/include/c++/12.1.1/bits/regex_constants.h:
-
 /usr/include/Corrade/PluginManager/AbstractPlugin.h:
 
 /usr/include/c++/12.1.1/ios:
@@ -1539,6 +1560,12 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/c++/12.1.1/bits/parse_numbers.h:
+
+/usr/include/Corrade/Utility/StlForwardString.h:
+
+/usr/include/bits/uintn-identity.h:
+
+/usr/include/MagnumPlugins/AnySceneImporter/configure.h:
 
 /usr/include/c++/12.1.1/bits/std_thread.h:
 
@@ -1825,15 +1852,3 @@ CMakeFiles/Matura.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/12.1.1/forward_list:
 
 /usr/include/c++/12.1.1/random:
-
-/usr/include/Magnum/Math/Tags.h:
-
-/usr/include/c++/12.1.1/bits/random.h:
-
-/usr/include/c++/12.1.1/variant:
-
-/usr/include/c++/12.1.1/bits/random.tcc:
-
-/usr/include/SDL2/SDL_rwops.h:
-
-/usr/include/c++/12.1.1/regex:

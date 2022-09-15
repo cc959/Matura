@@ -10,7 +10,7 @@
 #include <Magnum/GL/Mesh.h>
 #include <Magnum/GL/Texture.h>
 #include <Magnum/GL/TextureFormat.h>
-#include <Magnum/Trade/AbstractImporter.h>
+#include <Magnum/Trade/Abstract importer->h>
 #include <Magnum/Trade/ImageData.h>
 #include <Magnum/GL/AbstractShaderProgram.h>
 #include <Magnum/Platform/Sdl2Application.h>

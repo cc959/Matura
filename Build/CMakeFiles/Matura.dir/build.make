@@ -109,6 +109,8 @@ Matura: /usr/lib/libMagnumMeshTools.so
 Matura: /usr/lib/libMagnumSceneGraph.so
 Matura: /usr/lib/libMagnumShaders.so
 Matura: /usr/lib/libMagnumTrade.so
+Matura: /usr/lib/magnum/importers/AnySceneImporter.so
+Matura: /usr/lib/magnum/importers/GltfImporter.so
 Matura: /usr/local/lib/libopencv_imgcodecs.so.4.6.0
 Matura: /usr/local/lib/libopencv_dnn.so.4.6.0
 Matura: /usr/local/lib/libopencv_calib3d.so.4.6.0
@@ -118,10 +120,12 @@ Matura: /usr/local/lib/libopencv_imgproc.so.4.6.0
 Matura: /usr/local/lib/libopencv_core.so.4.6.0
 Matura: /usr/lib/libSDL2-2.0.so.0.22.0
 Matura: /usr/lib/libGLX.so
-Matura: /usr/lib/libCorradePluginManager.so
 Matura: /usr/lib/libMagnumGL.so
 Matura: /usr/lib/libOpenGL.so
+Matura: /usr/lib/magnum/importers/AnyImageImporter.so
+Matura: /usr/lib/libMagnumTrade.so
 Matura: /usr/lib/libMagnum.so
+Matura: /usr/lib/libCorradePluginManager.so
 Matura: /usr/lib/libCorradeUtility.so
 Matura: /usr/lib/libCorradeUtility.so
 Matura: CMakeFiles/Matura.dir/link.txt

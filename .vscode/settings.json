@@ -99,6 +99,7 @@
 		"hash_map": "cpp",
 		"hash_set": "cpp",
 		"strstream": "cpp",
-		"ios": "cpp"
+		"ios": "cpp",
+		"*.txx": "cpp"
 	}
 }
