@@ -94,7 +94,7 @@ public:
 	{
 		ReadEvents();
 
-		if (id >= buttonCount)
+		if (id >= buttonCount || !IsLoaded())
 			return 0;
 		return buttons[id];
 	}
@@ -103,9 +103,10 @@ public:
 	{
 		ReadEvents();
 
-		if (id >= axisCount)
+		if (id >= axisCount || !IsLoaded())
 			return 0;
 		return axes[id];
+		//blub
 	}
 
 	bool IsLoaded()

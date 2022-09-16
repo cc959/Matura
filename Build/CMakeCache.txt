@@ -26,8 +26,8 @@ CMAKE_BUILD_TYPE:STRING=Debug
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//CXX compiler
-CMAKE_CXX_COMPILER:STRING=/usr/bin/g++
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -52,8 +52,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//C compiler
-CMAKE_C_COMPILER:STRING=/usr/bin/gcc
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -98,6 +98,9 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //No help, variable specified on the command line.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
+
+//Value Computed by CMake.
+CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/pkgRedirects
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
@@ -229,8 +232,20 @@ CORRADE_UTILITY_LIBRARY_RELEASE:FILEPATH=/usr/lib/libCorradeUtility.so
 //The directory containing a CMake configuration file for Corrade.
 Corrade_DIR:PATH=/usr/share/cmake/Corrade
 
+//The directory containing a CMake configuration file for ImGui.
+ImGui_DIR:PATH=/usr/share/imgui
+
 //Library directory suffix (e.g. 64 for /usr/lib64).
 LIB_SUFFIX:STRING=
+
+//Path to a library.
+MAGNUMINTEGRATION_IMGUI_LIBRARY_DEBUG:FILEPATH=MAGNUMINTEGRATION_IMGUI_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+MAGNUMINTEGRATION_IMGUI_LIBRARY_RELEASE:FILEPATH=/usr/lib/libMagnumImGuiIntegration.so
+
+//Path to a file.
+MAGNUMINTEGRATION_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
 MAGNUMPLUGINS_GLTFIMPORTER_LIBRARY_DEBUG:FILEPATH=MAGNUMPLUGINS_GLTFIMPORTER_LIBRARY_DEBUG-NOTFOUND
@@ -310,6 +325,9 @@ MAGNUM_TRADE_LIBRARY_DEBUG:FILEPATH=MAGNUM_TRADE_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 MAGNUM_TRADE_LIBRARY_RELEASE:FILEPATH=/usr/lib/libMagnumTrade.so
 
+//The directory containing a CMake configuration file for MagnumIntegration.
+MagnumIntegration_DIR:PATH=/usr/share/cmake/MagnumIntegration
+
 //The directory containing a CMake configuration file for MagnumPlugins.
 MagnumPlugins_DIR:PATH=/usr/share/cmake/MagnumPlugins
 
@@ -374,6 +392,9 @@ _CORRADE_PLUGINMANAGER_INCLUDE_DIR:PATH=/usr/include/Corrade/PluginManager
 _CORRADE_UTILITY_INCLUDE_DIR:PATH=/usr/include/Corrade/Utility
 
 //Path to a file.
+_MAGNUMINTEGRATION_IMGUI_INCLUDE_DIR:PATH=/usr/include/Magnum/ImGuiIntegration
+
+//Path to a file.
 _MAGNUMPLUGINS_GLTFIMPORTER_INCLUDE_DIR:PATH=/usr/include/MagnumPlugins/GltfImporter
 
 //Path to a file.
@@ -403,6 +424,9 @@ _MAGNUM_SHADERS_INCLUDE_DIR:PATH=/usr/include/Magnum/Shaders
 //Path to a file.
 _MAGNUM_TRADE_INCLUDE_DIR:PATH=/usr/include/Magnum/Trade
 
+//The directory containing a CMake configuration file for imgui.
+imgui_DIR:PATH=imgui_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
@@ -417,9 +441,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Bui
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=23
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=24
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=3
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -564,15 +588,23 @@ CORRADE_UTILITY_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CORRADE_UTILITY_LIBRARY_RELEASE
 CORRADE_UTILITY_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //Details about finding Corrade
-FIND_PACKAGE_MESSAGE_DETAILS_Corrade:INTERNAL=[/usr/include][/usr/share/cmake/Corrade][/usr/include/Corrade/configure.h][cfound components: Containers rc Utility PluginManager ][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_Corrade:INTERNAL=[/usr/include][/usr/share/cmake/Corrade][/usr/include/Corrade/configure.h][cfound components: Containers rc Utility ][v()]
 //Details about finding Magnum
-FIND_PACKAGE_MESSAGE_DETAILS_Magnum:INTERNAL=[/usr/include][Magnum::Magnum][cfound components: Trade AnyImageImporter ][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_Magnum:INTERNAL=[/usr/include][Magnum::Magnum][cfound components: GL Shaders ][v()]
+//Details about finding MagnumIntegration
+FIND_PACKAGE_MESSAGE_DETAILS_MagnumIntegration:INTERNAL=[/usr/include][cfound components: ImGui ][v()]
 //Details about finding MagnumPlugins
 FIND_PACKAGE_MESSAGE_DETAILS_MagnumPlugins:INTERNAL=[/usr/include][cfound components: GltfImporter ][v()]
 //Details about finding OpenCV
 FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v4.6.0()]
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/libOpenGL.so][/usr/lib/libGLX.so][/usr/include][c ][v()]
+//ADVANCED property for variable: MAGNUMINTEGRATION_IMGUI_LIBRARY_DEBUG
+MAGNUMINTEGRATION_IMGUI_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: MAGNUMINTEGRATION_IMGUI_LIBRARY_RELEASE
+MAGNUMINTEGRATION_IMGUI_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: MAGNUMINTEGRATION_INCLUDE_DIR
+MAGNUMINTEGRATION_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MAGNUMPLUGINS_GLTFIMPORTER_LIBRARY_DEBUG
 MAGNUMPLUGINS_GLTFIMPORTER_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MAGNUMPLUGINS_GLTFIMPORTER_LIBRARY_RELEASE
@@ -633,6 +665,8 @@ OPENGL_glx_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_opengl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//linker supports push/pop state
+_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //ADVANCED property for variable: _CORRADE_CONFIGURE_FILE
 _CORRADE_CONFIGURE_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: _CORRADE_CONTAINERS_INCLUDE_DIR
@@ -645,6 +679,8 @@ _CORRADE_MODULE_DIR-ADVANCED:INTERNAL=1
 _CORRADE_PLUGINMANAGER_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: _CORRADE_UTILITY_INCLUDE_DIR
 _CORRADE_UTILITY_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: _MAGNUMINTEGRATION_IMGUI_INCLUDE_DIR
+_MAGNUMINTEGRATION_IMGUI_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: _MAGNUMPLUGINS_GLTFIMPORTER_INCLUDE_DIR
 _MAGNUMPLUGINS_GLTFIMPORTER_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: _MAGNUM_ANYIMAGEIMPORTER_INCLUDE_DIR

@@ -189,9 +189,11 @@
 #include <Magnum/Math/Quaternion.h>
 #include <MagnumPlugins/AnySceneImporter/AnySceneImporter.h>
 #include <MagnumPlugins/GltfImporter/GltfImporter.h>
+#include <Magnum/ImGuiIntegration/Context.hpp>
 
 #include <bits/stdc++.h>
 #include "Joystick.h"
+#include <PhongDrawable.h>
 
 //#include <TextureShader.h>
 
@@ -203,73 +205,10 @@ using namespace Math::Literals;
 typedef SceneGraph::Object<SceneGraph::TranslationRotationScalingTransformation3D> Object3D;
 typedef SceneGraph::Scene<SceneGraph::TranslationRotationScalingTransformation3D> Scene3D;
 
-class PhongDrawable : public SceneGraph::Drawable3D
-{
-public:
-	explicit PhongDrawable(Object3D &object, GL::Mesh &mesh, Containers::Array<Optional<GL::Texture2D>> &textures, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _mesh(mesh), _textures(textures), _material{material}
-	{
-		auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
-		Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, move(diffuseData));
-
-		_defaultDiffuse
-			.setMagnificationFilter(SamplerFilter::Linear)
-			.setMinificationFilter(SamplerFilter::Linear, SamplerMipmap::Linear)
-			.setWrapping(GL::SamplerWrapping::Repeat)
-			.setStorage(1, GL::textureFormat(Magnum::PixelFormat::RGBA8Unorm), Vector2i(1, 1))
-			.setSubImage(0, {}, diffuseImage)
-			.generateMipmap();
-
-		_hasNormals = _material.hasAttribute(Trade::MaterialAttribute::NormalTexture) && _material.normalTexture() < _textures.size() && _textures[_material.normalTexture()];
-
-		if (_hasNormals)
-			_shader = Shaders::PhongGL{Shaders::PhongGL::Flag::DiffuseTexture | Shaders::PhongGL::Flag::NormalTexture | Shaders::PhongGL::Flag::Bitangent};
-		else
-			_shader = Shaders::PhongGL{Shaders::PhongGL::Flag::DiffuseTexture};
-
-		_shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
-			.setSpecularColor(Color4(1, 1, 1, 1))
-			.setShininess(80.f);
-	}
-
-private:
-	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override
-	{
-
-		if (_material.hasAttribute(Trade::MaterialAttribute::DiffuseTexture) && _textures[_material.diffuseTexture()])
-			_shader.bindDiffuseTexture(*_textures[_material.diffuseTexture()]);
-		else
-			_shader.bindDiffuseTexture(_defaultDiffuse);
-
-		if (_hasNormals)
-			_shader.bindNormalTexture(*_textures[_material.normalTexture()]);
-
-		_shader
-			.setShininess(max(_material.shininess(), 1.f)) // 0.01f because shader acts wierd at  0
-			.setSpecularColor({_material.shininess() / 100.f, _material.shininess() / 100.f, _material.shininess() / 100.f, 1})
-			.setDiffuseColor(_material.diffuseColor())
-			.setLightPositions({{camera.cameraMatrix().transformPoint({-3.0f, 10.0f, 10.0f}), 0.0f}})
-			.setTransformationMatrix(transformationMatrix)
-			.setNormalMatrix(transformationMatrix.normalMatrix())
-			.setProjectionMatrix(camera.projectionMatrix())
-			.draw(_mesh);
-	}
-
-	Shaders::PhongGL _shader;
-	GL::Mesh &_mesh;
-	Containers::Array<Optional<GL::Texture2D>> &_textures;
-
-	Trade::PhongMaterialData &_material;
-
-	GL::Texture2D _defaultDiffuse;
-
-	bool _hasNormals;
-};
-
 class ViewerExample : public Platform::Application
 {
 public:
-#pragma region hlep_constructor_too_big
-	explicit ViewerExample(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Magnum Viewer Example").setSize(Vector2i(1280, 720), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Borderless).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4)}
+	explicit ViewerExample(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Robot Arm").setSize(Vector2i(1280, 720), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4).setSrgbCapable(true)}
 	{
 		// Utility::Arguments args;
 		// args.addArgument("file");
@@ -280,9 +219,13 @@ public:
 		// args.setGlobalHelp("Displays a 3D scene file provided on command line.");
 		// args.parse(arguments.argc, arguments.argv);
 
+		_imgui = ImGuiIntegration::Context(Vector2{windowSize()} / dpiScaling(),
+										   windowSize(), framebufferSize());
+
 		joystick.Load("/dev/input/js0");
 
-		_cameraObject.setParent(&_scene);
+		_cameraRoot.setParent(&_scene);
+		_cameraObject.setParent(&_cameraRoot);
 		_cameraObject.setTranslation(Vector3(0, 3, 5));
 		_cameraObject.setRotation(Quaternion::fromMatrix(Matrix4::lookAt(Vector3(0, 3, 5), Vector3(0, 0, 0), Vector3::yAxis(1)).rotation()));
 
@@ -293,8 +236,10 @@ public:
 
 		_manipulator.setParent(&_scene);
 
-		GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
-		GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
+		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,
+									   GL::Renderer::BlendEquation::Add);
+		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
+									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
 
 		std::string path = "/home/elias/Downloads/untitled.fbx";
 		// std::getline(std::cin, path);
@@ -496,24 +441,45 @@ public:
 			}
 		}
 
+		setSwapInterval(0);
+
 		timeline.start();
 		// player.setPlayCount(0);
 		// player.play(timeline.previousFrameTime());
 		// player.setDuration(Range1D{0, player.duration().max()});
 	}
 
-#pragma endregion
-
 private:
 	void drawEvent() override
 	{
-		GL::defaultFramebuffer.clear(GL::FramebufferClear::Color | GL::FramebufferClear::Depth);
 
-		applyJoystick();
+		_deltaTime = timeline.previousFrameDuration();
+
+		GL::defaultFramebuffer.clear(GL::FramebufferClear::Color | GL::FramebufferClear::Depth);
 
 		// player.advance(timeline.previousFrameTime());
 
+		applyJoystick();
+
 		_camera->draw(_drawables);
+
+		_imgui.newFrame();
+
+		ImGui::ShowDemoWindow();
+
+		_imgui.updateApplicationCursor(*this);
+
+		GL::Renderer::enable(GL::Renderer::Feature::Blending);
+		GL::Renderer::enable(GL::Renderer::Feature::ScissorTest);
+		GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
+		GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
+
+		_imgui.drawFrame();
+
+		GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
+		GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
+		GL::Renderer::disable(GL::Renderer::Feature::ScissorTest);
+		GL::Renderer::disable(GL::Renderer::Feature::Blending);
 
 		swapBuffers();
 
@@ -527,47 +493,61 @@ private:
 	{
 		GL::defaultFramebuffer.setViewport({{}, event.framebufferSize()});
 		_camera->setViewport(event.windowSize());
+
+		_imgui.relayout(Vector2{event.windowSize()} / event.dpiScaling(),
+						event.windowSize(), event.framebufferSize());
 	}
 
 	void mousePressEvent(MouseEvent &event) override
 	{
+		if (_imgui.handleMousePressEvent(event))
+			return;
+
 		if (event.button() == MouseEvent::Button::Left)
-			_previousPosition = positionOnSphere(event.position());
+			_previousPosition = {event.position().x(), event.position().y(), 0};
 	}
 
 	void mouseReleaseEvent(MouseEvent &event) override
 	{
+		if (_imgui.handleMouseReleaseEvent(event))
+			return;
+
 		if (event.button() == MouseEvent::Button::Left)
 			_previousPosition = Vector3();
 	}
 
 	void mouseMoveEvent(MouseMoveEvent &event) override
 	{
+		if (_imgui.handleMouseMoveEvent(event))
+			return;
+
 		if (!(event.buttons() & MouseMoveEvent::Button::Left))
 			return;
 
-		const Vector3 currentPosition = positionOnSphere(event.position());
-		const Vector3 axis = Math::cross(_previousPosition, currentPosition);
+		const Vector3 currentPosition = {event.position().x(), event.position().y(), 0};
+		const Vector3 diff = currentPosition - _previousPosition;
 
-		if (_previousPosition.length() < 0.001f || axis.length() < 0.001f)
+		if (_previousPosition.length() < 0.001f)
 			return;
 
-		if (!joystick.IsLoaded())
-			_manipulator.rotate(Math::angle(_previousPosition, currentPosition), axis.normalized());
+		// if (!joystick.IsLoaded())
+		//{
+		_cameraRoot.rotateXLocal(-Math::Rad(diff.y() / 100.f));
+		_cameraRoot.rotateY(-Math::Rad(diff.x() / 100.f));
+		//}
 		_previousPosition = currentPosition;
 	}
 
 	void mouseScrollEvent(MouseScrollEvent &event) override
 	{
+		// if (_imgui.handleMouseScrollEvent(event))
+		// 	return;
+
 		if (!event.offset().y())
 			return;
-
-		/* Distance to origin */
-		const Float distance = _cameraObject.transformation().translation().z();
-
 		/* Move 15% of the distance back or forward */
-		_cameraObject.translate(Vector3::zAxis(
-			distance * (1.0f - (event.offset().y() > 0 ? 1 / 0.85f : 0.85f))));
+		// if (!joystick.IsLoaded())
+		_cameraObject.setTranslation(_cameraObject.translation() * (event.offset().y() > 0 ? 1 / 0.85f : 0.85f));
 	}
 
 	Vector3 positionOnSphere(const Vector2i &position) const
@@ -580,16 +560,23 @@ private:
 
 	void applyJoystick()
 	{
-		_manipulator.rotateYLocal(-Math::Rad(joystick.GetAxisValue(2) / 60.f));
-		_manipulator.rotateX(-Math::Rad(joystick.GetAxisValue(0) / 60.f));
+		if (joystick.IsLoaded())
+		{
+			// _manipulator.rotateYLocal(-Math::Rad(joystick.GetAxisValue(2) * _deltaTime));
+			// _manipulator.rotateX(-Math::Rad(joystick.GetAxisValue(0) * _deltaTime));
 
-		_objects[14]->rotateX(Math::Rad(joystick.GetAxisValue(1) / 60.f));
-		_objects[19]->rotateX(Math::Rad(joystick.GetAxisValue(5) / 60.f));
-		_objects[6]->rotateZ(Math::Rad(joystick.GetAxisValue(4) / 60.f));
+			_objects[14]->rotateX(Math::Rad(joystick.GetAxisValue(1) * _deltaTime));
+			_objects[19]->rotateX(Math::Rad(joystick.GetAxisValue(5) * _deltaTime));
+			_objects[6]->rotateZ(-Math::Rad(joystick.GetAxisValue(2) * _deltaTime));
 
-		float factor = (joystick.GetAxisValue(3) + 1.f) / 2.f;
-		_cameraObject.setTranslation(_cameraObject.translation().normalized() * pow(1.15f, factor * 10.f));
+			// float factor = (joystick.GetAxisValue(3) + 1.f) / 2.f;
+			// _cameraObject.setTranslation(_cameraObject.translation().normalized() * pow(1.15f, factor * 10.f));
+		}
 	}
+
+	ImGuiIntegration::Context _imgui{Magnum::NoCreate};
+
+	float _deltaTime = 0;
 
 	Containers::Array<Optional<GL::Mesh>> _meshes;
 	Containers::Array<Optional<GL::Texture2D>> _textures;
@@ -600,7 +587,7 @@ private:
 	Containers::Array<Optional<Trade::AnimationData>> _animationData;
 
 	Scene3D _scene;
-	Object3D _manipulator, _cameraObject;
+	Object3D _manipulator, _cameraRoot, _cameraObject;
 	SceneGraph::Camera3D *_camera;
 	SceneGraph::DrawableGroup3D _drawables;
 	Vector3 _previousPosition;

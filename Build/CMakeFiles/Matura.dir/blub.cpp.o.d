@@ -1,5 +1,5 @@
-CMakeFiles/Matura.dir/main.cpp.o: \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/main.cpp \
+CMakeFiles/Matura.dir/blub.cpp.o: \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/blub.cpp \
  /usr/include/stdc-predef.h /usr/include/Corrade/Containers/Array.h \
  /usr/include/c++/12.2.0/initializer_list \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -265,18 +265,13 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/MagnumPlugins/AnySceneImporter/configure.h \
  /usr/include/MagnumPlugins/GltfImporter/GltfImporter.h \
  /usr/include/MagnumPlugins/GltfImporter/configure.h \
- /usr/include/Magnum/ImGuiIntegration/Context.hpp \
- /usr/include/Magnum/ImGuiIntegration/visibility.h \
- /usr/include/Magnum/ImGuiIntegration/configure.h \
- /usr/include/MagnumExternal/ImGui/imgui.h \
- /usr/include/MagnumExternal/ImGui/imconfig.h /usr/include/assert.h \
- /usr/include/Corrade/Utility/Resource.h \
- /usr/include/Magnum/ImGuiIntegration/Integration.h \
  /usr/include/Magnum/ImGuiIntegration/Context.h \
  /usr/include/Magnum/Shaders/FlatGL.h \
+ /usr/include/Magnum/ImGuiIntegration/visibility.h \
+ /usr/include/Magnum/ImGuiIntegration/configure.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
- /usr/include/c++/12.2.0/cassert /usr/include/c++/12.2.0/cfloat \
- /usr/include/c++/12.2.0/climits \
+ /usr/include/c++/12.2.0/cassert /usr/include/assert.h \
+ /usr/include/c++/12.2.0/cfloat /usr/include/c++/12.2.0/climits \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
@@ -456,4 +451,8 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/bits/types/struct_iovec.h /usr/include/linux/falloc.h \
  /usr/include/poll.h /usr/include/sys/poll.h /usr/include/bits/poll.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./PhongDrawable.h
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./PhongDrawable.h \
+ /usr/include/imgui.h /usr/include/imconfig.h \
+ /usr/include/Magnum/ImGuiIntegration/Context.hpp \
+ /usr/include/Corrade/Utility/Resource.h \
+ /usr/include/Magnum/ImGuiIntegration/Integration.h
