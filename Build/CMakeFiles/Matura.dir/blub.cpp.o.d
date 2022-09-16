@@ -452,7 +452,8 @@ CMakeFiles/Matura.dir/blub.cpp.o: \
  /usr/include/bits/types/struct_iovec.h /usr/include/linux/falloc.h \
  /usr/include/poll.h /usr/include/sys/poll.h /usr/include/bits/poll.h \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/./PhongDrawable.h \
- /usr/include/imgui.h /usr/include/imconfig.h \
+ /usr/include/MagnumExternal/ImGui/imgui.h \
+ /usr/include/MagnumExternal/ImGui/imconfig.h \
  /usr/include/Magnum/ImGuiIntegration/Context.hpp \
  /usr/include/Corrade/Utility/Resource.h \
  /usr/include/Magnum/ImGuiIntegration/Integration.h

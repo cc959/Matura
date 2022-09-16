@@ -1,7 +1,3 @@
 /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/Matura.dir
 /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/edit_cache.dir
 /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/rebuild_cache.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/list_install_components.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/install.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/install/local.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/install/strip.dir

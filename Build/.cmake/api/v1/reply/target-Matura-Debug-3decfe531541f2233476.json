@@ -11,7 +11,6 @@
 		"commands" : 
 		[
 			"add_executable",
-			"install",
 			"target_link_libraries",
 			"set_target_properties",
 			"include",
@@ -46,157 +45,151 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 26,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 1,
 				"file" : 0,
-				"line" : 22,
+				"line" : 15,
 				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 23,
-				"parent" : 0
-			},
-			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 8,
-				"parent" : 0
-			},
-			{
-				"file" : 2,
-				"parent" : 5
 			},
 			{
 				"command" : 4,
-				"file" : 2,
-				"line" : 26,
-				"parent" : 6
-			},
-			{
-				"file" : 1,
-				"parent" : 7
-			},
-			{
-				"command" : 3,
-				"file" : 1,
-				"line" : 1141,
-				"parent" : 8
-			},
-			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 9,
-				"parent" : 0
-			},
-			{
-				"file" : 4,
-				"parent" : 10
-			},
-			{
-				"command" : 4,
-				"file" : 4,
-				"line" : 26,
-				"parent" : 11
-			},
-			{
-				"file" : 3,
-				"parent" : 12
-			},
-			{
-				"command" : 6,
-				"file" : 3,
-				"line" : 513,
-				"parent" : 13
-			},
-			{
-				"command" : 6,
-				"file" : 1,
-				"line" : 922,
-				"parent" : 8
-			},
-			{
-				"command" : 6,
-				"file" : 1,
-				"line" : 870,
-				"parent" : 8
-			},
-			{
-				"command" : 6,
-				"file" : 1,
-				"line" : 361,
-				"parent" : 8
-			},
-			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 10,
-				"parent" : 0
-			},
-			{
-				"file" : 6,
-				"parent" : 18
-			},
-			{
-				"command" : 4,
-				"file" : 6,
-				"line" : 26,
-				"parent" : 19
-			},
-			{
-				"file" : 5,
-				"parent" : 20
-			},
-			{
-				"command" : 6,
-				"file" : 5,
-				"line" : 225,
-				"parent" : 21
-			},
-			{
-				"command" : 5,
 				"file" : 0,
 				"line" : 7,
 				"parent" : 0
 			},
 			{
+				"file" : 2,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 26,
+				"parent" : 5
+			},
+			{
+				"file" : 1,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1141,
+				"parent" : 7
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"file" : 4,
+				"parent" : 9
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 26,
+				"parent" : 10
+			},
+			{
+				"file" : 3,
+				"parent" : 11
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 513,
+				"parent" : 12
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 922,
+				"parent" : 7
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 870,
+				"parent" : 7
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 361,
+				"parent" : 7
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"file" : 6,
+				"parent" : 17
+			},
+			{
+				"command" : 3,
+				"file" : 6,
+				"line" : 26,
+				"parent" : 18
+			},
+			{
+				"file" : 5,
+				"parent" : 19
+			},
+			{
+				"command" : 5,
+				"file" : 5,
+				"line" : 225,
+				"parent" : 20
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
 				"file" : 9,
+				"parent" : 22
+			},
+			{
+				"command" : 3,
+				"file" : 9,
+				"line" : 27,
 				"parent" : 23
 			},
 			{
-				"command" : 4,
-				"file" : 9,
-				"line" : 27,
+				"file" : 8,
 				"parent" : 24
 			},
 			{
+				"command" : 3,
 				"file" : 8,
+				"line" : 626,
 				"parent" : 25
 			},
 			{
-				"command" : 4,
-				"file" : 8,
-				"line" : 626,
+				"file" : 7,
 				"parent" : 26
 			},
 			{
+				"command" : 5,
 				"file" : 7,
+				"line" : 320,
 				"parent" : 27
 			},
 			{
 				"command" : 6,
-				"file" : 7,
-				"line" : 320,
-				"parent" : 28
-			},
-			{
-				"command" : 7,
 				"file" : 0,
-				"line" : 19,
+				"line" : 11,
 				"parent" : 0
 			}
 		]
@@ -213,31 +206,31 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 29,
+					"backtrace" : 28,
 					"define" : "CORRADE_IS_DEBUG_BUILD"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 30,
+					"backtrace" : 29,
 					"path" : "/run/media/elias/01D5A94471A88F00/GitHub/Matura/."
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 29,
 					"path" : "/usr/include/colmap"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 29,
 					"path" : "/usr/include/MagnumExternal/ImGui"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 29,
 					"isSystem" : true,
 					"path" : "/usr/local/include/opencv4"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"isSystem" : true,
 					"path" : "/usr/include/SDL2"
 				}
@@ -250,20 +243,6 @@
 		}
 	],
 	"id" : "Matura::@6890427a1f51a3e7e1df",
-	"install" : 
-	{
-		"destinations" : 
-		[
-			{
-				"backtrace" : 2,
-				"path" : "bin"
-			}
-		],
-		"prefix" : 
-		{
-			"path" : "/usr/local"
-		}
-	},
 	"link" : 
 	{
 		"commandFragments" : 
@@ -277,196 +256,196 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/usr/local/lib:/usr/lib/magnum/importers:",
+				"fragment" : "-Wl,-rpath,/usr/local/lib:/usr/lib/magnum/importers",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_gapi.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_highgui.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_ml.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_objdetect.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_photo.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_stitching.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_video.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_videoio.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumSdl2Application.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumGL.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnum.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumMeshTools.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumSceneGraph.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumShaders.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumTrade.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/magnum/importers/AnySceneImporter.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/magnum/importers/GltfImporter.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumImGuiIntegration.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_imgcodecs.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_dnn.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_calib3d.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_features2d.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_flann.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_imgproc.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/usr/local/lib/libopencv_core.so.4.6.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 9,
+				"backtrace" : 8,
 				"fragment" : "/usr/lib/libSDL2-2.0.so.0.2400.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 9,
+				"backtrace" : 8,
 				"fragment" : "/usr/lib/libGLX.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 14,
+				"backtrace" : 13,
 				"fragment" : "/usr/lib/magnum/importers/AnyImageImporter.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumTrade.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 15,
+				"backtrace" : 14,
 				"fragment" : "/usr/lib/libCorradePluginManager.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumShaders.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnumGL.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 16,
+				"backtrace" : 15,
 				"fragment" : "/usr/lib/libOpenGL.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "/usr/lib/libMagnum.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 17,
+				"backtrace" : 16,
 				"fragment" : "/usr/lib/libCorradeUtility.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 17,
+				"backtrace" : 16,
 				"fragment" : "/usr/lib/libCorradeUtility.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 9,
+				"backtrace" : 8,
 				"fragment" : "-ldl",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 22,
+				"backtrace" : 21,
 				"fragment" : "-limgui",
 				"role" : "libraries"
 			}
