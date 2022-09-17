@@ -113,6 +113,7 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -129,29 +130,221 @@ Matura/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/build
 .PHONY : Matura/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/Frame.o: src/Frame.cpp.o
+.PHONY : src/Frame.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/Frame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Frame.cpp.o
+.PHONY : src/Frame.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/Frame.i: src/Frame.cpp.i
+.PHONY : src/Frame.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/Frame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Frame.cpp.i
+.PHONY : src/Frame.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/Frame.s: src/Frame.cpp.s
+.PHONY : src/Frame.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/Frame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Frame.cpp.s
+.PHONY : src/Frame.cpp.s
+
+src/Joystick.o: src/Joystick.cpp.o
+.PHONY : src/Joystick.o
+
+# target to build an object file
+src/Joystick.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Joystick.cpp.o
+.PHONY : src/Joystick.cpp.o
+
+src/Joystick.i: src/Joystick.cpp.i
+.PHONY : src/Joystick.i
+
+# target to preprocess a source file
+src/Joystick.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Joystick.cpp.i
+.PHONY : src/Joystick.cpp.i
+
+src/Joystick.s: src/Joystick.cpp.s
+.PHONY : src/Joystick.s
+
+# target to generate assembly for a file
+src/Joystick.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Joystick.cpp.s
+.PHONY : src/Joystick.cpp.s
+
+src/PhongDrawable.o: src/PhongDrawable.cpp.o
+.PHONY : src/PhongDrawable.o
+
+# target to build an object file
+src/PhongDrawable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o
+.PHONY : src/PhongDrawable.cpp.o
+
+src/PhongDrawable.i: src/PhongDrawable.cpp.i
+.PHONY : src/PhongDrawable.i
+
+# target to preprocess a source file
+src/PhongDrawable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongDrawable.cpp.i
+.PHONY : src/PhongDrawable.cpp.i
+
+src/PhongDrawable.s: src/PhongDrawable.cpp.s
+.PHONY : src/PhongDrawable.s
+
+# target to generate assembly for a file
+src/PhongDrawable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongDrawable.cpp.s
+.PHONY : src/PhongDrawable.cpp.s
+
+src/RadialCamera.o: src/RadialCamera.cpp.o
+.PHONY : src/RadialCamera.o
+
+# target to build an object file
+src/RadialCamera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/RadialCamera.cpp.o
+.PHONY : src/RadialCamera.cpp.o
+
+src/RadialCamera.i: src/RadialCamera.cpp.i
+.PHONY : src/RadialCamera.i
+
+# target to preprocess a source file
+src/RadialCamera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/RadialCamera.cpp.i
+.PHONY : src/RadialCamera.cpp.i
+
+src/RadialCamera.s: src/RadialCamera.cpp.s
+.PHONY : src/RadialCamera.s
+
+# target to generate assembly for a file
+src/RadialCamera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/RadialCamera.cpp.s
+.PHONY : src/RadialCamera.cpp.s
+
+src/SceneFrame.o: src/SceneFrame.cpp.o
+.PHONY : src/SceneFrame.o
+
+# target to build an object file
+src/SceneFrame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SceneFrame.cpp.o
+.PHONY : src/SceneFrame.cpp.o
+
+src/SceneFrame.i: src/SceneFrame.cpp.i
+.PHONY : src/SceneFrame.i
+
+# target to preprocess a source file
+src/SceneFrame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SceneFrame.cpp.i
+.PHONY : src/SceneFrame.cpp.i
+
+src/SceneFrame.s: src/SceneFrame.cpp.s
+.PHONY : src/SceneFrame.s
+
+# target to generate assembly for a file
+src/SceneFrame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SceneFrame.cpp.s
+.PHONY : src/SceneFrame.cpp.s
+
+src/SerialCom.o: src/SerialCom.cpp.o
+.PHONY : src/SerialCom.o
+
+# target to build an object file
+src/SerialCom.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SerialCom.cpp.o
+.PHONY : src/SerialCom.cpp.o
+
+src/SerialCom.i: src/SerialCom.cpp.i
+.PHONY : src/SerialCom.i
+
+# target to preprocess a source file
+src/SerialCom.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SerialCom.cpp.i
+.PHONY : src/SerialCom.cpp.i
+
+src/SerialCom.s: src/SerialCom.cpp.s
+.PHONY : src/SerialCom.s
+
+# target to generate assembly for a file
+src/SerialCom.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SerialCom.cpp.s
+.PHONY : src/SerialCom.cpp.s
+
+src/Stage.o: src/Stage.cpp.o
+.PHONY : src/Stage.o
+
+# target to build an object file
+src/Stage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Stage.cpp.o
+.PHONY : src/Stage.cpp.o
+
+src/Stage.i: src/Stage.cpp.i
+.PHONY : src/Stage.i
+
+# target to preprocess a source file
+src/Stage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Stage.cpp.i
+.PHONY : src/Stage.cpp.i
+
+src/Stage.s: src/Stage.cpp.s
+.PHONY : src/Stage.s
+
+# target to generate assembly for a file
+src/Stage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Stage.cpp.s
+.PHONY : src/Stage.cpp.s
+
+src/Viewer.o: src/Viewer.cpp.o
+.PHONY : src/Viewer.o
+
+# target to build an object file
+src/Viewer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Viewer.cpp.o
+.PHONY : src/Viewer.cpp.o
+
+src/Viewer.i: src/Viewer.cpp.i
+.PHONY : src/Viewer.i
+
+# target to preprocess a source file
+src/Viewer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Viewer.cpp.i
+.PHONY : src/Viewer.cpp.i
+
+src/Viewer.s: src/Viewer.cpp.s
+.PHONY : src/Viewer.s
+
+# target to generate assembly for a file
+src/Viewer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Viewer.cpp.s
+.PHONY : src/Viewer.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -162,9 +355,33 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Matura"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/Frame.o"
+	@echo "... src/Frame.i"
+	@echo "... src/Frame.s"
+	@echo "... src/Joystick.o"
+	@echo "... src/Joystick.i"
+	@echo "... src/Joystick.s"
+	@echo "... src/PhongDrawable.o"
+	@echo "... src/PhongDrawable.i"
+	@echo "... src/PhongDrawable.s"
+	@echo "... src/RadialCamera.o"
+	@echo "... src/RadialCamera.i"
+	@echo "... src/RadialCamera.s"
+	@echo "... src/SceneFrame.o"
+	@echo "... src/SceneFrame.i"
+	@echo "... src/SceneFrame.s"
+	@echo "... src/SerialCom.o"
+	@echo "... src/SerialCom.i"
+	@echo "... src/SerialCom.s"
+	@echo "... src/Stage.o"
+	@echo "... src/Stage.i"
+	@echo "... src/Stage.s"
+	@echo "... src/Viewer.o"
+	@echo "... src/Viewer.i"
+	@echo "... src/Viewer.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
@@ -176,6 +393,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

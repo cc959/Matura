@@ -8,7 +8,15 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/main.cpp" "CMakeFiles/Matura.dir/main.cpp.o" "gcc" "CMakeFiles/Matura.dir/main.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp" "CMakeFiles/Matura.dir/src/Frame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Frame.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp" "CMakeFiles/Matura.dir/src/Joystick.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Joystick.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp" "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp" "CMakeFiles/Matura.dir/src/RadialCamera.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/RadialCamera.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SceneFrame.cpp" "CMakeFiles/Matura.dir/src/SceneFrame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/SceneFrame.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp" "CMakeFiles/Matura.dir/src/SerialCom.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/SerialCom.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp" "CMakeFiles/Matura.dir/src/Stage.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Stage.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp" "CMakeFiles/Matura.dir/src/Viewer.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Viewer.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp" "CMakeFiles/Matura.dir/src/main.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

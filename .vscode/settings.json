@@ -100,6 +100,13 @@
 		"hash_set": "cpp",
 		"strstream": "cpp",
 		"ios": "cpp",
-		"*.txx": "cpp"
+		"*.txx": "cpp",
+		"vertexarraystate": "cpp",
+		"cullsettings": "cpp",
+		"displaysettings": "cpp",
+		"stats": "cpp",
+		"group": "cpp",
+		"shader": "cpp",
+		"shadercomposer": "cpp"
 	}
 }

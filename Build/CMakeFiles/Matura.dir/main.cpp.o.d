@@ -1,6 +1,8 @@
 CMakeFiles/Matura.dir/main.cpp.o: \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/main.cpp \
- /usr/include/stdc-predef.h /usr/include/Corrade/Containers/Array.h \
+ /usr/include/stdc-predef.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/Viewer.h \
+ /usr/include/Corrade/Containers/Array.h \
  /usr/include/c++/12.2.0/initializer_list \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -456,4 +458,8 @@ CMakeFiles/Matura.dir/main.cpp.o: \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/bits/types/struct_iovec.h /usr/include/linux/falloc.h \
  /usr/include/poll.h /usr/include/sys/poll.h /usr/include/bits/poll.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./PhongDrawable.h
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./PhongDrawable.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./Stage.h \
+ /usr/include/Magnum/Trade/LightData.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/Frame.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/SceneFrame.h
