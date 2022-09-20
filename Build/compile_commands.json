@@ -21,11 +21,6 @@
 },
 {
   "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
-  "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2 -g -o CMakeFiles/Matura.dir/src/SceneFrame.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SceneFrame.cpp",
-  "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SceneFrame.cpp"
-},
-{
-  "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
   "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2 -g -o CMakeFiles/Matura.dir/src/SerialCom.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp",
   "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp"
 },
@@ -33,6 +28,11 @@
   "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
   "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2 -g -o CMakeFiles/Matura.dir/src/Stage.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp",
   "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp"
+},
+{
+  "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
+  "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2 -g -o CMakeFiles/Matura.dir/src/StageFrame.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp",
+  "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp"
 },
 {
   "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",

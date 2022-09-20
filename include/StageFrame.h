@@ -6,16 +6,16 @@
 #include "Frame.h"
 #include "Stage.h"
 
-class SceneFrame : public Frame, public Stage
+class StageFrame : public Frame, public Stage
 {
 	Stage _scene;
 
 	string _path;
 
 public:
-	SceneFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
+	StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
 
-	SceneFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
+	StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
 
 	void draw3D() override;
 

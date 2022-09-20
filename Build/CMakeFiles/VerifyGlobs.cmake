@@ -9,9 +9,9 @@ set(OLD_GLOB
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SceneFrame.cpp"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp"
   )

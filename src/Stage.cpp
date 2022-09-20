@@ -105,6 +105,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 			_lights.push_back(Vector4{_objectByName[importer.lightName(i)]->translation(), 1});
 			_lightColors.push_back(light->color() * light->intensity());
 		}
+		Debug{} << light->color() << " * " << light->intensity();
 	}
 
 	_player = ImportAnimations(importer, _animationData, _objectsByID);

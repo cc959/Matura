@@ -5,7 +5,7 @@
 #include "Joystick.h"
 #include "PhongDrawable.h"
 #include "Frame.h"
-#include "SceneFrame.h"
+#include "StageFrame.h"
 
 #define FL if (_currentFrame)
 
@@ -23,8 +23,8 @@ public:
 
 		joystick.Load("/dev/input/js0");
 
-		addFrame(new SceneFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
-		addFrame(new SceneFrame("/home/elias/Downloads/untitled2.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/untitled2.fbx", timeline, _imgui, joystick));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,
 									   GL::Renderer::BlendEquation::Add);

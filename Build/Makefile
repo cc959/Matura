@@ -226,30 +226,6 @@ src/RadialCamera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/RadialCamera.cpp.s
 .PHONY : src/RadialCamera.cpp.s
 
-src/SceneFrame.o: src/SceneFrame.cpp.o
-.PHONY : src/SceneFrame.o
-
-# target to build an object file
-src/SceneFrame.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SceneFrame.cpp.o
-.PHONY : src/SceneFrame.cpp.o
-
-src/SceneFrame.i: src/SceneFrame.cpp.i
-.PHONY : src/SceneFrame.i
-
-# target to preprocess a source file
-src/SceneFrame.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SceneFrame.cpp.i
-.PHONY : src/SceneFrame.cpp.i
-
-src/SceneFrame.s: src/SceneFrame.cpp.s
-.PHONY : src/SceneFrame.s
-
-# target to generate assembly for a file
-src/SceneFrame.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SceneFrame.cpp.s
-.PHONY : src/SceneFrame.cpp.s
-
 src/SerialCom.o: src/SerialCom.cpp.o
 .PHONY : src/SerialCom.o
 
@@ -297,6 +273,30 @@ src/Stage.s: src/Stage.cpp.s
 src/Stage.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Stage.cpp.s
 .PHONY : src/Stage.cpp.s
+
+src/StageFrame.o: src/StageFrame.cpp.o
+.PHONY : src/StageFrame.o
+
+# target to build an object file
+src/StageFrame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/StageFrame.cpp.o
+.PHONY : src/StageFrame.cpp.o
+
+src/StageFrame.i: src/StageFrame.cpp.i
+.PHONY : src/StageFrame.i
+
+# target to preprocess a source file
+src/StageFrame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/StageFrame.cpp.i
+.PHONY : src/StageFrame.cpp.i
+
+src/StageFrame.s: src/StageFrame.cpp.s
+.PHONY : src/StageFrame.s
+
+# target to generate assembly for a file
+src/StageFrame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/StageFrame.cpp.s
+.PHONY : src/StageFrame.cpp.s
 
 src/Viewer.o: src/Viewer.cpp.o
 .PHONY : src/Viewer.o
@@ -367,15 +367,15 @@ help:
 	@echo "... src/RadialCamera.o"
 	@echo "... src/RadialCamera.i"
 	@echo "... src/RadialCamera.s"
-	@echo "... src/SceneFrame.o"
-	@echo "... src/SceneFrame.i"
-	@echo "... src/SceneFrame.s"
 	@echo "... src/SerialCom.o"
 	@echo "... src/SerialCom.i"
 	@echo "... src/SerialCom.s"
 	@echo "... src/Stage.o"
 	@echo "... src/Stage.i"
 	@echo "... src/Stage.s"
+	@echo "... src/StageFrame.o"
+	@echo "... src/StageFrame.i"
+	@echo "... src/StageFrame.s"
 	@echo "... src/Viewer.o"
 	@echo "... src/Viewer.i"
 	@echo "... src/Viewer.s"

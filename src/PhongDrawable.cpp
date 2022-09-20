@@ -36,13 +36,37 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 	if (_hasNormals)
 		_shader.bindNormalTexture(*_stage._textures[_material.normalTexture()]);
 
+	Containers::ArrayView<Color3> colors{&_stage._lightColors[0], _stage._lightColors.size()};
+	Containers::Array<Vector4> positions{_stage._lights.size()};
+
+	Matrix4 worldToCamera = camera.cameraMatrix();
+
+	for (int i = 0; i < _stage._lights.size(); i++)
+	{
+		if (_stage._lights[i].w() == 0)
+			positions[i] = Vector4(worldToCamera.transformVector(_stage._lights[i].xyz()), 0);
+		else
+			positions[i] = Vector4(worldToCamera.transformPoint(_stage._lights[i].xyz()), 1);
+	}
+
+	if (positions.size() && colors.size())
+	{
+		_shader
+			.setLightPositions(positions)
+			.setLightColors(colors);
+	}
+	else
+	{
+		_shader
+			.setLightPositions({Vector4{worldToCamera.transformVector({0.7071, 0.7071, 0}), 0}})
+			.setLightColors({Color3{1, 1, 1}});
+	}
 
 	_shader
 		.setShininess(max(_material.shininess(), 1.f)) // 0.01f because shader acts wierd at  0
 		.setSpecularColor({_material.shininess() / 100.f, _material.shininess() / 100.f, _material.shininess() / 100.f, 1})
 		.setDiffuseColor(_material.diffuseColor())
-		.setLightPositions({{camera.cameraMatrix().transformPoint({0.f, 2.f, 0.f}), 1.0f}})
-		.setLightColors() _stage._lightColors)
+
 		.setTransformationMatrix(transformationMatrix)
 		.setNormalMatrix(transformationMatrix.normalMatrix())
 		.setProjectionMatrix(camera.projectionMatrix())

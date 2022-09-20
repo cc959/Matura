@@ -1,16 +1,16 @@
-#include "SceneFrame.h"
+#include "StageFrame.h"
 
-SceneFrame::SceneFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{}
+StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{}
 {
 }
 
-SceneFrame::SceneFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{path}, _path{path}
+StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{path}, _path{path}
 {
 	_player.play(_timeline.previousFrameTime());
 	_player.setPlayCount(3);
 }
 
-void SceneFrame::draw3D()
+void StageFrame::draw3D()
 {
 	_player.advance(_timeline.previousFrameTime());
 	if (_player.state() != Animation::State::Playing)
@@ -21,7 +21,7 @@ void SceneFrame::draw3D()
 bool my_tool_active = true;
 float my_color[4] = {1, 1, 1, 1};
 
-void SceneFrame::setupGUI()
+void StageFrame::setupGUI()
 {
 	if (my_tool_active)
 	{
@@ -64,26 +64,26 @@ void SceneFrame::setupGUI()
 }
 
 // resize viewport event
-void SceneFrame::viewportEvent(SDLApp::ViewportEvent &event)
+void StageFrame::viewportEvent(SDLApp::ViewportEvent &event)
 {
 	_camera->setViewport(event.windowSize());
 }
 
 Vector3 _previousPosition;
 
-void SceneFrame::mousePressEvent(SDLApp::MouseEvent &event)
+void StageFrame::mousePressEvent(SDLApp::MouseEvent &event)
 {
 	if (event.button() == SDLApp::MouseEvent::Button::Left)
 		_previousPosition = {event.position().x(), event.position().y(), 0};
 }
 
-void SceneFrame::mouseReleaseEvent(SDLApp::MouseEvent &event)
+void StageFrame::mouseReleaseEvent(SDLApp::MouseEvent &event)
 {
 	if (event.button() == SDLApp::MouseEvent::Button::Left)
 		_previousPosition = Vector3();
 }
 
-void SceneFrame::mouseMoveEvent(SDLApp::MouseMoveEvent &event)
+void StageFrame::mouseMoveEvent(SDLApp::MouseMoveEvent &event)
 {
 	if (!(event.buttons() & SDLApp::MouseMoveEvent::Button::Left))
 		return;
@@ -99,7 +99,7 @@ void SceneFrame::mouseMoveEvent(SDLApp::MouseMoveEvent &event)
 	_previousPosition = currentPosition;
 }
 
-void SceneFrame::mouseScrollEvent(SDLApp::MouseScrollEvent &event)
+void StageFrame::mouseScrollEvent(SDLApp::MouseScrollEvent &event)
 {
 	if (!event.offset().y())
 		return;
@@ -108,7 +108,7 @@ void SceneFrame::mouseScrollEvent(SDLApp::MouseScrollEvent &event)
 	_cameraObject.setTranslation(_cameraObject.translation() * (event.offset().y() > 0 ? 1 / 0.85f : 0.85f));
 }
 
-void SceneFrame::applyJoystick()
+void StageFrame::applyJoystick()
 {
 	if (_joystick.IsLoaded())
 	{
