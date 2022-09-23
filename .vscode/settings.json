@@ -107,6 +107,11 @@
 		"stats": "cpp",
 		"group": "cpp",
 		"shader": "cpp",
-		"shadercomposer": "cpp"
+		"shadercomposer": "cpp",
+		"drawable": "cpp",
+		"boundingbox": "cpp",
+		"boundingsphere": "cpp",
+		"shape": "cpp",
+		"operationthread": "cpp"
 	}
 }

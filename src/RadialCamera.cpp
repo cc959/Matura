@@ -38,4 +38,6 @@ vector<RadialCamera> RadialCamera::loadCameras(string path)
 
 		cameras.push_back({params[0], params[1], params[2], params[3]});
 	}
+
+	return cameras;
 }

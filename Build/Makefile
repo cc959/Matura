@@ -118,6 +118,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Resources-dependencies
+
+# Build rule for target.
+Resources-dependencies: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Resources-dependencies
+.PHONY : Resources-dependencies
+
+# fast build rule for target.
+Resources-dependencies/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Resources-dependencies.dir/build.make CMakeFiles/Resources-dependencies.dir/build
+.PHONY : Resources-dependencies/fast
+
+#=============================================================================
 # Target rules for targets named Matura
 
 # Build rule for target.
@@ -129,6 +142,30 @@ Matura: cmake_check_build_system
 Matura/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/build
 .PHONY : Matura/fast
+
+resource_Resources.o: resource_Resources.cpp.o
+.PHONY : resource_Resources.o
+
+# target to build an object file
+resource_Resources.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.o
+.PHONY : resource_Resources.cpp.o
+
+resource_Resources.i: resource_Resources.cpp.i
+.PHONY : resource_Resources.i
+
+# target to preprocess a source file
+resource_Resources.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.i
+.PHONY : resource_Resources.cpp.i
+
+resource_Resources.s: resource_Resources.cpp.s
+.PHONY : resource_Resources.s
+
+# target to generate assembly for a file
+resource_Resources.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.s
+.PHONY : resource_Resources.cpp.s
 
 src/Frame.o: src/Frame.cpp.o
 .PHONY : src/Frame.o
@@ -202,6 +239,30 @@ src/PhongDrawable.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongDrawable.cpp.s
 .PHONY : src/PhongDrawable.cpp.s
 
+src/PhongGLShadows.o: src/PhongGLShadows.cpp.o
+.PHONY : src/PhongGLShadows.o
+
+# target to build an object file
+src/PhongGLShadows.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o
+.PHONY : src/PhongGLShadows.cpp.o
+
+src/PhongGLShadows.i: src/PhongGLShadows.cpp.i
+.PHONY : src/PhongGLShadows.i
+
+# target to preprocess a source file
+src/PhongGLShadows.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.i
+.PHONY : src/PhongGLShadows.cpp.i
+
+src/PhongGLShadows.s: src/PhongGLShadows.cpp.s
+.PHONY : src/PhongGLShadows.s
+
+# target to generate assembly for a file
+src/PhongGLShadows.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.s
+.PHONY : src/PhongGLShadows.cpp.s
+
 src/RadialCamera.o: src/RadialCamera.cpp.o
 .PHONY : src/RadialCamera.o
 
@@ -249,6 +310,78 @@ src/SerialCom.s: src/SerialCom.cpp.s
 src/SerialCom.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/SerialCom.cpp.s
 .PHONY : src/SerialCom.cpp.s
+
+src/ShadowCasterDrawable.o: src/ShadowCasterDrawable.cpp.o
+.PHONY : src/ShadowCasterDrawable.o
+
+# target to build an object file
+src/ShadowCasterDrawable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o
+.PHONY : src/ShadowCasterDrawable.cpp.o
+
+src/ShadowCasterDrawable.i: src/ShadowCasterDrawable.cpp.i
+.PHONY : src/ShadowCasterDrawable.i
+
+# target to preprocess a source file
+src/ShadowCasterDrawable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.i
+.PHONY : src/ShadowCasterDrawable.cpp.i
+
+src/ShadowCasterDrawable.s: src/ShadowCasterDrawable.cpp.s
+.PHONY : src/ShadowCasterDrawable.s
+
+# target to generate assembly for a file
+src/ShadowCasterDrawable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.s
+.PHONY : src/ShadowCasterDrawable.cpp.s
+
+src/ShadowCasterShader.o: src/ShadowCasterShader.cpp.o
+.PHONY : src/ShadowCasterShader.o
+
+# target to build an object file
+src/ShadowCasterShader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o
+.PHONY : src/ShadowCasterShader.cpp.o
+
+src/ShadowCasterShader.i: src/ShadowCasterShader.cpp.i
+.PHONY : src/ShadowCasterShader.i
+
+# target to preprocess a source file
+src/ShadowCasterShader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.i
+.PHONY : src/ShadowCasterShader.cpp.i
+
+src/ShadowCasterShader.s: src/ShadowCasterShader.cpp.s
+.PHONY : src/ShadowCasterShader.s
+
+# target to generate assembly for a file
+src/ShadowCasterShader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.s
+.PHONY : src/ShadowCasterShader.cpp.s
+
+src/ShadowLight.o: src/ShadowLight.cpp.o
+.PHONY : src/ShadowLight.o
+
+# target to build an object file
+src/ShadowLight.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowLight.cpp.o
+.PHONY : src/ShadowLight.cpp.o
+
+src/ShadowLight.i: src/ShadowLight.cpp.i
+.PHONY : src/ShadowLight.i
+
+# target to preprocess a source file
+src/ShadowLight.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowLight.cpp.i
+.PHONY : src/ShadowLight.cpp.i
+
+src/ShadowLight.s: src/ShadowLight.cpp.s
+.PHONY : src/ShadowLight.s
+
+# target to generate assembly for a file
+src/ShadowLight.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ShadowLight.cpp.s
+.PHONY : src/ShadowLight.cpp.s
 
 src/Stage.o: src/Stage.cpp.o
 .PHONY : src/Stage.o
@@ -354,7 +487,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Resources-dependencies"
 	@echo "... Matura"
+	@echo "... resource_Resources.o"
+	@echo "... resource_Resources.i"
+	@echo "... resource_Resources.s"
 	@echo "... src/Frame.o"
 	@echo "... src/Frame.i"
 	@echo "... src/Frame.s"
@@ -364,12 +501,24 @@ help:
 	@echo "... src/PhongDrawable.o"
 	@echo "... src/PhongDrawable.i"
 	@echo "... src/PhongDrawable.s"
+	@echo "... src/PhongGLShadows.o"
+	@echo "... src/PhongGLShadows.i"
+	@echo "... src/PhongGLShadows.s"
 	@echo "... src/RadialCamera.o"
 	@echo "... src/RadialCamera.i"
 	@echo "... src/RadialCamera.s"
 	@echo "... src/SerialCom.o"
 	@echo "... src/SerialCom.i"
 	@echo "... src/SerialCom.s"
+	@echo "... src/ShadowCasterDrawable.o"
+	@echo "... src/ShadowCasterDrawable.i"
+	@echo "... src/ShadowCasterDrawable.s"
+	@echo "... src/ShadowCasterShader.o"
+	@echo "... src/ShadowCasterShader.i"
+	@echo "... src/ShadowCasterShader.s"
+	@echo "... src/ShadowLight.o"
+	@echo "... src/ShadowLight.i"
+	@echo "... src/ShadowLight.s"
 	@echo "... src/Stage.o"
 	@echo "... src/Stage.i"
 	@echo "... src/Stage.s"

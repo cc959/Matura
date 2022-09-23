@@ -1,8 +1,6 @@
 
 #include "Stage.h"
 
-Stage::Stage() = default;
-
 Stage::Stage(string path)
 {
 	PluginManager::Manager<Trade::AbstractImporter> manager;
@@ -11,11 +9,15 @@ Stage::Stage(string path)
 
 	if (importer.openFile(path))
 		Import(importer);
+	_shadows._shadowLightObject.setParent(&_scene);
 }
 
-Stage::Stage(Trade::AnySceneImporter &importer)
+Stage::Stage(Trade::AnySceneImporter &importer) 
 {
 	Import(importer);
+}
+
+Stage::Stage() {
 }
 
 void Stage::Import(Trade::AnySceneImporter &importer)
@@ -73,6 +75,8 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 
 		Int materialId = meshMaterial.second().second();
 
+		new ShadowCasterDrawable(*object, *mesh, _shadowCasters);
+
 		/* Material not available / not loaded, use a default material */
 		if (materialId == -1 || !_materials[materialId])
 		{
@@ -83,7 +87,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		else
 		{
 			/* Color-only material */
-			new PhongDrawable{*object, *this, *mesh, (*_materials[materialId]), _drawables};
+			new PhongDrawable{*object, *this, *mesh, (*_materials[materialId]), _shadowReceivers};
 		}
 	}
 

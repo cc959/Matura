@@ -3,15 +3,40 @@
 #include "GlobalIncludes.h"
 
 #include "PhongDrawable.h"
+#include "ShadowCasterDrawable.h"
+#include "ShadowLight.h"
 
 class Stage
 {
 public:
+	struct Shadows
+	{
+		Float _shadowBias;
+		Float _layerSplitExponent;
+		Vector2i _shadowMapSize;
+		Object3D _shadowLightObject;
+		ShadowLight _shadowLight;
+		Int _shadowMapFaceCullMode;
+		bool _shadowStaticAlignment;
+
+		Shadows(Scene3D &scene, Float bias = 0.003f, Float layerSplitExponent = 3.f, Vector2i shadowMapSize = {1024, 1024}, Int shadowMapFaceCullMode = 2, bool shadowStaticAlignment = true) : _shadowBias{bias},
+																																																_layerSplitExponent{layerSplitExponent},
+																																																_shadowMapSize{shadowMapSize},
+																																																_shadowLightObject(&scene),
+																																																_shadowLight{_shadowLightObject},
+																																																_shadowMapFaceCullMode{shadowMapFaceCullMode},
+																																																_shadowStaticAlignment{shadowStaticAlignment}
+		{
+		}
+	};
+
 	vector<Optional<GL::Mesh>> _meshes;
 	vector<Optional<GL::Texture2D>> _textures;
 	vector<Optional<Trade::PhongMaterialData>> _materials;
 	vector<Object3D *> _objectsByID;
 	map<string, Object3D *> _objectByName;
+
+	Containers::Array<Matrix4> shadowMatrices;
 
 	vector<Vector4> _lights;
 	vector<Color3> _lightColors;
@@ -21,10 +46,13 @@ public:
 	Animation::Player<Float> _player;
 	vector<Optional<Trade::AnimationData>> _animationData;
 
-	Scene3D _scene;
+	Scene3D _scene{};
 	Object3D _manipulator, _cameraRoot, _cameraObject;
 	SceneGraph::Camera3D *_camera;
-	SceneGraph::DrawableGroup3D _drawables;
+	SceneGraph::DrawableGroup3D _shadowReceivers;
+	SceneGraph::DrawableGroup3D _shadowCasters;
+
+	Shadows _shadows{_scene};
 
 	Stage();
 

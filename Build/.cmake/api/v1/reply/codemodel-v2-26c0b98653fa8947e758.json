@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "Matura",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Matura::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Matura-Debug-29ef316b350edfbdc73a.json",
+					"jsonFile" : "target-Matura-Debug-2f9dcdea4f591d447ccd.json",
 					"name" : "Matura",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Resources-dependencies::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Resources-dependencies-Debug-7eea3b0edcfc90179ec7.json",
+					"name" : "Resources-dependencies",
 					"projectIndex" : 0
 				}
 			]

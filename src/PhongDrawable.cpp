@@ -1,5 +1,7 @@
 #include "PhongDrawable.h"
 
+#include "Magnum/Shaders/PhongGL.h"
+
 PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _mesh(mesh), _stage(stage), _material{material}
 {
 	auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
@@ -16,9 +18,9 @@ PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Tra
 	_hasNormals = _material.hasAttribute(Trade::MaterialAttribute::NormalTexture) && _material.normalTexture() < _stage._textures.size() && _stage._textures[_material.normalTexture()];
 
 	if (_hasNormals)
-		_shader = Shaders::PhongGL{Shaders::PhongGL::Flag::DiffuseTexture | Shaders::PhongGL::Flag::NormalTexture | Shaders::PhongGL::Flag::Bitangent};
+		_shader = Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent};
 	else
-		_shader = Shaders::PhongGL{Shaders::PhongGL::Flag::DiffuseTexture};
+		_shader = Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture};
 
 	_shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
 		.setSpecularColor(Color4(1, 1, 1, 1))
@@ -41,7 +43,7 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 
 	Matrix4 worldToCamera = camera.cameraMatrix();
 
-	for (int i = 0; i < _stage._lights.size(); i++)
+	for (int i = 0; i < int(_stage._lights.size()); i++)
 	{
 		if (_stage._lights[i].w() == 0)
 			positions[i] = Vector4(worldToCamera.transformVector(_stage._lights[i].xyz()), 0);

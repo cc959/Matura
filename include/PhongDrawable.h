@@ -2,6 +2,8 @@
 
 #include "GlobalIncludes.h"
 
+#include "PhongGLShadows.h"
+
 // forward declaration
 class Stage;
 
@@ -15,9 +17,9 @@ public:
 private:
 	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override;
 
-	Shaders::PhongGL _shader;
+	Shaders::PhongGLShadows _shader;
 	GL::Mesh &_mesh;
-	Stage& _stage;
+	Stage &_stage;
 
 	Trade::PhongMaterialData &_material;
 

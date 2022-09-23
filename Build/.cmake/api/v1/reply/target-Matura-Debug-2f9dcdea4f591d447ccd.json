@@ -39,25 +39,25 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 6,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 17,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
 				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 20,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 10,
+				"line" : 8,
 				"parent" : 0
 			},
 			{
@@ -83,7 +83,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 11,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
@@ -127,7 +127,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 12,
+				"line" : 10,
 				"parent" : 0
 			},
 			{
@@ -153,7 +153,7 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 9,
+				"line" : 7,
 				"parent" : 0
 			},
 			{
@@ -183,13 +183,19 @@
 			{
 				"command" : 5,
 				"file" : 7,
+				"line" : 315,
+				"parent" : 27
+			},
+			{
+				"command" : 5,
+				"file" : 7,
 				"line" : 320,
 				"parent" : 27
 			},
 			{
 				"command" : 6,
 				"file" : 0,
-				"line" : 14,
+				"line" : 15,
 				"parent" : 0
 			}
 		]
@@ -201,35 +207,79 @@
 			[
 				{
 					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wextra"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wold-style-cast"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Winit-self"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Werror=return-type"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wmissing-declarations"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wpedantic"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-fvisibility=hidden"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-fvisibility-inlines-hidden"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wzero-as-null-pointer-constant"
+				},
+				{
+					"backtrace" : 28,
+					"fragment" : "-Wdouble-promotion"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 28,
+					"backtrace" : 29,
 					"define" : "CORRADE_IS_DEBUG_BUILD"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 29,
+					"backtrace" : 30,
 					"path" : "/run/media/elias/01D5A94471A88F00/GitHub/Matura/."
 				},
 				{
-					"backtrace" : 29,
+					"backtrace" : 30,
 					"path" : "/usr/include/colmap"
 				},
 				{
-					"backtrace" : 29,
+					"backtrace" : 30,
 					"path" : "/usr/include/MagnumExternal/ImGui"
 				},
 				{
-					"backtrace" : 29,
+					"backtrace" : 30,
 					"path" : "/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include"
 				},
 				{
-					"backtrace" : 29,
+					"backtrace" : 30,
 					"isSystem" : true,
 					"path" : "/usr/local/include/opencv4"
 				},
@@ -250,8 +300,19 @@
 				5,
 				6,
 				7,
-				8
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
 			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "Resources-dependencies::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "Matura::@6890427a1f51a3e7e1df",
@@ -485,7 +546,19 @@
 				5,
 				6,
 				7,
-				8
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				14
 			]
 		}
 	],
@@ -512,6 +585,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/PhongGLShadows.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/RadialCamera.cpp",
 			"sourceGroupIndex" : 0
 		},
@@ -519,6 +598,24 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/SerialCom.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/ShadowCasterDrawable.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/ShadowCasterShader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/ShadowLight.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -544,6 +641,19 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/main.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "Build/resource_Resources.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "Build/resource_Resources.cpp.rule",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

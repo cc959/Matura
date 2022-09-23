@@ -5,12 +5,13 @@
 #include "Joystick.h"
 #include "Frame.h"
 #include "Stage.h"
+#include "ShadowLight.h"
 
 class StageFrame : public Frame, public Stage
 {
-	Stage _scene;
-
 	string _path;
+
+	void setupShadows();
 
 public:
 	StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);

@@ -277,7 +277,15 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: \
  /usr/include/Corrade/Utility/Resource.h \
  /usr/include/Magnum/ImGuiIntegration/Integration.h \
  /usr/include/Magnum/ImGuiIntegration/Context.h \
- /usr/include/Magnum/Shaders/FlatGL.h \
+ /usr/include/Magnum/Shaders/FlatGL.h /usr/include/Magnum/Resource.h \
+ /usr/include/Corrade/Utility/MurmurHash2.h \
+ /usr/include/Corrade/Utility/AbstractHash.h \
+ /usr/include/Magnum/ResourceManager.h \
+ /usr/include/Magnum/AbstractResourceLoader.h \
+ /usr/include/Magnum/ResourceManager.h \
+ /usr/include/Magnum/GL/Framebuffer.h \
+ /usr/include/Magnum/GL/TextureArray.h /usr/include/Magnum/GL/Shader.h \
+ /usr/include/Magnum/GL/Version.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.2.0/cassert /usr/include/c++/12.2.0/cfloat \
  /usr/include/c++/12.2.0/climits \
@@ -461,4 +469,8 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: \
  /usr/include/bits/types/struct_iovec.h /usr/include/linux/falloc.h \
  /usr/include/poll.h /usr/include/sys/poll.h /usr/include/bits/poll.h \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/PhongDrawable.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/Stage.h
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/PhongGLShadows.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/Stage.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/ShadowCasterDrawable.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/ShadowCasterShader.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/ShadowLight.h

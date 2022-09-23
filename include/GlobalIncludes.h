@@ -42,6 +42,28 @@
 #include <MagnumPlugins/GltfImporter/GltfImporter.h>
 #include <Magnum/ImGuiIntegration/Context.hpp>
 #include <MagnumPlugins/AnySceneImporter/AnySceneImporter.h>
+#include <Magnum/Resource.h>
+#include <Magnum/GL/Framebuffer.h>
+#include <Magnum/GL/TextureArray.h>
+#include <Magnum/SceneGraph/AbstractFeature.h>
+
+#include <Corrade/Containers/Iterable.h>
+#include <Corrade/Containers/StringView.h>
+#include <Corrade/Containers/StringStl.h>
+#include <Corrade/Utility/Resource.h>
+#include <Magnum/GL/Context.h>
+#include <Magnum/GL/Shader.h>
+#include <Magnum/GL/Version.h>
+#include <Magnum/Math/Matrix4.h>
+
+#include <Magnum/ImageView.h>
+#include <Magnum/GL/DefaultFramebuffer.h>
+#include <Magnum/GL/PixelFormat.h>
+#include <Magnum/GL/Renderer.h>
+#include <Magnum/GL/TextureFormat.h>
+#include <Magnum/SceneGraph/FeatureGroup.h>
+#include <Magnum/SceneGraph/MatrixTransformation3D.h>
+#include <Magnum/SceneGraph/Scene.h>
 
 #include <bits/stdc++.h>
 

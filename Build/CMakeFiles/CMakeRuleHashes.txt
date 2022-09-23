@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+e25e42e68fbd5fef4123658fc2f07cf9 resource_Resources.cpp

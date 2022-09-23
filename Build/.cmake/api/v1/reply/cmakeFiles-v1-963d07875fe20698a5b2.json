@@ -420,6 +420,9 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/usr/share/cmake/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"path" : "resources.conf"
 		}
 	],
 	"kind" : "cmakeFiles",

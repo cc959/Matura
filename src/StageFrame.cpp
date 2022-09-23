@@ -10,12 +10,51 @@ StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::
 	_player.setPlayCount(3);
 }
 
+void StageFrame::setupShadows()
+{
+	_shadows._shadowLight.setupShadowmaps(3, _shadows._shadowMapSize);
+	_shadows._shadowLight.setupSplitDistances(0.1f, 100.f, _shadows._layerSplitExponent);
+}
+
 void StageFrame::draw3D()
 {
 	_player.advance(_timeline.previousFrameTime());
 	if (_player.state() != Animation::State::Playing)
 		applyJoystick();
-	_camera->draw(_drawables);
+
+	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _cameraObject.transformation()[2].xyz();
+	_shadows._shadowLight.setTarget({3, 2, 3}, screenDirection, *_camera);
+
+	switch (_shadows._shadowMapFaceCullMode)
+	{
+	case 0:
+		GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
+		break;
+	case 2:
+		GL::Renderer::setFaceCullingMode(GL::Renderer::PolygonFacing::Front);
+		break;
+	}
+
+	_shadows._shadowLight.render(_shadowCasters);
+
+	switch (_shadows._shadowMapFaceCullMode)
+	{
+	case 0:
+		GL::Renderer::enable(GL::Renderer::Feature::FaceCulling);
+		break;
+	case 2:
+		GL::Renderer::setFaceCullingMode(GL::Renderer::PolygonFacing::Back);
+		break;
+	}
+
+	shadowMatrices = Containers::Array<Matrix4>{Corrade::NoInit, _shadows._shadowLight.layerCount()};
+	for (std::size_t layerIndex = 0; layerIndex != _shadows._shadowLight.layerCount(); ++layerIndex)
+		shadowMatrices[layerIndex] = _shadows._shadowLight.layerMatrix(layerIndex);
+
+	// _shadowReceiverShader.setShadowmapMatrices(shadowMatrices)
+	// 	.setShadowmapTexture(_shadows._shadowLight.shadowTexture());
+
+	_camera->draw(_shadowReceivers);
 }
 
 bool my_tool_active = true;
@@ -63,7 +102,7 @@ void StageFrame::setupGUI()
 	}
 }
 
-// resize viewport event
+// resize viewport eventg
 void StageFrame::viewportEvent(SDLApp::ViewportEvent &event)
 {
 	_camera->setViewport(event.windowSize());
