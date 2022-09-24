@@ -1666,6 +1666,38 @@
 			"value" : ""
 		},
 		{
+			"name" : "MAGNUM_PRIMITIVES_LIBRARY_DEBUG",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "MAGNUM_PRIMITIVES_LIBRARY_DEBUG-NOTFOUND"
+		},
+		{
+			"name" : "MAGNUM_PRIMITIVES_LIBRARY_RELEASE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/lib/libMagnumPrimitives.so"
+		},
+		{
 			"name" : "MAGNUM_SCENEGRAPH_LIBRARY_DEBUG",
 			"properties" : 
 			[
@@ -2236,6 +2268,22 @@
 			],
 			"type" : "PATH",
 			"value" : "/usr/include/Magnum/MeshTools"
+		},
+		{
+			"name" : "_MAGNUM_PRIMITIVES_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/include/Magnum/Primitives"
 		},
 		{
 			"name" : "_MAGNUM_SCENEGRAPH_INCLUDE_DIR",

@@ -9,7 +9,6 @@ Stage::Stage(string path)
 
 	if (importer.openFile(path))
 		Import(importer);
-	_shadows._shadowLightObject.setParent(&_scene);
 }
 
 Stage::Stage(Trade::AnySceneImporter &importer) 

@@ -363,8 +363,7 @@ out highp uint fragmentObjectId;
 #ifdef HAS_SHADOWS
 uniform float shadowBias;
 uniform sampler2DArrayShadow shadowmapTexture;
-out highp vec3 shadowCoords[NUM_SHADOW_MAP_LEVELS];
-uniform float shadowDepthSplits[NUM_SHADOW_MAP_LEVELS];
+in highp vec3 shadowCoords[NUM_SHADOW_MAP_LEVELS];
 #endif
 
 
@@ -525,7 +524,7 @@ void main() {
 
 			#ifdef HAS_SHADOWS
 
-			if (i == 0 && lightDirection.w == 0) {
+			if (i == 0 && lightPosition.w == 0) {
 				int shadowLevel = 0;
 				for(; shadowLevel < NUM_SHADOW_MAP_LEVELS; ++shadowLevel) {
         		    vec3 shadowCoord = shadowCoords[shadowLevel];
@@ -540,14 +539,26 @@ void main() {
         		        break;
         		    }
         		}
+
+				// if (!inRange)
+				// finalDiffuseColor *= vec4(1, 0, 0, 1);
+				// else
+
+				switch(shadowLevel) {
+        			case 0: finalDiffuseColor *= vec4(1,0,0, 1); break;
+        			case 1: finalDiffuseColor *= vec4(1,1,0, 1); break;
+        			case 2: finalDiffuseColor *= vec4(0,1,0, 1); break;
+        			case 3: finalDiffuseColor *= vec4(0,1,1, 1); break;
+        			default: finalDiffuseColor *= vec4(1,0,1, 1); break;
+				}
 			}
 
+
+			//if (i == 0 && lightPosition.w == 0) {
+			//finalDiffuseColor *= vec4(0, 1, 0, 1);
+			//}
+
 			#endif
-
-			if (!inRange)
-				finalDiffuseColor *= vec4(1, 0, 0, 1);
-
-
         	fragmentColor.rgb += finalDiffuseColor.rgb*lightColor*intensity * inverseShadow;
 
         	#ifndef NO_SPECULAR
@@ -583,4 +594,8 @@ void main() {
         objectId;
     #endif
 
+	// 		#ifdef HAS_SHADOWS
+
+	// fragmentColor = vec4(vec3(texture(shadowmapTexture, vec4(transformedPosition.xyz, 0))/ 5), 1);
+	// #endif
 }

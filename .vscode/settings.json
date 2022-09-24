@@ -112,6 +112,13 @@
 		"boundingbox": "cpp",
 		"boundingsphere": "cpp",
 		"shape": "cpp",
-		"operationthread": "cpp"
+		"operationthread": "cpp",
+		"camera": "cpp",
+		"geometry": "cpp",
+		"graphicscostestimator": "cpp",
+		"primitiveset": "cpp",
+		"state": "cpp",
+		"stateset": "cpp",
+		"bufferobject": "cpp"
 	}
 }

@@ -280,6 +280,7 @@ flat out highp uint drawId;
 
 #ifdef HAS_SHADOWS
 uniform highp mat4 shadowmapMatrix[NUM_SHADOW_MAP_LEVELS];
+uniform highp mat4 modelMatrix;
 out highp vec3 shadowCoords[NUM_SHADOW_MAP_LEVELS];
 #endif
 
@@ -385,4 +386,12 @@ void main() {
     /* Instanced object ID, if enabled */
     interpolatedInstanceObjectId = instanceObjectId;
     #endif
+
+#ifdef HAS_SHADOWS
+
+	for(int i = 0; i < NUM_SHADOW_MAP_LEVELS; i++) {
+        shadowCoords[i] = (shadowmapMatrix[i] * (position * modelMatrix)).xyz;
+    }
+
+#endif
 }

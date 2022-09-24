@@ -60,7 +60,8 @@ namespace Magnum
 
 		PhongGLShadows::CompileState PhongGLShadows::compile(const Flags flags, const UnsignedInt lightCount
 #ifndef MAGNUM_TARGET_GLES2
-															 , const UnsignedInt numShadowLevels,
+															 ,
+															 const UnsignedInt numShadowLevels,
 															 const UnsignedInt materialCount, const UnsignedInt drawCount
 #endif
 		)
@@ -138,11 +139,10 @@ namespace Magnum
 #endif
 
 #ifndef MAGNUM_TARGET_GLES
-			const GL::Version version = context.supportedVersion({GL::Version::GL320, GL::Version::GL310, GL::Version::GL300, GL::Version::GL210});
+			const GL::Version version = context.supportedVersion({GL::Version::GL460, GL::Version::GL320, GL::Version::GL310, GL::Version::GL300, GL::Version::GL210});
 #else
 			const GL::Version version = context.supportedVersion({GL::Version::GLES300, GL::Version::GLES200});
 #endif
-
 			PhongGLShadows out{NoInit};
 			out._flags = flags;
 			out._lightCount = lightCount;
@@ -159,7 +159,7 @@ namespace Magnum
 
 #ifndef MAGNUM_TARGET_GLES
 			std::string lightInitializer;
-			if (!(flags >= Flag::UniformBuffers) && lightCount)
+			if (!((flags & (~Flag::Shadows)) >= Flag::UniformBuffers) && lightCount)
 			{
 				using namespace Containers::Literals;
 
@@ -230,7 +230,7 @@ namespace Magnum
 
 			if (flags & Flag::Shadows)
 			{
-				vert.addSource(flags & Flag::Shadows ? "#define HAS_SHADOWS\n" : "")
+				vert.addSource("#define HAS_SHADOWS\n")
 					.addSource("#define NUM_SHADOW_MAP_LEVELS " + std::to_string(numShadowLevels) + "\n");
 			}
 
@@ -267,7 +267,7 @@ namespace Magnum
 
 			if (flags & Flag::Shadows)
 			{
-				vert.addSource(flags & Flag::Shadows ? "#define HAS_SHADOWS\n" : "")
+				frag.addSource("#define HAS_SHADOWS\n")
 					.addSource("#define NUM_SHADOW_MAP_LEVELS " + std::to_string(numShadowLevels) + "\n");
 			}
 
@@ -378,7 +378,7 @@ namespace Magnum
 #endif
 			{
 #ifndef MAGNUM_TARGET_GLES2
-				if (_flags >= Flag::UniformBuffers)
+				if ((_flags & (~Flag::Shadows)) >= Flag::UniformBuffers)
 				{
 					if (_drawCount > 1)
 						_drawOffsetUniform = uniformLocation("drawOffset");
@@ -486,698 +486,704 @@ namespace Magnum
 					if (!(_flags & Flag::NoSpecular))
 						setLightSpecularColors(colors);
 					setLightRanges(Containers::Array<Float>{DirectInit, _lightCount, Constants::inf()});
-					/* Light position is zero by default */
-					setNormalMatrix(Matrix3x3{Math::IdentityInit});
+					flags &Flag::Shadows ? setTextureMatrix(Matrix3{Math::IdentityInit});
+					/* Texture layer is zero by default */
+					if (_flags & Flag::AlphaMask)
+						setAlphaMask(0.5f);
+					/* Object ID is zero by default */
 				}
-				if (_flags & Flag::TextureTransformation)
-					setTextureMatrix(Matrix3{Math::IdentityInit});
-				/* Texture layer is zero by default */
-				if (_flags & Flag::AlphaMask)
-					setAlphaMask(0.5f);
-				/* Object ID is zero by default */
+#endif
+
+				static_cast<void>(context);
+				static_cast<void>(version);
+
+				if (_flags & Flag::Shadows)
+				{
+					setUniform(uniformLocation("shadowmapTexture"), ShadowmapTextureLayer);
+					_shadowmapMatrixUniform = uniformLocation("shadowmapMatrix");
+					_shadowBiasUniform = uniformLocation("shadowBias");
+					_modelMatrixUniform = uniformLocation("modelMatrix");
+				}
+			}
+
+			PhongGLShadows::PhongGLShadows(const Flags flags, const UnsignedInt lightCount, const UnsignedInt numShadowLevels) : PhongGLShadows{compile(flags, lightCount, numShadowLevels)} {}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows::CompileState PhongGLShadows::compile(const Flags flags, const UnsignedInt lightCount, const UnsignedInt numShadowLevels)
+			{
+				return compile(flags, lightCount, numShadowLevels, 1, 1);
+			}
+
+			PhongGLShadows::PhongGLShadows(const Flags flags, const UnsignedInt lightCount, const UnsignedInt materialCount, const UnsignedInt drawCount, const UnsignedInt numShadowLevels) : PhongGLShadows{compile(flags, lightCount, numShadowLevels, materialCount, drawCount)} {}
+#endif
+
+			PhongGLShadows &PhongGLShadows::setAmbientColor(const Magnum::Color4 &color)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setAmbientColor(): the shader was created with uniform buffers enabled", *this);
+#endif
+				setUniform(_ambientColorUniform, color);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setDiffuseColor(const Magnum::Color4 &color)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setDiffuseColor(): the shader was created with uniform buffers enabled", *this);
+#endif
+				if (_lightCount)
+					setUniform(_diffuseColorUniform, color);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setSpecularColor(const Magnum::Color4 &color)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setSpecularColor(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
+							   "Shaders::PhongGL::setSpecularColor(): the shader was created with specular disabled", *this);
+				if (_lightCount)
+					setUniform(_specularColorUniform, color);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setShininess(Float shininess)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setShininess(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
+							   "Shaders::PhongGL::setShininess(): the shader was created with specular disabled", *this);
+				if (_lightCount)
+					setUniform(_shininessUniform, shininess);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setNormalTextureScale(const Float scale)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setNormalTextureScale(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_flags & Flag::NormalTexture,
+							   "Shaders::PhongGL::setNormalTextureScale(): the shader was not created with normal texture enabled", *this);
+				if (_lightCount)
+					setUniform(_normalTextureScaleUniform, scale);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setAlphaMask(Float mask)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setAlphaMask(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_flags & Flag::AlphaMask,
+							   "Shaders::PhongGL::setAlphaMask(): the shader was not created with alpha mask enabled", *this);
+				setUniform(_alphaMaskUniform, mask);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::setObjectId(UnsignedInt id)
+			{
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setObjectId(): the shader was created with uniform buffers enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::ObjectId,
+							   "Shaders::PhongGL::setObjectId(): the shader was not created with object ID enabled", *this);
+				setUniform(_objectIdUniform, id);
+				return *this;
 			}
 #endif
 
-			static_cast<void>(context);
-			static_cast<void>(version);
-
-			setUniform(uniformLocation("shadowmapTexture"), ShadowmapTextureLayer);
-			_shadowmapMatrixUniform = uniformLocation("shadowmapMatrix");
-			_shadowBiasUniform = uniformLocation("shadowBias");
-		}
-
-		PhongGLShadows::PhongGLShadows(const Flags flags, const UnsignedInt lightCount, const UnsignedInt numShadowLevels) : PhongGLShadows{compile(flags, lightCount, numShadowLevels)} {}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows::CompileState PhongGLShadows::compile(const Flags flags, const UnsignedInt lightCount, const UnsignedInt numShadowLevels)
-		{
-			return compile(flags, lightCount, numShadowLevels, 1, 1);
-		}
-
-		PhongGLShadows::PhongGLShadows(const Flags flags, const UnsignedInt lightCount, const UnsignedInt materialCount, const UnsignedInt drawCount, const UnsignedInt numShadowLevels) : PhongGLShadows{compile(flags, lightCount, numShadowLevels, materialCount, drawCount)} {}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setAmbientColor(const Magnum::Color4 &color)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setAmbientColor(): the shader was created with uniform buffers enabled", *this);
-#endif
-			setUniform(_ambientColorUniform, color);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setDiffuseColor(const Magnum::Color4 &color)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setDiffuseColor(): the shader was created with uniform buffers enabled", *this);
-#endif
-			if (_lightCount)
-				setUniform(_diffuseColorUniform, color);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setSpecularColor(const Magnum::Color4 &color)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setSpecularColor(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
-						   "Shaders::PhongGL::setSpecularColor(): the shader was created with specular disabled", *this);
-			if (_lightCount)
-				setUniform(_specularColorUniform, color);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setShininess(Float shininess)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setShininess(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
-						   "Shaders::PhongGL::setShininess(): the shader was created with specular disabled", *this);
-			if (_lightCount)
-				setUniform(_shininessUniform, shininess);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setNormalTextureScale(const Float scale)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setNormalTextureScale(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_flags & Flag::NormalTexture,
-						   "Shaders::PhongGL::setNormalTextureScale(): the shader was not created with normal texture enabled", *this);
-			if (_lightCount)
-				setUniform(_normalTextureScaleUniform, scale);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setAlphaMask(Float mask)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setAlphaMask(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_flags & Flag::AlphaMask,
-						   "Shaders::PhongGL::setAlphaMask(): the shader was not created with alpha mask enabled", *this);
-			setUniform(_alphaMaskUniform, mask);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::setObjectId(UnsignedInt id)
-		{
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setObjectId(): the shader was created with uniform buffers enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::ObjectId,
-						   "Shaders::PhongGL::setObjectId(): the shader was not created with object ID enabled", *this);
-			setUniform(_objectIdUniform, id);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setTransformationMatrix(const Matrix4 &matrix)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setTransformationMatrix(): the shader was created with uniform buffers enabled", *this);
-#endif
-			setUniform(_transformationMatrixUniform, matrix);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setNormalMatrix(const Matrix3x3 &matrix)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setNormalMatrix(): the shader was created with uniform buffers enabled", *this);
-#endif
-			if (_lightCount)
-				setUniform(_normalMatrixUniform, matrix);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setProjectionMatrix(const Matrix4 &matrix)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setProjectionMatrix(): the shader was created with uniform buffers enabled", *this);
-#endif
-			setUniform(_projectionMatrixUniform, matrix);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setTextureMatrix(const Matrix3 &matrix)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setTextureMatrix(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_flags & Flag::TextureTransformation,
-						   "Shaders::PhongGL::setTextureMatrix(): the shader was not created with texture transformation enabled", *this);
-			setUniform(_textureMatrixUniform, matrix);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::setTextureLayer(UnsignedInt id)
-		{
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setTextureLayer(): the shader was created with uniform buffers enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureArrays,
-						   "Shaders::PhongGL::setTextureLayer(): the shader was not created with texture arrays enabled", *this);
-			setUniform(_textureLayerUniform, id);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setLightPositions(const Containers::ArrayView<const Vector4> positions)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightPositions(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_lightCount == positions.size(),
-						   "Shaders::PhongGL::setLightPositions(): expected" << _lightCount << "items but got" << positions.size(), *this);
-			if (_lightCount)
-				setUniform(_lightPositionsUniform, positions);
-			return *this;
-		}
-
-		/* It's light, but can't be in the header because MSVC needs to know the size
-		   of Vector3 for the initializer list use */
-		PhongGLShadows &PhongGLShadows::setLightPositions(const std::initializer_list<Vector4> positions)
-		{
-			return setLightPositions(Containers::arrayView(positions));
-		}
-
-#ifdef MAGNUM_BUILD_DEPRECATED
-		PhongGLShadows &PhongGLShadows::setLightPositions(const Containers::ArrayView<const Vector3> positions)
-		{
-			Containers::Array<Vector4> fourComponent{NoInit, positions.size()};
-			for (std::size_t i = 0; i != positions.size(); ++i)
-				fourComponent[i] = Vector4{positions[i], 0.0f};
-			setLightPositions(fourComponent);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightPositions(const std::initializer_list<Vector3> positions)
-		{
-			CORRADE_IGNORE_DEPRECATED_PUSH
-			return setLightPositions(Containers::arrayView(positions));
-			CORRADE_IGNORE_DEPRECATED_POP
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setLightPosition(const UnsignedInt id, const Vector4 &position)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightPosition(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(id < _lightCount,
-						   "Shaders::PhongGL::setLightPosition(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
-			setUniform(_lightPositionsUniform + id, position);
-			return *this;
-		}
-
-#ifdef MAGNUM_BUILD_DEPRECATED
-		PhongGLShadows &PhongGLShadows::setLightPosition(UnsignedInt id, const Vector3 &position)
-		{
-			return setLightPosition(id, Vector4{position, 0.0f});
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightPosition(const Vector3 &position)
-		{
-			/* Use the list variant to check the shader really has just one light */
-			return setLightPositions({Vector4{position, 0.0f}});
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setLightColors(const Containers::ArrayView<const Magnum::Color3> colors)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightColors(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_lightCount == colors.size(),
-						   "Shaders::PhongGL::setLightColors(): expected" << _lightCount << "items but got" << colors.size(), *this);
-			if (_lightCount)
-				setUniform(_lightColorsUniform, colors);
-			return *this;
-		}
-
-#ifdef MAGNUM_BUILD_DEPRECATED
-		PhongGLShadows &PhongGLShadows::setLightColors(const Containers::ArrayView<const Magnum::Color4> colors)
-		{
-			Containers::Array<Magnum::Color3> threeComponent{NoInit, colors.size()};
-			for (std::size_t i = 0; i != colors.size(); ++i)
-				threeComponent[i] = colors[i].rgb();
-			setLightColors(threeComponent);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightColors(const std::initializer_list<Magnum::Color4> colors)
-		{
-			CORRADE_IGNORE_DEPRECATED_PUSH
-			return setLightColors(Containers::arrayView(colors));
-			CORRADE_IGNORE_DEPRECATED_POP
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setLightColors(const std::initializer_list<Magnum::Color3> colors)
-		{
-			return setLightColors(Containers::arrayView(colors));
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightColor(const UnsignedInt id, const Magnum::Color3 &color)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightColor(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(id < _lightCount,
-						   "Shaders::PhongGL::setLightColor(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
-			setUniform(_lightColorsUniform + id, color);
-			return *this;
-		}
-
-#ifdef MAGNUM_BUILD_DEPRECATED
-		PhongGLShadows &PhongGLShadows::setLightColor(UnsignedInt id, const Magnum::Color4 &color)
-		{
-			return setLightColor(id, color.rgb());
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightColor(const Magnum::Color4 &color)
-		{
-			/* Use the list variant to check the shader really has just one light */
-			return setLightColors({color.rgb()});
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::setLightSpecularColors(const Containers::ArrayView<const Magnum::Color3> colors)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightSpecularColors(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_lightCount == colors.size(),
-						   "Shaders::PhongGL::setLightSpecularColors(): expected" << _lightCount << "items but got" << colors.size(), *this);
-			CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
-						   "Shaders::PhongGL::setLightSpecularColors(): the shader was created with specular disabled", *this);
-			if (_lightCount)
-				setUniform(_lightSpecularColorsUniform, colors);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightSpecularColors(const std::initializer_list<Magnum::Color3> colors)
-		{
-			return setLightSpecularColors(Containers::arrayView(colors));
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightSpecularColor(const UnsignedInt id, const Magnum::Color3 &color)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightSpecularColor(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(id < _lightCount,
-						   "Shaders::PhongGL::setLightSpecularColor(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
-			CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
-						   "Shaders::PhongGL::setLightSpecularColor(): the shader was created with specular disabled", *this);
-			setUniform(_lightSpecularColorsUniform + id, color);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightRanges(const Containers::ArrayView<const Float> ranges)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightRanges(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(_lightCount == ranges.size(),
-						   "Shaders::PhongGL::setLightRanges(): expected" << _lightCount << "items but got" << ranges.size(), *this);
-			if (_lightCount)
-				setUniform(_lightRangesUniform, ranges);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightRanges(const std::initializer_list<Float> ranges)
-		{
-			return setLightRanges(Containers::arrayView(ranges));
-		}
-
-		PhongGLShadows &PhongGLShadows::setLightRange(const UnsignedInt id, const Float range)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
-						   "Shaders::PhongGL::setLightRange(): the shader was created with uniform buffers enabled", *this);
-#endif
-			CORRADE_ASSERT(id < _lightCount,
-						   "Shaders::PhongGL::setLightRange(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
-			setUniform(_lightRangesUniform + id, range);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::setDrawOffset(const UnsignedInt offset)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::setDrawOffset(): the shader was not created with uniform buffers enabled", *this);
-			CORRADE_ASSERT(offset < _drawCount,
-						   "Shaders::PhongGL::setDrawOffset(): draw offset" << offset << "is out of bounds for" << _drawCount << "draws", *this);
-			if (_drawCount > 1)
-				setUniform(_drawOffsetUniform, offset);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindProjectionBuffer(GL::Buffer &buffer)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindProjectionBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, ProjectionBufferBinding);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindProjectionBuffer(GL::Buffer &buffer, const GLintptr offset, const GLsizeiptr size)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindProjectionBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, ProjectionBufferBinding, offset, size);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindTransformationBuffer(GL::Buffer &buffer)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, TransformationBufferBinding);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindTransformationBuffer(GL::Buffer &buffer, const GLintptr offset, const GLsizeiptr size)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, TransformationBufferBinding, offset, size);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindDrawBuffer(GL::Buffer &buffer)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindDrawBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, DrawBufferBinding);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindDrawBuffer(GL::Buffer &buffer, const GLintptr offset, const GLsizeiptr size)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindDrawBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, DrawBufferBinding, offset, size);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindTextureTransformationBuffer(GL::Buffer &buffer)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureTransformation,
-						   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with texture transformation enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, TextureTransformationBufferBinding);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindTextureTransformationBuffer(GL::Buffer &buffer, const GLintptr offset, const GLsizeiptr size)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureTransformation,
-						   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with texture transformation enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, TextureTransformationBufferBinding, offset, size);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindMaterialBuffer(GL::Buffer &buffer)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindMaterialBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, MaterialBufferBinding);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindMaterialBuffer(GL::Buffer &buffer, const GLintptr offset, const GLsizeiptr size)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindMaterialBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, MaterialBufferBinding, offset, size);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindLightBuffer(GL::Buffer &buffer)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindLightBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, LightBufferBinding);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindLightBuffer(GL::Buffer &buffer, const GLintptr offset, const GLsizeiptr size)
-		{
-			CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
-						   "Shaders::PhongGL::bindLightBuffer(): the shader was not created with uniform buffers enabled", *this);
-			buffer.bind(GL::Buffer::Target::Uniform, LightBufferBinding, offset, size);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::bindAmbientTexture(GL::Texture2D &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::AmbientTexture,
-						   "Shaders::PhongGL::bindAmbientTexture(): the shader was not created with ambient texture enabled", *this);
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
-						   "Shaders::PhongGL::bindAmbientTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
-#endif
-			texture.bind(AmbientTextureUnit);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::bindAmbientTexture(GL::Texture2DArray &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::AmbientTexture,
-						   "Shaders::PhongGL::bindAmbientTexture(): the shader was not created with ambient texture enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureArrays,
-						   "Shaders::PhongGL::bindAmbientTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
-			texture.bind(AmbientTextureUnit);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::bindDiffuseTexture(GL::Texture2D &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::DiffuseTexture,
-						   "Shaders::PhongGL::bindDiffuseTexture(): the shader was not created with diffuse texture enabled", *this);
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
-						   "Shaders::PhongGL::bindDiffuseTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
-#endif
-			if (_lightCount)
-				texture.bind(DiffuseTextureUnit);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::bindDiffuseTexture(GL::Texture2DArray &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::DiffuseTexture,
-						   "Shaders::PhongGL::bindDiffuseTexture(): the shader was not created with diffuse texture enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureArrays,
-						   "Shaders::PhongGL::bindDiffuseTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
-			if (_lightCount)
-				texture.bind(DiffuseTextureUnit);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::bindSpecularTexture(GL::Texture2D &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::SpecularTexture,
-						   "Shaders::PhongGL::bindSpecularTexture(): the shader was not created with specular texture enabled", *this);
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
-						   "Shaders::PhongGL::bindSpecularTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
-#endif
-			if (_lightCount)
-				texture.bind(SpecularTextureUnit);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::bindSpecularTexture(GL::Texture2DArray &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::SpecularTexture,
-						   "Shaders::PhongGL::bindSpecularTexture(): the shader was not created with specular texture enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureArrays,
-						   "Shaders::PhongGL::bindSpecularTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
-			if (_lightCount)
-				texture.bind(SpecularTextureUnit);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::bindNormalTexture(GL::Texture2D &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::NormalTexture,
-						   "Shaders::PhongGL::bindNormalTexture(): the shader was not created with normal texture enabled", *this);
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
-						   "Shaders::PhongGL::bindNormalTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
-#endif
-			if (_lightCount)
-				texture.bind(NormalTextureUnit);
-			return *this;
-		}
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::bindNormalTexture(GL::Texture2DArray &texture)
-		{
-			CORRADE_ASSERT(_flags & Flag::NormalTexture,
-						   "Shaders::PhongGL::bindNormalTexture(): the shader was not created with normal texture enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureArrays,
-						   "Shaders::PhongGL::bindNormalTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
-			if (_lightCount)
-				texture.bind(NormalTextureUnit);
-			return *this;
-		}
-#endif
-
-#ifndef MAGNUM_TARGET_GLES2
-		PhongGLShadows &PhongGLShadows::bindObjectIdTexture(GL::Texture2D &texture)
-		{
-			CORRADE_ASSERT(_flags >= Flag::ObjectIdTexture,
-						   "Shaders::PhongGL::bindObjectIdTexture(): the shader was not created with object ID texture enabled", *this);
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
-						   "Shaders::PhongGL::bindObjectIdTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
-#endif
-			texture.bind(ObjectIdTextureUnit);
-			return *this;
-		}
-
-		PhongGLShadows &PhongGLShadows::bindObjectIdTexture(GL::Texture2DArray &texture)
-		{
-			CORRADE_ASSERT(_flags >= Flag::ObjectIdTexture,
-						   "Shaders::PhongGL::bindObjectIdTexture(): the shader was not created with object ID texture enabled", *this);
-			CORRADE_ASSERT(_flags & Flag::TextureArrays,
-						   "Shaders::PhongGL::bindObjectIdTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
-			texture.bind(ObjectIdTextureUnit);
-			return *this;
-		}
-#endif
-
-		PhongGLShadows &PhongGLShadows::bindTextures(GL::Texture2D *ambient, GL::Texture2D *diffuse, GL::Texture2D *specular, GL::Texture2D *normal)
-		{
-			CORRADE_ASSERT(_flags & (Flag::AmbientTexture | Flag::DiffuseTexture | Flag::SpecularTexture | Flag::NormalTexture),
-						   "Shaders::PhongGL::bindTextures(): the shader was not created with any textures enabled", *this);
-#ifndef MAGNUM_TARGET_GLES2
-			CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
-						   "Shaders::PhongGL::bindTextures(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
-#endif
-			GL::AbstractTexture::bind(AmbientTextureUnit, {ambient, diffuse, specular, normal});
-			return *this;
-		}
-
-		Debug &operator<<(Debug &debug, const PhongGLShadows::Flag value)
-		{
-#ifndef MAGNUM_TARGET_GLES2
-			/* Special case coming from the Flags printer. As both flags are a superset
-			   of ObjectId, printing just one would result in
-			   `Flag::InstancedObjectId|Flag(0x20000)` in the output. */
-			if (value == PhongGLShadows::Flag(UnsignedInt(PhongGLShadows::Flag::InstancedObjectId | PhongGLShadows::Flag::ObjectIdTexture)))
-				return debug << PhongGLShadows::Flag::InstancedObjectId << Debug::nospace << "|" << Debug::nospace << PhongGLShadows::Flag::ObjectIdTexture;
-#endif
-
-			debug << "Shaders::PhongGL::Flag" << Debug::nospace;
-
-			switch (value)
+			PhongGLShadows &PhongGLShadows::setTransformationMatrix(const Matrix4 &matrix)
 			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setTransformationMatrix(): the shader was created with uniform buffers enabled", *this);
+#endif
+				setUniform(_transformationMatrixUniform, matrix);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setNormalMatrix(const Matrix3x3 &matrix)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setNormalMatrix(): the shader was created with uniform buffers enabled", *this);
+#endif
+				if (_lightCount)
+					setUniform(_normalMatrixUniform, matrix);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setProjectionMatrix(const Matrix4 &matrix)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setProjectionMatrix(): the shader was created with uniform buffers enabled", *this);
+#endif
+				setUniform(_projectionMatrixUniform, matrix);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setTextureMatrix(const Matrix3 &matrix)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setTextureMatrix(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_flags & Flag::TextureTransformation,
+							   "Shaders::PhongGL::setTextureMatrix(): the shader was not created with texture transformation enabled", *this);
+				setUniform(_textureMatrixUniform, matrix);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::setTextureLayer(UnsignedInt id)
+			{
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setTextureLayer(): the shader was created with uniform buffers enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureArrays,
+							   "Shaders::PhongGL::setTextureLayer(): the shader was not created with texture arrays enabled", *this);
+				setUniform(_textureLayerUniform, id);
+				return *this;
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::setLightPositions(const Containers::ArrayView<const Vector4> positions)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightPositions(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_lightCount == positions.size(),
+							   "Shaders::PhongGL::setLightPositions(): expected" << _lightCount << "items but got" << positions.size(), *this);
+				if (_lightCount)
+					setUniform(_lightPositionsUniform, positions);
+				return *this;
+			}
+
+			/* It's light, but can't be in the header because MSVC needs to know the size
+			   of Vector3 for the initializer list use */
+			PhongGLShadows &PhongGLShadows::setLightPositions(const std::initializer_list<Vector4> positions)
+			{
+				return setLightPositions(Containers::arrayView(positions));
+			}
+
+#ifdef MAGNUM_BUILD_DEPRECATED
+			PhongGLShadows &PhongGLShadows::setLightPositions(const Containers::ArrayView<const Vector3> positions)
+			{
+				Containers::Array<Vector4> fourComponent{NoInit, positions.size()};
+				for (std::size_t i = 0; i != positions.size(); ++i)
+					fourComponent[i] = Vector4{positions[i], 0.0f};
+				setLightPositions(fourComponent);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightPositions(const std::initializer_list<Vector3> positions)
+			{
+				CORRADE_IGNORE_DEPRECATED_PUSH
+				return setLightPositions(Containers::arrayView(positions));
+				CORRADE_IGNORE_DEPRECATED_POP
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::setLightPosition(const UnsignedInt id, const Vector4 &position)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightPosition(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(id < _lightCount,
+							   "Shaders::PhongGL::setLightPosition(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
+				setUniform(_lightPositionsUniform + id, position);
+				return *this;
+			}
+
+#ifdef MAGNUM_BUILD_DEPRECATED
+			PhongGLShadows &PhongGLShadows::setLightPosition(UnsignedInt id, const Vector3 &position)
+			{
+				return setLightPosition(id, Vector4{position, 0.0f});
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightPosition(const Vector3 &position)
+			{
+				/* Use the list variant to check the shader really has just one light */
+				return setLightPositions({Vector4{position, 0.0f}});
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::setLightColors(const Containers::ArrayView<const Magnum::Color3> colors)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightColors(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_lightCount == colors.size(),
+							   "Shaders::PhongGL::setLightColors(): expected" << _lightCount << "items but got" << colors.size(), *this);
+				if (_lightCount)
+					setUniform(_lightColorsUniform, colors);
+				return *this;
+			}
+
+#ifdef MAGNUM_BUILD_DEPRECATED
+			PhongGLShadows &PhongGLShadows::setLightColors(const Containers::ArrayView<const Magnum::Color4> colors)
+			{
+				Containers::Array<Magnum::Color3> threeComponent{NoInit, colors.size()};
+				for (std::size_t i = 0; i != colors.size(); ++i)
+					threeComponent[i] = colors[i].rgb();
+				setLightColors(threeComponent);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightColors(const std::initializer_list<Magnum::Color4> colors)
+			{
+				CORRADE_IGNORE_DEPRECATED_PUSH
+				return setLightColors(Containers::arrayView(colors));
+				CORRADE_IGNORE_DEPRECATED_POP
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::setLightColors(const std::initializer_list<Magnum::Color3> colors)
+			{
+				return setLightColors(Containers::arrayView(colors));
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightColor(const UnsignedInt id, const Magnum::Color3 &color)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightColor(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(id < _lightCount,
+							   "Shaders::PhongGL::setLightColor(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
+				setUniform(_lightColorsUniform + id, color);
+				return *this;
+			}
+
+#ifdef MAGNUM_BUILD_DEPRECATED
+			PhongGLShadows &PhongGLShadows::setLightColor(UnsignedInt id, const Magnum::Color4 &color)
+			{
+				return setLightColor(id, color.rgb());
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightColor(const Magnum::Color4 &color)
+			{
+				/* Use the list variant to check the shader really has just one light */
+				return setLightColors({color.rgb()});
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::setLightSpecularColors(const Containers::ArrayView<const Magnum::Color3> colors)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightSpecularColors(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_lightCount == colors.size(),
+							   "Shaders::PhongGL::setLightSpecularColors(): expected" << _lightCount << "items but got" << colors.size(), *this);
+				CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
+							   "Shaders::PhongGL::setLightSpecularColors(): the shader was created with specular disabled", *this);
+				if (_lightCount)
+					setUniform(_lightSpecularColorsUniform, colors);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightSpecularColors(const std::initializer_list<Magnum::Color3> colors)
+			{
+				return setLightSpecularColors(Containers::arrayView(colors));
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightSpecularColor(const UnsignedInt id, const Magnum::Color3 &color)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightSpecularColor(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(id < _lightCount,
+							   "Shaders::PhongGL::setLightSpecularColor(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
+				CORRADE_ASSERT(!(_flags >= Flag::NoSpecular),
+							   "Shaders::PhongGL::setLightSpecularColor(): the shader was created with specular disabled", *this);
+				setUniform(_lightSpecularColorsUniform + id, color);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightRanges(const Containers::ArrayView<const Float> ranges)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightRanges(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(_lightCount == ranges.size(),
+							   "Shaders::PhongGL::setLightRanges(): expected" << _lightCount << "items but got" << ranges.size(), *this);
+				if (_lightCount)
+					setUniform(_lightRangesUniform, ranges);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightRanges(const std::initializer_list<Float> ranges)
+			{
+				return setLightRanges(Containers::arrayView(ranges));
+			}
+
+			PhongGLShadows &PhongGLShadows::setLightRange(const UnsignedInt id, const Float range)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags >= Flag::UniformBuffers),
+							   "Shaders::PhongGL::setLightRange(): the shader was created with uniform buffers enabled", *this);
+#endif
+				CORRADE_ASSERT(id < _lightCount,
+							   "Shaders::PhongGL::setLightRange(): light ID" << id << "is out of bounds for" << _lightCount << "lights", *this);
+				setUniform(_lightRangesUniform + id, range);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::setDrawOffset(const UnsignedInt offset)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::setDrawOffset(): the shader was not created with uniform buffers enabled", *this);
+				CORRADE_ASSERT(offset < _drawCount,
+							   "Shaders::PhongGL::setDrawOffset(): draw offset" << offset << "is out of bounds for" << _drawCount << "draws", *this);
+				if (_drawCount > 1)
+					setUniform(_drawOffsetUniform, offset);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindProjectionBuffer(GL::Buffer & buffer)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindProjectionBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, ProjectionBufferBinding);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindProjectionBuffer(GL::Buffer & buffer, const GLintptr offset, const GLsizeiptr size)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindProjectionBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, ProjectionBufferBinding, offset, size);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindTransformationBuffer(GL::Buffer & buffer)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, TransformationBufferBinding);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindTransformationBuffer(GL::Buffer & buffer, const GLintptr offset, const GLsizeiptr size)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, TransformationBufferBinding, offset, size);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindDrawBuffer(GL::Buffer & buffer)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindDrawBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, DrawBufferBinding);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindDrawBuffer(GL::Buffer & buffer, const GLintptr offset, const GLsizeiptr size)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindDrawBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, DrawBufferBinding, offset, size);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindTextureTransformationBuffer(GL::Buffer & buffer)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureTransformation,
+							   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with texture transformation enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, TextureTransformationBufferBinding);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindTextureTransformationBuffer(GL::Buffer & buffer, const GLintptr offset, const GLsizeiptr size)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with uniform buffers enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureTransformation,
+							   "Shaders::PhongGL::bindTextureTransformationBuffer(): the shader was not created with texture transformation enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, TextureTransformationBufferBinding, offset, size);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindMaterialBuffer(GL::Buffer & buffer)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindMaterialBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, MaterialBufferBinding);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindMaterialBuffer(GL::Buffer & buffer, const GLintptr offset, const GLsizeiptr size)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindMaterialBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, MaterialBufferBinding, offset, size);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindLightBuffer(GL::Buffer & buffer)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindLightBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, LightBufferBinding);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindLightBuffer(GL::Buffer & buffer, const GLintptr offset, const GLsizeiptr size)
+			{
+				CORRADE_ASSERT(_flags >= Flag::UniformBuffers,
+							   "Shaders::PhongGL::bindLightBuffer(): the shader was not created with uniform buffers enabled", *this);
+				buffer.bind(GL::Buffer::Target::Uniform, LightBufferBinding, offset, size);
+				return *this;
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::bindAmbientTexture(GL::Texture2D & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::AmbientTexture,
+							   "Shaders::PhongGL::bindAmbientTexture(): the shader was not created with ambient texture enabled", *this);
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
+							   "Shaders::PhongGL::bindAmbientTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
+#endif
+				texture.bind(AmbientTextureUnit);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::bindAmbientTexture(GL::Texture2DArray & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::AmbientTexture,
+							   "Shaders::PhongGL::bindAmbientTexture(): the shader was not created with ambient texture enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureArrays,
+							   "Shaders::PhongGL::bindAmbientTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
+				texture.bind(AmbientTextureUnit);
+				return *this;
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::bindDiffuseTexture(GL::Texture2D & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::DiffuseTexture,
+							   "Shaders::PhongGL::bindDiffuseTexture(): the shader was not created with diffuse texture enabled", *this);
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
+							   "Shaders::PhongGL::bindDiffuseTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
+#endif
+				if (_lightCount)
+					texture.bind(DiffuseTextureUnit);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::bindDiffuseTexture(GL::Texture2DArray & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::DiffuseTexture,
+							   "Shaders::PhongGL::bindDiffuseTexture(): the shader was not created with diffuse texture enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureArrays,
+							   "Shaders::PhongGL::bindDiffuseTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
+				if (_lightCount)
+					texture.bind(DiffuseTextureUnit);
+				return *this;
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::bindSpecularTexture(GL::Texture2D & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::SpecularTexture,
+							   "Shaders::PhongGL::bindSpecularTexture(): the shader was not created with specular texture enabled", *this);
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
+							   "Shaders::PhongGL::bindSpecularTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
+#endif
+				if (_lightCount)
+					texture.bind(SpecularTextureUnit);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::bindSpecularTexture(GL::Texture2DArray & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::SpecularTexture,
+							   "Shaders::PhongGL::bindSpecularTexture(): the shader was not created with specular texture enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureArrays,
+							   "Shaders::PhongGL::bindSpecularTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
+				if (_lightCount)
+					texture.bind(SpecularTextureUnit);
+				return *this;
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::bindNormalTexture(GL::Texture2D & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::NormalTexture,
+							   "Shaders::PhongGL::bindNormalTexture(): the shader was not created with normal texture enabled", *this);
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
+							   "Shaders::PhongGL::bindNormalTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
+#endif
+				if (_lightCount)
+					texture.bind(NormalTextureUnit);
+				return *this;
+			}
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::bindNormalTexture(GL::Texture2DArray & texture)
+			{
+				CORRADE_ASSERT(_flags & Flag::NormalTexture,
+							   "Shaders::PhongGL::bindNormalTexture(): the shader was not created with normal texture enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureArrays,
+							   "Shaders::PhongGL::bindNormalTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
+				if (_lightCount)
+					texture.bind(NormalTextureUnit);
+				return *this;
+			}
+#endif
+
+#ifndef MAGNUM_TARGET_GLES2
+			PhongGLShadows &PhongGLShadows::bindObjectIdTexture(GL::Texture2D & texture)
+			{
+				CORRADE_ASSERT(_flags >= Flag::ObjectIdTexture,
+							   "Shaders::PhongGL::bindObjectIdTexture(): the shader was not created with object ID texture enabled", *this);
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
+							   "Shaders::PhongGL::bindObjectIdTexture(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
+#endif
+				texture.bind(ObjectIdTextureUnit);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::bindObjectIdTexture(GL::Texture2DArray & texture)
+			{
+				CORRADE_ASSERT(_flags >= Flag::ObjectIdTexture,
+							   "Shaders::PhongGL::bindObjectIdTexture(): the shader was not created with object ID texture enabled", *this);
+				CORRADE_ASSERT(_flags & Flag::TextureArrays,
+							   "Shaders::PhongGL::bindObjectIdTexture(): the shader was not created with texture arrays enabled, use a Texture2D instead", *this);
+				texture.bind(ObjectIdTextureUnit);
+				return *this;
+			}
+#endif
+
+			PhongGLShadows &PhongGLShadows::bindTextures(GL::Texture2D * ambient, GL::Texture2D * diffuse, GL::Texture2D * specular, GL::Texture2D * normal)
+			{
+				CORRADE_ASSERT(_flags & (Flag::AmbientTexture | Flag::DiffuseTexture | Flag::SpecularTexture | Flag::NormalTexture),
+							   "Shaders::PhongGL::bindTextures(): the shader was not created with any textures enabled", *this);
+#ifndef MAGNUM_TARGET_GLES2
+				CORRADE_ASSERT(!(_flags & Flag::TextureArrays),
+							   "Shaders::PhongGL::bindTextures(): the shader was created with texture arrays enabled, use a Texture2DArray instead", *this);
+#endif
+				GL::AbstractTexture::bind(AmbientTextureUnit, {ambient, diffuse, specular, normal});
+				return *this;
+			}
+
+			Debug &operator<<(Debug &debug, const PhongGLShadows::Flag value)
+			{
+#ifndef MAGNUM_TARGET_GLES2
+				/* Special case coming from the Flags printer. As both flags are a superset
+				   of ObjectId, printing just one would result in
+				   `Flag::InstancedObjectId|Flag(0x20000)` in the output. */
+				if (value == PhongGLShadows::Flag(UnsignedInt(PhongGLShadows::Flag::InstancedObjectId | PhongGLShadows::Flag::ObjectIdTexture)))
+					return debug << PhongGLShadows::Flag::InstancedObjectId << Debug::nospace << "|" << Debug::nospace << PhongGLShadows::Flag::ObjectIdTexture;
+#endif
+
+				debug << "Shaders::PhongGL::Flag" << Debug::nospace;
+
+				switch (value)
+				{
 /* LCOV_EXCL_START */
 #define _c(v)                     \
 	case PhongGLShadows::Flag::v: \
 		return debug << "::" #v;
-				_c(AmbientTexture)
-					_c(DiffuseTexture)
-						_c(SpecularTexture)
-							_c(NormalTexture)
-								_c(Bitangent)
-									_c(AlphaMask)
-										_c(VertexColor)
-											_c(TextureTransformation)
+					_c(AmbientTexture)
+						_c(DiffuseTexture)
+							_c(SpecularTexture)
+								_c(NormalTexture)
+									_c(Bitangent)
+										_c(AlphaMask)
+											_c(VertexColor)
+												_c(TextureTransformation)
 #ifndef MAGNUM_TARGET_GLES2
-												_c(ObjectId)
-													_c(InstancedObjectId)
-														_c(ObjectIdTexture)
+													_c(ObjectId)
+														_c(InstancedObjectId)
+															_c(ObjectIdTexture)
 #endif
-															_c(InstancedTransformation)
-																_c(InstancedTextureOffset)
+																_c(InstancedTransformation)
+																	_c(InstancedTextureOffset)
 #ifndef MAGNUM_TARGET_GLES2
-																	_c(UniformBuffers)
-																		_c(MultiDraw)
-																			_c(TextureArrays)
-																				_c(LightCulling)
+																		_c(UniformBuffers)
+																			_c(MultiDraw)
+																				_c(TextureArrays)
+																					_c(LightCulling)
 #endif
-																					_c(NoSpecular)
+																						_c(NoSpecular)
 #undef _c
-				/* LCOV_EXCL_STOP */
+					/* LCOV_EXCL_STOP */
+				}
+
+				return debug << "(" << Debug::nospace << reinterpret_cast<void *>(UnsignedInt(value)) << Debug::nospace << ")";
 			}
 
-			return debug << "(" << Debug::nospace << reinterpret_cast<void *>(UnsignedInt(value)) << Debug::nospace << ")";
-		}
-
-		Debug &operator<<(Debug &debug, const PhongGLShadows::Flags value)
-		{
-			return Containers::enumSetDebugOutput(debug, value, "Shaders::PhongGL::Flags{}", {PhongGLShadows::Flag::AmbientTexture, PhongGLShadows::Flag::DiffuseTexture, PhongGLShadows::Flag::SpecularTexture, PhongGLShadows::Flag::NormalTexture, PhongGLShadows::Flag::Bitangent, PhongGLShadows::Flag::AlphaMask, PhongGLShadows::Flag::VertexColor, PhongGLShadows::Flag::InstancedTextureOffset, /* Superset of TextureTransformation */
-																							  PhongGLShadows::Flag::TextureTransformation,
+			Debug &operator<<(Debug &debug, const PhongGLShadows::Flags value)
+			{
+				return Containers::enumSetDebugOutput(debug, value, "Shaders::PhongGL::Flags{}", {PhongGLShadows::Flag::AmbientTexture, PhongGLShadows::Flag::DiffuseTexture, PhongGLShadows::Flag::SpecularTexture, PhongGLShadows::Flag::NormalTexture, PhongGLShadows::Flag::Bitangent, PhongGLShadows::Flag::AlphaMask, PhongGLShadows::Flag::VertexColor, PhongGLShadows::Flag::InstancedTextureOffset, /* Superset of TextureTransformation */
+																								  PhongGLShadows::Flag::TextureTransformation,
 #ifndef MAGNUM_TARGET_GLES2
-																							  /* Both are a superset of ObjectId, meaning printing just one would
-																								 result in `Flag::InstancedObjectId|Flag(0x20000)` in the output. So
-																								 we pass both and let the Flag printer deal with that. */
-																							  PhongGLShadows::Flag(UnsignedInt(PhongGLShadows::Flag::InstancedObjectId | PhongGLShadows::Flag::ObjectIdTexture)), PhongGLShadows::Flag::InstancedObjectId, /* Superset of ObjectId */
-																							  PhongGLShadows::Flag::ObjectIdTexture,																													   /* Superset of ObjectId */
-																							  PhongGLShadows::Flag::ObjectId,
+																								  /* Both are a superset of ObjectId, meaning printing just one would
+																									 result in `Flag::InstancedObjectId|Flag(0x20000)` in the output. So
+																									 we pass both and let the Flag printer deal with that. */
+																								  PhongGLShadows::Flag(UnsignedInt(PhongGLShadows::Flag::InstancedObjectId | PhongGLShadows::Flag::ObjectIdTexture)), PhongGLShadows::Flag::InstancedObjectId, /* Superset of ObjectId */
+																								  PhongGLShadows::Flag::ObjectIdTexture,																													   /* Superset of ObjectId */
+																								  PhongGLShadows::Flag::ObjectId,
 #endif
-																							  PhongGLShadows::Flag::InstancedTransformation,
+																								  PhongGLShadows::Flag::InstancedTransformation,
 #ifndef MAGNUM_TARGET_GLES2
-																							  PhongGLShadows::Flag::MultiDraw, /* Superset of UniformBuffers */
-																							  PhongGLShadows::Flag::UniformBuffers, PhongGLShadows::Flag::TextureArrays, PhongGLShadows::Flag::LightCulling,
+																								  PhongGLShadows::Flag::MultiDraw, /* Superset of UniformBuffers */
+																								  PhongGLShadows::Flag::UniformBuffers, PhongGLShadows::Flag::TextureArrays, PhongGLShadows::Flag::LightCulling,
 #endif
-																							  PhongGLShadows::Flag::NoSpecular});
-		}
+																								  PhongGLShadows::Flag::NoSpecular});
+			}
 
-		PhongGLShadows &PhongGLShadows::setShadowmapTexture(GL::Texture2DArray &texture)
-		{
-			texture.bind(ShadowmapTextureLayer);
-			return *this;
-		}
+			PhongGLShadows &PhongGLShadows::setShadowmapTexture(GL::Texture2DArray & texture)
+			{
+				texture.bind(ShadowmapTextureLayer);
+				return *this;
+			}
 
-		PhongGLShadows &PhongGLShadows::setShadowBias(const Float bias)
-		{
-			setUniform(_shadowBiasUniform, bias);
-			return *this;
-		}
+			PhongGLShadows &PhongGLShadows::setShadowBias(const Float bias)
+			{
+				setUniform(_shadowBiasUniform, bias);
+				return *this;
+			}
 
-		PhongGLShadows &PhongGLShadows::setShadowmapMatrices(const Containers::ArrayView<const Matrix4> matrices)
-		{
-			setUniform(_shadowmapMatrixUniform, matrices);
-			return *this;
+			PhongGLShadows &PhongGLShadows::setShadowmapMatrices(const Containers::ArrayView<const Matrix4> matrices)
+			{
+				setUniform(_shadowmapMatrixUniform, matrices);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setModelMatrix(const Matrix4 matrix)
+			{
+				setUniform(_modelMatrixUniform, matrix);
+				return *this;
+			}
 		}
 	}
-}

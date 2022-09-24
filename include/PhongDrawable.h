@@ -25,5 +25,7 @@ private:
 
 	GL::Texture2D _defaultDiffuse;
 
+	Object3D& _object;
+
 	bool _hasNormals;
 };

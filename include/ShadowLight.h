@@ -70,7 +70,6 @@ public:
 
 	GL::Texture2DArray &shadowTexture() { return _shadowTexture; }
 
-private:
 	Object3D &_object;
 	GL::Texture2DArray _shadowTexture;
 

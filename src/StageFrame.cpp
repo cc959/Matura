@@ -2,18 +2,24 @@
 
 StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{}
 {
+	setupShadows();
 }
 
 StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{path}, _path{path}
 {
 	_player.play(_timeline.previousFrameTime());
 	_player.setPlayCount(3);
+
+	setupShadows();
 }
 
 void StageFrame::setupShadows()
 {
 	_shadows._shadowLight.setupShadowmaps(3, _shadows._shadowMapSize);
-	_shadows._shadowLight.setupSplitDistances(0.1f, 100.f, _shadows._layerSplitExponent);
+	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
+
+	//_shadowCameraIndicator.setParent(&_scene);
+	// new PhongDrawable(_shadowCameraIndicator, *(Stage*)this, *_meshes[0], *_materials[0], _shadowReceivers);
 }
 
 void StageFrame::draw3D()
@@ -23,7 +29,7 @@ void StageFrame::draw3D()
 		applyJoystick();
 
 	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _cameraObject.transformation()[2].xyz();
-	_shadows._shadowLight.setTarget({3, 2, 3}, screenDirection, *_camera);
+	_shadows._shadowLight.setTarget(_lights[0].xyz(), screenDirection, *_camera);
 
 	switch (_shadows._shadowMapFaceCullMode)
 	{
@@ -50,6 +56,8 @@ void StageFrame::draw3D()
 	shadowMatrices = Containers::Array<Matrix4>{Corrade::NoInit, _shadows._shadowLight.layerCount()};
 	for (std::size_t layerIndex = 0; layerIndex != _shadows._shadowLight.layerCount(); ++layerIndex)
 		shadowMatrices[layerIndex] = _shadows._shadowLight.layerMatrix(layerIndex);
+
+	//_shadowCameraIndicator.setTransformation(_shadows._shadowLight._layers[0].shadowCameraMatrix);
 
 	// _shadowReceiverShader.setShadowmapMatrices(shadowMatrices)
 	// 	.setShadowmapTexture(_shadows._shadowLight.shadowTexture());
@@ -85,18 +93,8 @@ void StageFrame::setupGUI()
 			ImGui::EndMenuBar();
 		}
 
-		// Edit a color (stored as ~4 floats)
-		ImGui::ColorEdit4("Color", my_color);
+		ImGui::DragFloat("Bias", &_shadows._shadowBias, 0.001, -0.01, 0.01);
 
-		// Plot some values
-		const float my_values[] = {0.2f, 0.1f, 1.0f, 0.5f, 0.9f, 2.2f};
-		ImGui::PlotLines("Frame Times", my_values, IM_ARRAYSIZE(my_values));
-
-		// Display contents in a scrolling region
-		ImGui::TextColored(ImVec4(1, 1, 0, 1), "Important Stuff");
-		ImGui::BeginChild("Scrolling");
-		for (int n = 0; n < 50; n++)
-			ImGui::Text("%04d: Some text", n);
 		ImGui::EndChild();
 		ImGui::End();
 	}

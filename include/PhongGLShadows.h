@@ -1535,6 +1535,8 @@ namespace Magnum
 			/** @brief Set shadow map texture array */
 			PhongGLShadows &setShadowmapTexture(GL::Texture2DArray &texture);
 
+			PhongGLShadows &setModelMatrix(const Matrix4 matrix);
+
 			/**
 			 * @brief Set thadow bias uniform
 			 *
@@ -1587,7 +1589,7 @@ namespace Magnum
 #endif
 
 			Int _shadowmapMatrixUniform,
-				_shadowBiasUniform;
+				_shadowBiasUniform, _modelMatrixUniform;
 			enum : Int
 			{
 				ShadowmapTextureLayer = 69

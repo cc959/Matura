@@ -19,13 +19,13 @@ public:
 		Int _shadowMapFaceCullMode;
 		bool _shadowStaticAlignment;
 
-		Shadows(Scene3D &scene, Float bias = 0.003f, Float layerSplitExponent = 3.f, Vector2i shadowMapSize = {1024, 1024}, Int shadowMapFaceCullMode = 2, bool shadowStaticAlignment = true) : _shadowBias{bias},
-																																																_layerSplitExponent{layerSplitExponent},
-																																																_shadowMapSize{shadowMapSize},
-																																																_shadowLightObject(&scene),
-																																																_shadowLight{_shadowLightObject},
-																																																_shadowMapFaceCullMode{shadowMapFaceCullMode},
-																																																_shadowStaticAlignment{shadowStaticAlignment}
+		Shadows(Scene3D &scene, Float bias = 0.003f, Float layerSplitExponent = 3.f, Vector2i shadowMapSize = {1024 * 4, 1024 * 4}, Int shadowMapFaceCullMode = 0, bool shadowStaticAlignment = true) : _shadowBias{bias},
+																																																		_layerSplitExponent{layerSplitExponent},
+																																																		_shadowMapSize{shadowMapSize},
+																																																		_shadowLightObject(&scene),
+																																																		_shadowLight{_shadowLightObject},
+																																																		_shadowMapFaceCullMode{shadowMapFaceCullMode},
+																																																		_shadowStaticAlignment{shadowStaticAlignment}
 		{
 		}
 	};

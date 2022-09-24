@@ -2,7 +2,7 @@
 
 #include "Magnum/Shaders/PhongGL.h"
 
-PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _mesh(mesh), _stage(stage), _material{material}
+PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _object(object), _mesh(mesh), _stage(stage), _material{material}
 {
 	auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
 	Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, move(diffuseData));
@@ -18,9 +18,9 @@ PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Tra
 	_hasNormals = _material.hasAttribute(Trade::MaterialAttribute::NormalTexture) && _material.normalTexture() < _stage._textures.size() && _stage._textures[_material.normalTexture()];
 
 	if (_hasNormals)
-		_shader = Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent};
+		_shader = Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent | Shaders::PhongGLShadows::Flag::Shadows};
 	else
-		_shader = Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture};
+		_shader = Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::Shadows};
 
 	_shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
 		.setSpecularColor(Color4(1, 1, 1, 1))
@@ -50,6 +50,11 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 		else
 			positions[i] = Vector4(worldToCamera.transformPoint(_stage._lights[i].xyz()), 1);
 	}
+
+	_shader.setShadowmapMatrices(_stage.shadowMatrices)
+		.setShadowmapTexture(_stage._shadows._shadowLight.shadowTexture())
+		.setModelMatrix(_object.absoluteTransformationMatrix())
+		.setShadowBias(_stage._shadows._shadowBias);
 
 	if (positions.size() && colors.size())
 	{

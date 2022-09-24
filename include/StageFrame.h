@@ -13,6 +13,8 @@ class StageFrame : public Frame, public Stage
 
 	void setupShadows();
 
+	Object3D _shadowCameraIndicator;
+
 public:
 	StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
 
