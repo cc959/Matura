@@ -541,16 +541,16 @@ void main() {
         		}
 
 				// if (!inRange)
-				// finalDiffuseColor *= vec4(1, 0, 0, 1);
+				// finalDiffuseColor *= vec4(1, 0, 1, 1);
 				// else
 
-				switch(shadowLevel) {
-        			case 0: finalDiffuseColor *= vec4(1,0,0, 1); break;
-        			case 1: finalDiffuseColor *= vec4(1,1,0, 1); break;
-        			case 2: finalDiffuseColor *= vec4(0,1,0, 1); break;
-        			case 3: finalDiffuseColor *= vec4(0,1,1, 1); break;
-        			default: finalDiffuseColor *= vec4(1,0,1, 1); break;
-				}
+				// switch(shadowLevel) {
+        		// 	case 0: finalDiffuseColor *= vec4(1,0,0, 1); break;
+        		// 	case 1: finalDiffuseColor *= vec4(1,1,0, 1); break;
+        		// 	case 2: finalDiffuseColor *= vec4(0,1,0, 1); break;
+        		// 	case 3: finalDiffuseColor *= vec4(0,1,1, 1); break;
+        		// 	//default: finalDiffuseColor *= vec4(1,0,1, 1); break;
+				// }
 			}
 
 

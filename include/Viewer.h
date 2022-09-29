@@ -32,6 +32,8 @@ public:
 									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
 
 		timeline.start();
+
+		setSwapInterval(0);
 	}
 
 private:

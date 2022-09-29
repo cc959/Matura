@@ -19,18 +19,19 @@ public:
 		Int _shadowMapFaceCullMode;
 		bool _shadowStaticAlignment;
 
-		Shadows(Scene3D &scene, Float bias = 0.003f, Float layerSplitExponent = 3.f, Vector2i shadowMapSize = {1024 * 4, 1024 * 4}, Int shadowMapFaceCullMode = 0, bool shadowStaticAlignment = true) : _shadowBias{bias},
-																																																		_layerSplitExponent{layerSplitExponent},
-																																																		_shadowMapSize{shadowMapSize},
-																																																		_shadowLightObject(&scene),
-																																																		_shadowLight{_shadowLightObject},
-																																																		_shadowMapFaceCullMode{shadowMapFaceCullMode},
-																																																		_shadowStaticAlignment{shadowStaticAlignment}
+		Shadows(Scene3D &scene, Float bias = 0.003f, Float layerSplitExponent = 4.f, Vector2i shadowMapSize = {1024, 1024}, Int shadowMapFaceCullMode = 0, bool shadowStaticAlignment = true) : _shadowBias{bias},
+																																																_layerSplitExponent{layerSplitExponent},
+																																																_shadowMapSize{shadowMapSize},
+																																																_shadowLightObject(&scene),
+																																																_shadowLight{_shadowLightObject},
+																																																_shadowMapFaceCullMode{shadowMapFaceCullMode},
+																																																_shadowStaticAlignment{shadowStaticAlignment}
 		{
 		}
 	};
 
-	vector<Optional<GL::Mesh>> _meshes;
+	vector<std::pair<Optional<GL::Mesh>, float>> _meshes;
+	vector<float> _radii;
 	vector<Optional<GL::Texture2D>> _textures;
 	vector<Optional<Trade::PhongMaterialData>> _materials;
 	vector<Object3D *> _objectsByID;
@@ -65,5 +66,5 @@ public:
 	static Animation::Player<Float> ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, vector<Object3D *> &objects);
 	static vector<Optional<GL::Texture2D>> ImportTextures(Trade::AnySceneImporter &importer);
 	static vector<Optional<Trade::PhongMaterialData>> ImportMaterials(Trade::AnySceneImporter &importer);
-	static vector<Optional<GL::Mesh>> ImportMeshes(Trade::AnySceneImporter &importer);
+	static vector<std::pair<Optional<GL::Mesh>, float>> ImportMeshes(Trade::AnySceneImporter &importer);
 };

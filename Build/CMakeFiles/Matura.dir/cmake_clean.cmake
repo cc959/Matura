@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Matura.dir/resource_Resources.cpp.o"
   "CMakeFiles/Matura.dir/resource_Resources.cpp.o.d"
+  "CMakeFiles/Matura.dir/src/DebugLines.cpp.o"
+  "CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d"
   "CMakeFiles/Matura.dir/src/Frame.cpp.o"
   "CMakeFiles/Matura.dir/src/Frame.cpp.o.d"
   "CMakeFiles/Matura.dir/src/Joystick.cpp.o"

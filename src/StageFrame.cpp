@@ -17,9 +17,30 @@ void StageFrame::setupShadows()
 {
 	_shadows._shadowLight.setupShadowmaps(3, _shadows._shadowMapSize);
 	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
+	//_shadows._layerSplitExponent = 2.f;
 
 	//_shadowCameraIndicator.setParent(&_scene);
 	// new PhongDrawable(_shadowCameraIndicator, *(Stage*)this, *_meshes[0], *_materials[0], _shadowReceivers);
+}
+void StageFrame::addDebugLines()
+{
+
+	constexpr const Matrix4 unbiasMatrix{{2.0f, 0.0f, 0.0f, 0.0f},
+										 {0.0f, 2.0f, 0.0f, 0.0f},
+										 {0.0f, 0.0f, 2.0f, 0.0f},
+										 {-1.0f, -1.0f, -1.0f, 1.0f}};
+	_debug.reset();
+	const Matrix4 imvp = (_camera->projectionMatrix() * _camera->cameraMatrix()).inverted();
+	for (std::size_t layerIndex = 0; layerIndex != _shadows._shadowLight.layerCount(); ++layerIndex)
+	{
+		const Matrix4 layerMatrix = _shadows._shadowLight.layerMatrix(layerIndex);
+		const Deg hue = layerIndex * 360.0_degf / _shadows._shadowLight.layerCount();
+		_debug.addFrustum((unbiasMatrix * layerMatrix).inverted(),
+						  Color3::fromHsv({hue, 1.0f, 0.5f}));
+		// _debug.addFrustum(imvp,
+		// 				  Color3::fromHsv({hue, 1.0f, 1.0f}),
+		// 				  layerIndex == 0 ? 0 : _shadows._shadowLight.cutZ(layerIndex - 1), _shadows._shadowLight.cutZ(layerIndex));
+	}
 }
 
 void StageFrame::draw3D()
@@ -27,6 +48,8 @@ void StageFrame::draw3D()
 	_player.advance(_timeline.previousFrameTime());
 	if (_player.state() != Animation::State::Playing)
 		applyJoystick();
+
+	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
 
 	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _cameraObject.transformation()[2].xyz();
 	_shadows._shadowLight.setTarget(_lights[0].xyz(), screenDirection, *_camera);
@@ -63,6 +86,8 @@ void StageFrame::draw3D()
 	// 	.setShadowmapTexture(_shadows._shadowLight.shadowTexture());
 
 	_camera->draw(_shadowReceivers);
+
+	_debug.draw(_camera->projectionMatrix() * _camera->cameraMatrix());
 }
 
 bool my_tool_active = true;
@@ -94,6 +119,9 @@ void StageFrame::setupGUI()
 		}
 
 		ImGui::DragFloat("Bias", &_shadows._shadowBias, 0.001, -0.01, 0.01);
+		ImGui::DragFloat("Power", &_shadows._layerSplitExponent, 0.25, 0, 10);
+
+		ImGui::Text(("Fps: " + to_string(1 / _timeline.previousFrameDuration())).c_str());
 
 		ImGui::EndChild();
 		ImGui::End();
@@ -112,6 +140,8 @@ void StageFrame::mousePressEvent(SDLApp::MouseEvent &event)
 {
 	if (event.button() == SDLApp::MouseEvent::Button::Left)
 		_previousPosition = {event.position().x(), event.position().y(), 0};
+	if (event.button() == SDLApp::MouseEvent::Button::Right)
+		addDebugLines();
 }
 
 void StageFrame::mouseReleaseEvent(SDLApp::MouseEvent &event)

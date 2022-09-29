@@ -390,7 +390,7 @@ void main() {
 #ifdef HAS_SHADOWS
 
 	for(int i = 0; i < NUM_SHADOW_MAP_LEVELS; i++) {
-        shadowCoords[i] = (shadowmapMatrix[i] * (position * modelMatrix)).xyz;
+        shadowCoords[i] = (shadowmapMatrix[i] * modelMatrix * position).xyz;
     }
 
 #endif

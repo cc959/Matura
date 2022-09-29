@@ -11,12 +11,13 @@ Stage::Stage(string path)
 		Import(importer);
 }
 
-Stage::Stage(Trade::AnySceneImporter &importer) 
+Stage::Stage(Trade::AnySceneImporter &importer)
 {
 	Import(importer);
 }
 
-Stage::Stage() {
+Stage::Stage()
+{
 }
 
 void Stage::Import(Trade::AnySceneImporter &importer)
@@ -28,7 +29,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 
 	(*(_camera = new SceneGraph::Camera3D{_cameraObject}))
 		.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
-		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 1000.0f))
+		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 100.0f))
 		.setViewport(GL::defaultFramebuffer.viewport().size());
 
 	_manipulator.setParent(&_scene);
@@ -67,14 +68,14 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 	for (const Containers::Pair<UnsignedInt, Containers::Pair<UnsignedInt, Int>> &
 			 meshMaterial : scene->meshesMaterialsAsArray())
 	{
-		Object3D *object = _objectsByID[meshMaterial.first()];			   // object to assign material to
-		Optional<GL::Mesh> &mesh = _meshes[meshMaterial.second().first()]; // mesh to assign material to
+		Object3D *object = _objectsByID[meshMaterial.first()];		   // object to assign material to
+		auto &[mesh, radius] = _meshes[meshMaterial.second().first()]; // mesh to assign material to
 		if (!object || !mesh)
 			continue;
 
 		Int materialId = meshMaterial.second().second();
 
-		new ShadowCasterDrawable(*object, *mesh, _shadowCasters);
+		new ShadowCasterDrawable(*object, *mesh, radius, _shadowCasters);
 
 		/* Material not available / not loaded, use a default material */
 		if (materialId == -1 || !_materials[materialId])
@@ -237,9 +238,9 @@ vector<Optional<Trade::PhongMaterialData>> Stage::ImportMaterials(Trade::AnyScen
 	return materials;
 }
 
-vector<Optional<GL::Mesh>> Stage::ImportMeshes(Trade::AnySceneImporter &importer)
+vector<std::pair<Optional<GL::Mesh>, float>> Stage::ImportMeshes(Trade::AnySceneImporter &importer)
 {
-	vector<Optional<GL::Mesh>> meshes{importer.meshCount()};
+	vector<std::pair<Optional<GL::Mesh>, float>> meshes(importer.meshCount());
 	for (UnsignedInt i = 0; i != importer.meshCount(); ++i)
 	{
 		Optional<Trade::MeshData> meshData;
@@ -249,13 +250,20 @@ vector<Optional<GL::Mesh>> Stage::ImportMeshes(Trade::AnySceneImporter &importer
 			continue;
 		}
 
+		float radiusSquared = 0;
+
+		for (auto vertex : meshData->positions3DAsArray())
+			radiusSquared = max(radiusSquared, vertex.dot());
+
+		meshes[i].second = sqrt(radiusSquared);
+
 		for (int i = 0; i < meshData->attributeCount(); i++)
 			Debug{} << meshData->attributeName(i);
 
 		MeshTools::CompileFlags flags;
 		if (!meshData->hasAttribute(Trade::MeshAttribute::Normal))
 			flags |= MeshTools::CompileFlag::GenerateFlatNormals;
-		meshes[i] = MeshTools::compile(*meshData, flags);
+		meshes[i].first = MeshTools::compile(*meshData, flags);
 	}
 	return meshes;
 }

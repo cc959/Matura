@@ -167,6 +167,30 @@ resource_Resources.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.s
 .PHONY : resource_Resources.cpp.s
 
+src/DebugLines.o: src/DebugLines.cpp.o
+.PHONY : src/DebugLines.o
+
+# target to build an object file
+src/DebugLines.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugLines.cpp.o
+.PHONY : src/DebugLines.cpp.o
+
+src/DebugLines.i: src/DebugLines.cpp.i
+.PHONY : src/DebugLines.i
+
+# target to preprocess a source file
+src/DebugLines.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugLines.cpp.i
+.PHONY : src/DebugLines.cpp.i
+
+src/DebugLines.s: src/DebugLines.cpp.s
+.PHONY : src/DebugLines.s
+
+# target to generate assembly for a file
+src/DebugLines.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugLines.cpp.s
+.PHONY : src/DebugLines.cpp.s
+
 src/Frame.o: src/Frame.cpp.o
 .PHONY : src/Frame.o
 
@@ -492,6 +516,9 @@ help:
 	@echo "... resource_Resources.o"
 	@echo "... resource_Resources.i"
 	@echo "... resource_Resources.s"
+	@echo "... src/DebugLines.o"
+	@echo "... src/DebugLines.i"
+	@echo "... src/DebugLines.s"
 	@echo "... src/Frame.o"
 	@echo "... src/Frame.i"
 	@echo "... src/Frame.s"

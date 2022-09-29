@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Resources.cpp" "CMakeFiles/Matura.dir/resource_Resources.cpp.o" "gcc" "CMakeFiles/Matura.dir/resource_Resources.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp" "CMakeFiles/Matura.dir/src/DebugLines.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp" "CMakeFiles/Matura.dir/src/Frame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Frame.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp" "CMakeFiles/Matura.dir/src/Joystick.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Joystick.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp" "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o.d"

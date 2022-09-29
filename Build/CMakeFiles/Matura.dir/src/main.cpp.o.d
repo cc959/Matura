@@ -475,4 +475,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/ShadowCasterShader.h \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/ShadowLight.h \
  /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/Frame.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/StageFrame.h
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/StageFrame.h \
+ /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/DebugLines.h \
+ /usr/include/Magnum/Shaders/VertexColorGL.h

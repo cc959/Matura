@@ -76,8 +76,8 @@ public:
 	struct ShadowLayerData
 	{
 		GL::Framebuffer shadowFramebuffer;
-		Matrix4 shadowCameraMatrix;
-		Matrix4 shadowMatrix;
+		Matrix4 shadowCameraMatrix; // transformation matrix for the shadow camera
+		Matrix4 shadowMatrix; // transforms world point to point on texture
 		Vector2 orthographicSize;
 		Float orthographicNear, orthographicFar;
 		Float cutPlane;

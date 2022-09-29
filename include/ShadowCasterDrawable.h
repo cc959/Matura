@@ -11,7 +11,7 @@ class ShadowCasterShader;
 class ShadowCasterDrawable : public SceneGraph::Drawable3D
 {
 public:
-	explicit ShadowCasterDrawable(Object3D &object, GL::Mesh &mesh, SceneGraph::DrawableGroup3D &group);
+	explicit ShadowCasterDrawable(Object3D &object, GL::Mesh &mesh, float radius, SceneGraph::DrawableGroup3D &group);
 
 	Float radius() const;
 

@@ -78,10 +78,24 @@ resource_Resources.cpp: /run/media/elias/01D5A94471A88F00/GitHub/Matura/res/Shad
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Compiling data resource file /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Resources.cpp"
 	cd /run/media/elias/01D5A94471A88F00/GitHub/Matura && /usr/bin/corrade-rc Resources resources.conf /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Resources.cpp
 
+CMakeFiles/Matura.dir/src/DebugLines.cpp.o: CMakeFiles/Matura.dir/flags.make
+CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp
+CMakeFiles/Matura.dir/src/DebugLines.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Matura.dir/src/DebugLines.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/DebugLines.cpp.o -MF CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d -o CMakeFiles/Matura.dir/src/DebugLines.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp
+
+CMakeFiles/Matura.dir/src/DebugLines.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Matura.dir/src/DebugLines.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp > CMakeFiles/Matura.dir/src/DebugLines.cpp.i
+
+CMakeFiles/Matura.dir/src/DebugLines.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Matura.dir/src/DebugLines.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp -o CMakeFiles/Matura.dir/src/DebugLines.cpp.s
+
 CMakeFiles/Matura.dir/src/Frame.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/Frame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp
 CMakeFiles/Matura.dir/src/Frame.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Matura.dir/src/Frame.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Matura.dir/src/Frame.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/Frame.cpp.o -MF CMakeFiles/Matura.dir/src/Frame.cpp.o.d -o CMakeFiles/Matura.dir/src/Frame.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp
 
 CMakeFiles/Matura.dir/src/Frame.cpp.i: cmake_force
@@ -95,7 +109,7 @@ CMakeFiles/Matura.dir/src/Frame.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/Joystick.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/Joystick.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp
 CMakeFiles/Matura.dir/src/Joystick.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Matura.dir/src/Joystick.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Matura.dir/src/Joystick.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/Joystick.cpp.o -MF CMakeFiles/Matura.dir/src/Joystick.cpp.o.d -o CMakeFiles/Matura.dir/src/Joystick.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp
 
 CMakeFiles/Matura.dir/src/Joystick.cpp.i: cmake_force
@@ -109,7 +123,7 @@ CMakeFiles/Matura.dir/src/Joystick.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp
 CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o -MF CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o.d -o CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp
 
 CMakeFiles/Matura.dir/src/PhongDrawable.cpp.i: cmake_force
@@ -123,7 +137,7 @@ CMakeFiles/Matura.dir/src/PhongDrawable.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp
 CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o -MF CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o.d -o CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp
 
 CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.i: cmake_force
@@ -137,7 +151,7 @@ CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp
 CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Matura.dir/src/RadialCamera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Matura.dir/src/RadialCamera.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/RadialCamera.cpp.o -MF CMakeFiles/Matura.dir/src/RadialCamera.cpp.o.d -o CMakeFiles/Matura.dir/src/RadialCamera.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp
 
 CMakeFiles/Matura.dir/src/RadialCamera.cpp.i: cmake_force
@@ -151,7 +165,7 @@ CMakeFiles/Matura.dir/src/RadialCamera.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/SerialCom.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/SerialCom.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp
 CMakeFiles/Matura.dir/src/SerialCom.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Matura.dir/src/SerialCom.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Matura.dir/src/SerialCom.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/SerialCom.cpp.o -MF CMakeFiles/Matura.dir/src/SerialCom.cpp.o.d -o CMakeFiles/Matura.dir/src/SerialCom.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp
 
 CMakeFiles/Matura.dir/src/SerialCom.cpp.i: cmake_force
@@ -165,7 +179,7 @@ CMakeFiles/Matura.dir/src/SerialCom.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterDrawable.cpp
 CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o -MF CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o.d -o CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterDrawable.cpp
 
 CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.i: cmake_force
@@ -179,7 +193,7 @@ CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterShader.cpp
 CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o -MF CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o.d -o CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterShader.cpp
 
 CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.i: cmake_force
@@ -193,7 +207,7 @@ CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowLight.cpp
 CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Matura.dir/src/ShadowLight.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Matura.dir/src/ShadowLight.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/ShadowLight.cpp.o -MF CMakeFiles/Matura.dir/src/ShadowLight.cpp.o.d -o CMakeFiles/Matura.dir/src/ShadowLight.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowLight.cpp
 
 CMakeFiles/Matura.dir/src/ShadowLight.cpp.i: cmake_force
@@ -207,7 +221,7 @@ CMakeFiles/Matura.dir/src/ShadowLight.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/Stage.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/Stage.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp
 CMakeFiles/Matura.dir/src/Stage.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Matura.dir/src/Stage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Matura.dir/src/Stage.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/Stage.cpp.o -MF CMakeFiles/Matura.dir/src/Stage.cpp.o.d -o CMakeFiles/Matura.dir/src/Stage.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp
 
 CMakeFiles/Matura.dir/src/Stage.cpp.i: cmake_force
@@ -221,7 +235,7 @@ CMakeFiles/Matura.dir/src/Stage.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/StageFrame.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/StageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp
 CMakeFiles/Matura.dir/src/StageFrame.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Matura.dir/src/StageFrame.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Matura.dir/src/StageFrame.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/StageFrame.cpp.o -MF CMakeFiles/Matura.dir/src/StageFrame.cpp.o.d -o CMakeFiles/Matura.dir/src/StageFrame.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp
 
 CMakeFiles/Matura.dir/src/StageFrame.cpp.i: cmake_force
@@ -235,7 +249,7 @@ CMakeFiles/Matura.dir/src/StageFrame.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/Viewer.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/Viewer.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp
 CMakeFiles/Matura.dir/src/Viewer.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Matura.dir/src/Viewer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Matura.dir/src/Viewer.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/Viewer.cpp.o -MF CMakeFiles/Matura.dir/src/Viewer.cpp.o.d -o CMakeFiles/Matura.dir/src/Viewer.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp
 
 CMakeFiles/Matura.dir/src/Viewer.cpp.i: cmake_force
@@ -249,7 +263,7 @@ CMakeFiles/Matura.dir/src/Viewer.cpp.s: cmake_force
 CMakeFiles/Matura.dir/src/main.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp
 CMakeFiles/Matura.dir/src/main.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Matura.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Matura.dir/src/main.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/main.cpp.o -MF CMakeFiles/Matura.dir/src/main.cpp.o.d -o CMakeFiles/Matura.dir/src/main.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp
 
 CMakeFiles/Matura.dir/src/main.cpp.i: cmake_force
@@ -263,7 +277,7 @@ CMakeFiles/Matura.dir/src/main.cpp.s: cmake_force
 CMakeFiles/Matura.dir/resource_Resources.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/resource_Resources.cpp.o: resource_Resources.cpp
 CMakeFiles/Matura.dir/resource_Resources.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Matura.dir/resource_Resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Matura.dir/resource_Resources.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/resource_Resources.cpp.o -MF CMakeFiles/Matura.dir/resource_Resources.cpp.o.d -o CMakeFiles/Matura.dir/resource_Resources.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Resources.cpp
 
 CMakeFiles/Matura.dir/resource_Resources.cpp.i: cmake_force
@@ -276,6 +290,7 @@ CMakeFiles/Matura.dir/resource_Resources.cpp.s: cmake_force
 
 # Object files for target Matura
 Matura_OBJECTS = \
+"CMakeFiles/Matura.dir/src/DebugLines.cpp.o" \
 "CMakeFiles/Matura.dir/src/Frame.cpp.o" \
 "CMakeFiles/Matura.dir/src/Joystick.cpp.o" \
 "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o" \
@@ -294,6 +309,7 @@ Matura_OBJECTS = \
 # External object files for target Matura
 Matura_EXTERNAL_OBJECTS =
 
+Matura: CMakeFiles/Matura.dir/src/DebugLines.cpp.o
 Matura: CMakeFiles/Matura.dir/src/Frame.cpp.o
 Matura: CMakeFiles/Matura.dir/src/Joystick.cpp.o
 Matura: CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o
@@ -348,7 +364,7 @@ Matura: /usr/lib/libCorradePluginManager.so
 Matura: /usr/lib/libCorradeUtility.so
 Matura: /usr/lib/libCorradeUtility.so
 Matura: CMakeFiles/Matura.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable Matura"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable Matura"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Matura.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

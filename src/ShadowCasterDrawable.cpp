@@ -3,7 +3,7 @@
 #include "ShadowCasterDrawable.h"
 #include <Magnum/SceneGraph/Camera.h>
 
-ShadowCasterDrawable::ShadowCasterDrawable(Object3D &object, GL::Mesh &mesh, SceneGraph::DrawableGroup3D &group) : Magnum::SceneGraph::Drawable3D{object, &group}, _mesh{mesh} {}
+ShadowCasterDrawable::ShadowCasterDrawable(Object3D &object, GL::Mesh &mesh, float radius, SceneGraph::DrawableGroup3D &group) : Magnum::SceneGraph::Drawable3D{object, &group}, _radius{radius}, _mesh{mesh} {}
 
 void ShadowCasterDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &shadowCamera)
 {

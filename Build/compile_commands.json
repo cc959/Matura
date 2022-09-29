@@ -1,6 +1,11 @@
 [
 {
   "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
+  "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2 -g -Wall -Wextra -Wold-style-cast -Winit-self -Werror=return-type -Wmissing-declarations -Wpedantic -fvisibility=hidden -fvisibility-inlines-hidden -Wzero-as-null-pointer-constant -Wdouble-promotion -o CMakeFiles/Matura.dir/src/DebugLines.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp",
+  "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp"
+},
+{
+  "directory": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build",
   "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2 -g -Wall -Wextra -Wold-style-cast -Winit-self -Werror=return-type -Wmissing-declarations -Wpedantic -fvisibility=hidden -fvisibility-inlines-hidden -Wzero-as-null-pointer-constant -Wdouble-promotion -o CMakeFiles/Matura.dir/src/Frame.cpp.o -c /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp",
   "file": "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp"
 },
