@@ -1,0 +1,60 @@
+{
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"corrade_add_resource"
+		],
+		"files" : 
+		[
+			"/usr/share/cmake/Corrade/UseCorrade.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 549,
+				"parent" : 1
+			}
+		]
+	},
+	"id" : "Images-dependencies::@6890427a1f51a3e7e1df",
+	"name" : "Images-dependencies",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Resources",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"path" : "res/Shang.png",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "UTILITY"
+}

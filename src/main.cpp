@@ -127,7 +127,7 @@
 
 // 	fstream file;
 
-// 	file.open("/dev/ttyACM1", fstream::out);
+// 	file.open("/dev/ttyACM0", fstream::out);
 // 	sleep(5);
 
 // 	while (true)

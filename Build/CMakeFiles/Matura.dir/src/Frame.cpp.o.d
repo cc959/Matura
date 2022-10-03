@@ -165,7 +165,6 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: \
  /usr/include/Magnum/GL/visibility.h /usr/include/Magnum/Math/Range.h \
  /usr/include/Magnum/Math/Functions.h /usr/include/Magnum/GL/Mesh.h \
  /usr/include/Magnum/GL/Attribute.h /usr/include/Magnum/GL/Buffer.h \
- /usr/include/Corrade/Utility/StlForwardTuple.h \
  /usr/include/Magnum/GL/Renderer.h /usr/include/Magnum/GL/Texture.h \
  /usr/include/Magnum/Sampler.h /usr/include/Magnum/GL/AbstractTexture.h \
  /usr/include/Magnum/GL/Sampler.h /usr/include/Magnum/Array.h \
@@ -256,6 +255,8 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: \
  /usr/include/Magnum/Animation/Track.h \
  /usr/include/Magnum/Animation/Animation.h \
  /usr/include/Magnum/Animation/Interpolation.h \
+ /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
+ /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
  /usr/include/Magnum/Timeline.h /usr/include/c++/12.2.0/chrono \
  /usr/include/c++/12.2.0/bits/chrono.h /usr/include/c++/12.2.0/ratio \
  /usr/include/c++/12.2.0/limits /usr/include/c++/12.2.0/ctime \
@@ -285,7 +286,8 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: \
  /usr/include/Magnum/ResourceManager.h \
  /usr/include/Magnum/GL/Framebuffer.h \
  /usr/include/Magnum/GL/TextureArray.h /usr/include/Magnum/GL/Shader.h \
- /usr/include/Magnum/GL/Version.h \
+ /usr/include/Magnum/GL/Version.h /usr/include/Magnum/Primitives/Plane.h \
+ /usr/include/Magnum/Primitives/visibility.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.2.0/cassert /usr/include/c++/12.2.0/cfloat \
  /usr/include/c++/12.2.0/climits \

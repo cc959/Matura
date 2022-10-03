@@ -8,9 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Resources.cpp" "CMakeFiles/Matura.dir/resource_Resources.cpp.o" "gcc" "CMakeFiles/Matura.dir/resource_Resources.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Images.cpp" "CMakeFiles/Matura.dir/resource_Images.cpp.o" "gcc" "CMakeFiles/Matura.dir/resource_Images.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Shaders.cpp" "CMakeFiles/Matura.dir/resource_Shaders.cpp.o" "gcc" "CMakeFiles/Matura.dir/resource_Shaders.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp" "CMakeFiles/Matura.dir/src/DebugLines.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp" "CMakeFiles/Matura.dir/src/Frame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Frame.cpp.o.d"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ImageFrame.cpp" "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp" "CMakeFiles/Matura.dir/src/Joystick.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Joystick.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp" "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o.d"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp" "CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o.d"

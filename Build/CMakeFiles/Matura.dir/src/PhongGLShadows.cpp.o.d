@@ -173,7 +173,5 @@ CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: \
  /usr/include/Magnum/Math/Vector4.h /usr/include/c++/12.2.0/tuple \
  /usr/include/c++/12.2.0/bits/uses_allocator.h \
  /usr/include/Magnum/Math/Matrix3.h /usr/include/Magnum/Math/Matrix4.h \
- /usr/include/Magnum/GL/Buffer.h \
- /usr/include/Corrade/Utility/StlForwardTuple.h \
- /usr/include/Magnum/GL/TextureArray.h \
+ /usr/include/Magnum/GL/Buffer.h /usr/include/Magnum/GL/TextureArray.h \
  /usr/include/Magnum/Shaders/Implementation/CreateCompatibilityShader.h

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DCORRADE_IS_DEBUG_BUILD
 
-CXX_INCLUDES = -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/usr/include/MagnumExternal/ImGui -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2
+CXX_INCLUDES = -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/. -I/usr/include/colmap -I/run/media/elias/01D5A94471A88F00/GitHub/Matura/./include -I/usr/include/MagnumExternal/ImGui -isystem /usr/local/include/opencv4 -isystem /usr/include/SDL2
 
 CXX_FLAGS = -g -Wall -Wextra -Wold-style-cast -Winit-self -Werror=return-type -Wmissing-declarations -Wpedantic -fvisibility=hidden -fvisibility-inlines-hidden -Wzero-as-null-pointer-constant -Wdouble-promotion
 

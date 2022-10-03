@@ -7,12 +7,10 @@
 class Frame
 {
 public:
-	Frame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
+	Frame(const Timeline &timeline, ImGuiIntegration::Context &guiContext);
 
 	const Timeline &_timeline;
 	ImGuiIntegration::Context &_imgui;
-
-	Joystick &_joystick;
 
 	virtual void draw3D();
 
@@ -24,6 +22,8 @@ public:
 	virtual void mouseReleaseEvent(SDLApp::MouseEvent &event);
 	virtual void mouseMoveEvent(SDLApp::MouseMoveEvent &event);
 	virtual void mouseScrollEvent(SDLApp::MouseScrollEvent &event);
+	virtual void keyPressEvent(SDLApp::KeyEvent& event);
+	virtual void keyReleaseEvent(SDLApp::KeyEvent& event);
 
 	virtual ~Frame();
 };

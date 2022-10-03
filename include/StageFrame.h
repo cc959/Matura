@@ -19,8 +19,15 @@ class StageFrame : public Frame, public Stage
 	Magnum::Examples::DebugLines _debug;
 
 	void addDebugLines();
+	bool _setTarget = true;
+
+	Joystick &_joystick;
 
 public:
+	Object3D _chacheCameraObject{&_scene};
+
+	SceneGraph::Camera3D _cacheCamera{_chacheCameraObject};
+
 	StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);
 
 	StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick);

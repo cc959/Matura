@@ -13,7 +13,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/VerifyGlobs.cmake"
   "CMakeFiles/cmake.verify_globs"
   "/run/media/elias/01D5A94471A88F00/GitHub/Matura/CMakeLists.txt"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/resources.conf"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Images.conf"
+  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Shaders.conf"
   "/usr/lib64/cmake/SDL2/SDL2Config.cmake"
   "/usr/lib64/cmake/SDL2/SDL2ConfigVersion.cmake"
   "/usr/lib64/cmake/SDL2/SDL2Targets-noconfig.cmake"
@@ -76,6 +77,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Resources-dependencies.dir/DependInfo.cmake"
+  "CMakeFiles/Images-dependencies.dir/DependInfo.cmake"
+  "CMakeFiles/Shaders-dependencies.dir/DependInfo.cmake"
   "CMakeFiles/Matura.dir/DependInfo.cmake"
   )

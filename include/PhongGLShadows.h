@@ -1537,6 +1537,8 @@ namespace Magnum
 
 			PhongGLShadows &setModelMatrix(const Matrix4 matrix);
 
+			PhongGLShadows &setDebug(bool debug);
+
 			/**
 			 * @brief Set thadow bias uniform
 			 *
@@ -1588,8 +1590,7 @@ namespace Magnum
 			Int _drawOffsetUniform{0};
 #endif
 
-			Int _shadowmapMatrixUniform,
-				_shadowBiasUniform, _modelMatrixUniform;
+			Int _shadowmapMatrixUniform, _shadowBiasUniform, _modelMatrixUniform, _shadowDebugUniform;
 			enum : Int
 			{
 				ShadowmapTextureLayer = 69

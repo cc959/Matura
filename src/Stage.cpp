@@ -29,7 +29,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 
 	(*(_camera = new SceneGraph::Camera3D{_cameraObject}))
 		.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
-		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 100.0f))
+		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 1000.0f))
 		.setViewport(GL::defaultFramebuffer.viewport().size());
 
 	_manipulator.setParent(&_scene);

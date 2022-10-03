@@ -1,20 +1,23 @@
 #include "StageFrame.h"
 
-StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{}
+StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{}, _joystick{joystick}
 {
 	setupShadows();
 }
 
-StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext, joystick}, Stage{path}, _path{path}
+StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{path}, _path{path}, _joystick{joystick}
 {
 	_player.play(_timeline.previousFrameTime());
-	_player.setPlayCount(3);
+	_player.setPlayCount(0);
 
 	setupShadows();
 }
 
 void StageFrame::setupShadows()
 {
+	_cacheCamera.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
+		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 100.0f))
+		.setViewport(GL::defaultFramebuffer.viewport().size());
 	_shadows._shadowLight.setupShadowmaps(3, _shadows._shadowMapSize);
 	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
 	//_shadows._layerSplitExponent = 2.f;
@@ -30,16 +33,16 @@ void StageFrame::addDebugLines()
 										 {0.0f, 0.0f, 2.0f, 0.0f},
 										 {-1.0f, -1.0f, -1.0f, 1.0f}};
 	_debug.reset();
-	const Matrix4 imvp = (_camera->projectionMatrix() * _camera->cameraMatrix()).inverted();
+	const Matrix4 imvp = (_cacheCamera.projectionMatrix() * _cacheCamera.cameraMatrix()).inverted();
 	for (std::size_t layerIndex = 0; layerIndex != _shadows._shadowLight.layerCount(); ++layerIndex)
 	{
 		const Matrix4 layerMatrix = _shadows._shadowLight.layerMatrix(layerIndex);
 		const Deg hue = layerIndex * 360.0_degf / _shadows._shadowLight.layerCount();
 		_debug.addFrustum((unbiasMatrix * layerMatrix).inverted(),
 						  Color3::fromHsv({hue, 1.0f, 0.5f}));
-		// _debug.addFrustum(imvp,
-		// 				  Color3::fromHsv({hue, 1.0f, 1.0f}),
-		// 				  layerIndex == 0 ? 0 : _shadows._shadowLight.cutZ(layerIndex - 1), _shadows._shadowLight.cutZ(layerIndex));
+		_debug.addFrustum(imvp,
+						  Color3::fromHsv({hue, 1.0f, 1.0f}),
+						  layerIndex == 0 ? 0 : _shadows._shadowLight.cutZ(layerIndex - 1), _shadows._shadowLight.cutZ(layerIndex));
 	}
 }
 
@@ -51,9 +54,16 @@ void StageFrame::draw3D()
 
 	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
 
-	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _cameraObject.transformation()[2].xyz();
-	_shadows._shadowLight.setTarget(_lights[0].xyz(), screenDirection, *_camera);
-
+	if (_setTarget)
+	{
+		_chacheCameraObject.setTransformation(_cameraObject.absoluteTransformation());
+	}
+	else
+	{
+		addDebugLines();
+	}
+	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _chacheCameraObject.transformation()[2].xyz();
+	_shadows._shadowLight.setTarget(_lights.size() ? _lights[0].xyz() : Vector3{3, 2, 1}, screenDirection, _cacheCamera);
 	switch (_shadows._shadowMapFaceCullMode)
 	{
 	case 0:
@@ -118,8 +128,10 @@ void StageFrame::setupGUI()
 			ImGui::EndMenuBar();
 		}
 
-		ImGui::DragFloat("Bias", &_shadows._shadowBias, 0.001, -0.01, 0.01);
-		ImGui::DragFloat("Power", &_shadows._layerSplitExponent, 0.25, 0, 10);
+		ImGui::SliderFloat("Bias", &_shadows._shadowBias, 0, 0.01, "%.5f");
+		ImGui::SliderFloat("Power", &_shadows._layerSplitExponent, 0, 10);
+
+		ImGui::Checkbox("Debug", &_shadows._debug);
 
 		ImGui::Text(("Fps: " + to_string(1 / _timeline.previousFrameDuration())).c_str());
 
@@ -141,7 +153,17 @@ void StageFrame::mousePressEvent(SDLApp::MouseEvent &event)
 	if (event.button() == SDLApp::MouseEvent::Button::Left)
 		_previousPosition = {event.position().x(), event.position().y(), 0};
 	if (event.button() == SDLApp::MouseEvent::Button::Right)
-		addDebugLines();
+	{
+		if (_setTarget)
+		{
+			_setTarget = false;
+		}
+		else
+		{
+			_debug.reset();
+			_setTarget = true;
+		}
+	}
 }
 
 void StageFrame::mouseReleaseEvent(SDLApp::MouseEvent &event)

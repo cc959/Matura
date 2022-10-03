@@ -6,6 +6,7 @@
 #include "PhongDrawable.h"
 #include "Frame.h"
 #include "StageFrame.h"
+#include "ImageFrame.h"
 
 #define FL if (_currentFrame)
 
@@ -25,6 +26,11 @@ public:
 
 		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
 		addFrame(new StageFrame("/home/elias/Downloads/untitled2.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/untitled3.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/untitled4.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/autumn tree001-coronafbx.FBX", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/Tie_Fighter.fbx", timeline, _imgui, joystick));
+		addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,
 									   GL::Renderer::BlendEquation::Add);
@@ -33,7 +39,7 @@ public:
 
 		timeline.start();
 
-		setSwapInterval(0);
+		// setSwapInterval(0);
 	}
 
 private:
@@ -145,6 +151,19 @@ private:
 			nextFrame();
 		if (event.key() == SDLApp::KeyEvent::Key::PageDown)
 			prevFrame();
+
+		if (_imgui.handleKeyPressEvent(event))
+			return;
+
+		FL _currentFrame->keyPressEvent(event);
+	}
+
+	void keyReleaseEvent(KeyEvent &event) override
+	{
+		if (_imgui.handleKeyReleaseEvent(event))
+			return;
+
+		FL _currentFrame->keyReleaseEvent(event);
 	}
 
 	ImGuiIntegration::Context _imgui{Magnum::NoCreate};

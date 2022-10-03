@@ -17,7 +17,8 @@ public:
 private:
 	void draw(const Matrix4 &transformationMatrix, SceneGraph::Camera3D &camera) override;
 
-	Shaders::PhongGLShadows _shader;
+	static Shaders::PhongGLShadows *_shaderStandard;
+	static Shaders::PhongGLShadows *_shaderNormalMap;
 	GL::Mesh &_mesh;
 	Stage &_stage;
 
@@ -25,7 +26,7 @@ private:
 
 	GL::Texture2D _defaultDiffuse;
 
-	Object3D& _object;
+	Object3D &_object;
 
-	bool _hasNormals;
+	bool _hasNormalMap;
 };

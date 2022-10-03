@@ -118,17 +118,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Resources-dependencies
+# Target rules for targets named Images-dependencies
 
 # Build rule for target.
-Resources-dependencies: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Resources-dependencies
-.PHONY : Resources-dependencies
+Images-dependencies: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Images-dependencies
+.PHONY : Images-dependencies
 
 # fast build rule for target.
-Resources-dependencies/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Resources-dependencies.dir/build.make CMakeFiles/Resources-dependencies.dir/build
-.PHONY : Resources-dependencies/fast
+Images-dependencies/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Images-dependencies.dir/build.make CMakeFiles/Images-dependencies.dir/build
+.PHONY : Images-dependencies/fast
+
+#=============================================================================
+# Target rules for targets named Shaders-dependencies
+
+# Build rule for target.
+Shaders-dependencies: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Shaders-dependencies
+.PHONY : Shaders-dependencies
+
+# fast build rule for target.
+Shaders-dependencies/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shaders-dependencies.dir/build.make CMakeFiles/Shaders-dependencies.dir/build
+.PHONY : Shaders-dependencies/fast
 
 #=============================================================================
 # Target rules for targets named Matura
@@ -143,29 +156,53 @@ Matura/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/build
 .PHONY : Matura/fast
 
-resource_Resources.o: resource_Resources.cpp.o
-.PHONY : resource_Resources.o
+resource_Images.o: resource_Images.cpp.o
+.PHONY : resource_Images.o
 
 # target to build an object file
-resource_Resources.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.o
-.PHONY : resource_Resources.cpp.o
+resource_Images.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Images.cpp.o
+.PHONY : resource_Images.cpp.o
 
-resource_Resources.i: resource_Resources.cpp.i
-.PHONY : resource_Resources.i
+resource_Images.i: resource_Images.cpp.i
+.PHONY : resource_Images.i
 
 # target to preprocess a source file
-resource_Resources.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.i
-.PHONY : resource_Resources.cpp.i
+resource_Images.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Images.cpp.i
+.PHONY : resource_Images.cpp.i
 
-resource_Resources.s: resource_Resources.cpp.s
-.PHONY : resource_Resources.s
+resource_Images.s: resource_Images.cpp.s
+.PHONY : resource_Images.s
 
 # target to generate assembly for a file
-resource_Resources.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Resources.cpp.s
-.PHONY : resource_Resources.cpp.s
+resource_Images.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Images.cpp.s
+.PHONY : resource_Images.cpp.s
+
+resource_Shaders.o: resource_Shaders.cpp.o
+.PHONY : resource_Shaders.o
+
+# target to build an object file
+resource_Shaders.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Shaders.cpp.o
+.PHONY : resource_Shaders.cpp.o
+
+resource_Shaders.i: resource_Shaders.cpp.i
+.PHONY : resource_Shaders.i
+
+# target to preprocess a source file
+resource_Shaders.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Shaders.cpp.i
+.PHONY : resource_Shaders.cpp.i
+
+resource_Shaders.s: resource_Shaders.cpp.s
+.PHONY : resource_Shaders.s
+
+# target to generate assembly for a file
+resource_Shaders.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Shaders.cpp.s
+.PHONY : resource_Shaders.cpp.s
 
 src/DebugLines.o: src/DebugLines.cpp.o
 .PHONY : src/DebugLines.o
@@ -214,6 +251,30 @@ src/Frame.s: src/Frame.cpp.s
 src/Frame.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/Frame.cpp.s
 .PHONY : src/Frame.cpp.s
+
+src/ImageFrame.o: src/ImageFrame.cpp.o
+.PHONY : src/ImageFrame.o
+
+# target to build an object file
+src/ImageFrame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ImageFrame.cpp.o
+.PHONY : src/ImageFrame.cpp.o
+
+src/ImageFrame.i: src/ImageFrame.cpp.i
+.PHONY : src/ImageFrame.i
+
+# target to preprocess a source file
+src/ImageFrame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ImageFrame.cpp.i
+.PHONY : src/ImageFrame.cpp.i
+
+src/ImageFrame.s: src/ImageFrame.cpp.s
+.PHONY : src/ImageFrame.s
+
+# target to generate assembly for a file
+src/ImageFrame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/ImageFrame.cpp.s
+.PHONY : src/ImageFrame.cpp.s
 
 src/Joystick.o: src/Joystick.cpp.o
 .PHONY : src/Joystick.o
@@ -511,17 +572,24 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Resources-dependencies"
+	@echo "... Images-dependencies"
+	@echo "... Shaders-dependencies"
 	@echo "... Matura"
-	@echo "... resource_Resources.o"
-	@echo "... resource_Resources.i"
-	@echo "... resource_Resources.s"
+	@echo "... resource_Images.o"
+	@echo "... resource_Images.i"
+	@echo "... resource_Images.s"
+	@echo "... resource_Shaders.o"
+	@echo "... resource_Shaders.i"
+	@echo "... resource_Shaders.s"
 	@echo "... src/DebugLines.o"
 	@echo "... src/DebugLines.i"
 	@echo "... src/DebugLines.s"
 	@echo "... src/Frame.o"
 	@echo "... src/Frame.i"
 	@echo "... src/Frame.s"
+	@echo "... src/ImageFrame.o"
+	@echo "... src/ImageFrame.i"
+	@echo "... src/ImageFrame.s"
 	@echo "... src/Joystick.o"
 	@echo "... src/Joystick.i"
 	@echo "... src/Joystick.s"

@@ -1,10 +1,14 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Matura.dir/resource_Resources.cpp.o"
-  "CMakeFiles/Matura.dir/resource_Resources.cpp.o.d"
+  "CMakeFiles/Matura.dir/resource_Images.cpp.o"
+  "CMakeFiles/Matura.dir/resource_Images.cpp.o.d"
+  "CMakeFiles/Matura.dir/resource_Shaders.cpp.o"
+  "CMakeFiles/Matura.dir/resource_Shaders.cpp.o.d"
   "CMakeFiles/Matura.dir/src/DebugLines.cpp.o"
   "CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d"
   "CMakeFiles/Matura.dir/src/Frame.cpp.o"
   "CMakeFiles/Matura.dir/src/Frame.cpp.o.d"
+  "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o"
+  "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o.d"
   "CMakeFiles/Matura.dir/src/Joystick.cpp.o"
   "CMakeFiles/Matura.dir/src/Joystick.cpp.o.d"
   "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o"
@@ -31,7 +35,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Matura.dir/src/main.cpp.o.d"
   "Matura"
   "Matura.pdb"
-  "resource_Resources.cpp"
+  "resource_Images.cpp"
+  "resource_Shaders.cpp"
 )
 
 # Per-language clean rules from dependency scanning.

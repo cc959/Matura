@@ -503,6 +503,7 @@ namespace Magnum
 					_shadowmapMatrixUniform = uniformLocation("shadowmapMatrix");
 					_shadowBiasUniform = uniformLocation("shadowBias");
 					_modelMatrixUniform = uniformLocation("modelMatrix");
+					_shadowDebugUniform = uniformLocation("debugShadows");
 				}
 			}
 
@@ -1183,6 +1184,12 @@ namespace Magnum
 			PhongGLShadows &PhongGLShadows::setModelMatrix(const Matrix4 matrix)
 			{
 				setUniform(_modelMatrixUniform, matrix);
+				return *this;
+			}
+
+			PhongGLShadows &PhongGLShadows::setDebug(bool debug)
+			{
+				setUniform(_shadowDebugUniform, debug);
 				return *this;
 			}
 		}

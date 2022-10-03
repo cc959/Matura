@@ -50,6 +50,8 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
  /usr/include/c++/12.2.0/bits/vector.tcc /usr/include/Magnum/GL/Buffer.h \
  /usr/include/c++/12.2.0/cstddef \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stddef.h \
+ /usr/include/c++/12.2.0/utility \
+ /usr/include/c++/12.2.0/bits/stl_relops.h \
  /usr/include/Corrade/Containers/ArrayView.h \
  /usr/include/Corrade/Containers/Containers.h \
  /usr/include/Corrade/configure.h /usr/include/c++/12.2.0/ciso646 \
@@ -83,19 +85,16 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
  /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
  /usr/include/bits/types/mbstate_t.h \
  /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
- /usr/include/bits/types/FILE.h /usr/include/c++/12.2.0/utility \
- /usr/include/c++/12.2.0/bits/stl_relops.h \
- /usr/include/Corrade/Containers/EnumSet.h /usr/include/Corrade/Tags.h \
- /usr/include/Corrade/Utility/Macros.h \
+ /usr/include/bits/types/FILE.h /usr/include/Corrade/Containers/EnumSet.h \
+ /usr/include/Corrade/Tags.h /usr/include/Corrade/Utility/Macros.h \
  /usr/include/Corrade/Utility/TypeTraits.h \
  /usr/include/Corrade/Utility/Utility.h \
  /usr/include/Corrade/Utility/visibility.h \
  /usr/include/Corrade/Utility/VisibilityMacros.h \
- /usr/include/Corrade/Utility/DebugAssert.h \
- /usr/include/Corrade/Utility/StlForwardTuple.h \
- /usr/include/Magnum/Tags.h /usr/include/Magnum/configure.h \
- /usr/include/Magnum/GL/AbstractObject.h /usr/include/Magnum/Magnum.h \
- /usr/include/Magnum/Types.h /usr/include/c++/12.2.0/cstdint \
+ /usr/include/Corrade/Utility/DebugAssert.h /usr/include/Magnum/Tags.h \
+ /usr/include/Magnum/configure.h /usr/include/Magnum/GL/AbstractObject.h \
+ /usr/include/Magnum/Magnum.h /usr/include/Magnum/Types.h \
+ /usr/include/c++/12.2.0/cstdint \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/Magnum/Math/Math.h /usr/include/Magnum/GL/OpenGL.h \
@@ -265,6 +264,8 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
  /usr/include/Magnum/Animation/Track.h \
  /usr/include/Magnum/Animation/Animation.h \
  /usr/include/Magnum/Animation/Interpolation.h \
+ /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
+ /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
  /usr/include/Magnum/Timeline.h /usr/include/c++/12.2.0/chrono \
  /usr/include/c++/12.2.0/bits/chrono.h /usr/include/c++/12.2.0/ratio \
  /usr/include/c++/12.2.0/limits /usr/include/c++/12.2.0/ctime \
@@ -294,7 +295,8 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
  /usr/include/Magnum/ResourceManager.h \
  /usr/include/Magnum/GL/Framebuffer.h \
  /usr/include/Magnum/GL/TextureArray.h /usr/include/Magnum/GL/Shader.h \
- /usr/include/Magnum/GL/Version.h \
+ /usr/include/Magnum/GL/Version.h /usr/include/Magnum/Primitives/Plane.h \
+ /usr/include/Magnum/Primitives/visibility.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.2.0/cassert /usr/include/c++/12.2.0/cfloat \
  /usr/include/c++/12.2.0/climits \

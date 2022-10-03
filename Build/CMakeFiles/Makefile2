@@ -71,49 +71,77 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Resources-dependencies.dir/clean
+clean: CMakeFiles/Images-dependencies.dir/clean
+clean: CMakeFiles/Shaders-dependencies.dir/clean
 clean: CMakeFiles/Matura.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Resources-dependencies.dir
+# Target rules for target CMakeFiles/Images-dependencies.dir
 
 # All Build rule for target.
-CMakeFiles/Resources-dependencies.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Resources-dependencies.dir/build.make CMakeFiles/Resources-dependencies.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Resources-dependencies.dir/build.make CMakeFiles/Resources-dependencies.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num= "Built target Resources-dependencies"
-.PHONY : CMakeFiles/Resources-dependencies.dir/all
+CMakeFiles/Images-dependencies.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Images-dependencies.dir/build.make CMakeFiles/Images-dependencies.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Images-dependencies.dir/build.make CMakeFiles/Images-dependencies.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num= "Built target Images-dependencies"
+.PHONY : CMakeFiles/Images-dependencies.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Resources-dependencies.dir/rule: cmake_check_build_system
+CMakeFiles/Images-dependencies.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 0
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Resources-dependencies.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Images-dependencies.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 0
-.PHONY : CMakeFiles/Resources-dependencies.dir/rule
+.PHONY : CMakeFiles/Images-dependencies.dir/rule
 
 # Convenience name for target.
-Resources-dependencies: CMakeFiles/Resources-dependencies.dir/rule
-.PHONY : Resources-dependencies
+Images-dependencies: CMakeFiles/Images-dependencies.dir/rule
+.PHONY : Images-dependencies
 
 # clean rule for target.
-CMakeFiles/Resources-dependencies.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Resources-dependencies.dir/build.make CMakeFiles/Resources-dependencies.dir/clean
-.PHONY : CMakeFiles/Resources-dependencies.dir/clean
+CMakeFiles/Images-dependencies.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Images-dependencies.dir/build.make CMakeFiles/Images-dependencies.dir/clean
+.PHONY : CMakeFiles/Images-dependencies.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Shaders-dependencies.dir
+
+# All Build rule for target.
+CMakeFiles/Shaders-dependencies.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shaders-dependencies.dir/build.make CMakeFiles/Shaders-dependencies.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shaders-dependencies.dir/build.make CMakeFiles/Shaders-dependencies.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num= "Built target Shaders-dependencies"
+.PHONY : CMakeFiles/Shaders-dependencies.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Shaders-dependencies.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Shaders-dependencies.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 0
+.PHONY : CMakeFiles/Shaders-dependencies.dir/rule
+
+# Convenience name for target.
+Shaders-dependencies: CMakeFiles/Shaders-dependencies.dir/rule
+.PHONY : Shaders-dependencies
+
+# clean rule for target.
+CMakeFiles/Shaders-dependencies.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shaders-dependencies.dir/build.make CMakeFiles/Shaders-dependencies.dir/clean
+.PHONY : CMakeFiles/Shaders-dependencies.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Matura.dir
 
 # All Build rule for target.
-CMakeFiles/Matura.dir/all: CMakeFiles/Resources-dependencies.dir/all
+CMakeFiles/Matura.dir/all: CMakeFiles/Shaders-dependencies.dir/all
+CMakeFiles/Matura.dir/all: CMakeFiles/Images-dependencies.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target Matura"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target Matura"
 .PHONY : CMakeFiles/Matura.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Matura.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Matura.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles 0
 .PHONY : CMakeFiles/Matura.dir/rule

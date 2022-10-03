@@ -232,6 +232,12 @@ CORRADE_UTILITY_LIBRARY_RELEASE:FILEPATH=/usr/lib/libCorradeUtility.so
 //The directory containing a CMake configuration file for Corrade.
 Corrade_DIR:PATH=/usr/share/cmake/Corrade
 
+//The directory containing a CMake configuration file for ImGi.
+ImGi_DIR:PATH=ImGi_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for ImGui::ImGui.
+"ImGui::ImGui_DIR":PATH=ImGui::ImGui_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for ImGui.
 ImGui_DIR:PATH=/usr/share/imgui
 

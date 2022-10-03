@@ -215,9 +215,9 @@ void ShadowLight::render(SceneGraph::DrawableGroup3D &drawables)
 			{
 				const Float distance = Math::dot(clipPlanes[clipPlaneIndex], drawableCentre);
 
-				/* If the object is on the useless side of any one plane, we can skip it */
-				if (distance < -drawable.radius())
-					goto next;
+				// /* If the object is on the useless side of any one plane, we can skip it */
+				// if (distance < -drawable.radius()) // multiply with 2, just in case :P
+				// 	goto next;
 			}
 
 			{
@@ -233,6 +233,8 @@ void ShadowLight::render(SceneGraph::DrawableGroup3D &drawables)
 
 		next:;
 		}
+
+		orthographicNear *= 2;
 
 		/* Recalculate the projection matrix with new near plane. */
 		const Matrix4 shadowCameraProjectionMatrix =

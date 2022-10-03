@@ -32,6 +32,7 @@
 #include <Magnum/Trade/LightData.h>
 #include <Magnum/Trade/TextureData.h>
 #include <Magnum/Trade/AnimationData.h>
+#include <MagnumPlugins/AnyImageImporter/AnyImageImporter.h>
 #include <Magnum/Timeline.h>
 #include <Magnum/Image.h>
 #include <Magnum/Animation/Animation.h>
@@ -64,6 +65,8 @@
 #include <Magnum/SceneGraph/FeatureGroup.h>
 #include <Magnum/SceneGraph/MatrixTransformation3D.h>
 #include <Magnum/SceneGraph/Scene.h>
+
+#include <Magnum/Primitives/Plane.h>
 
 #include <bits/stdc++.h>
 
