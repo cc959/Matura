@@ -19,6 +19,6 @@ include_directories( ${OpenCV_INCLUDE_DIRS} ./ /usr/include/colmap ./include/ /u
 add_executable( ${PROJECT_NAME} ${SourceFiles} ${Images} ${Shaders} )
 
 target_link_libraries( ${PROJECT_NAME} PRIVATE ${OpenCV_LIBS} ) 
-target_link_libraries(${PROJECT_NAME} PRIVATE Corrade::Main Magnum::Application Magnum::GL Magnum::Magnum Magnum::MeshTools Magnum::SceneGraph Magnum::Shaders Magnum::Trade Magnum::AnySceneImporter MagnumPlugins::GltfImporter Magnum::AnyImageImporter MagnumIntegration::ImGui Magnum::Primitives )
+target_link_libraries( ${PROJECT_NAME} PRIVATE Corrade::Main Magnum::Application Magnum::GL Magnum::Magnum Magnum::MeshTools Magnum::SceneGraph Magnum::Shaders Magnum::Trade Magnum::AnySceneImporter MagnumPlugins::GltfImporter Magnum::AnyImageImporter MagnumIntegration::ImGui Magnum::Primitives )
 
 add_compile_options( -std=c++20 -g )

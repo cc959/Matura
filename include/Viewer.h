@@ -13,7 +13,7 @@
 class Viewer : public Platform::Application
 {
 public:
-	Frame *_currentFrame;
+	Frame *_currentFrame = nullptr;
 	int _currentFrameIndex;
 	vector<Frame *> _frames;
 
@@ -24,18 +24,21 @@ public:
 
 		joystick.Load("/dev/input/js0");
 
+		// addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
+		// addFrame(new StageFrame("/home/elias/Downloads/untitled2.fbx", timeline, _imgui, joystick));
+		// addFrame(new StageFrame("/home/elias/Downloads/untitled3.fbx", timeline, _imgui, joystick));
+		// addFrame(new StageFrame("/home/elias/Downloads/untitled4.fbx", timeline, _imgui, joystick));
+		// addFrame(new StageFrame("/home/elias/Downloads/autumn tree001-coronafbx.FBX", timeline, _imgui, joystick));
+		// addFrame(new StageFrame("/home/elias/Downloads/audi_r8/scene.gltf", timeline, _imgui, joystick));
 		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/untitled2.fbx", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/untitled3.fbx", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/untitled4.fbx", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/autumn tree001-coronafbx.FBX", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/Tie_Fighter.fbx", timeline, _imgui, joystick));
 		addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,
 									   GL::Renderer::BlendEquation::Add);
 		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
 									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
+
+		//GL::Renderer::setClearColor(Color4(1, 0, 0, 1));
 
 		timeline.start();
 

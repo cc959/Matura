@@ -32,6 +32,7 @@
 #include <Magnum/Trade/LightData.h>
 #include <Magnum/Trade/TextureData.h>
 #include <Magnum/Trade/AnimationData.h>
+#include <Magnum/Trade/CameraData.h>
 #include <MagnumPlugins/AnyImageImporter/AnyImageImporter.h>
 #include <Magnum/Timeline.h>
 #include <Magnum/Image.h>

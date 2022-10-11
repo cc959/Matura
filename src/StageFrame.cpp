@@ -46,6 +46,13 @@ void StageFrame::addDebugLines()
 	}
 }
 
+void StageFrame::addDebugLines(const Matrix4 &transformation)
+{
+	_debug.addLine(transformation * Vector4{0, 0, 0, 1}, transformation * Vector4{1, 0, 0, 1}, {1, 0, 0});
+	_debug.addLine(transformation * Vector4{0, 0, 0, 1}, transformation * Vector4{0, 1, 0, 1}, {0, 1, 0});
+	_debug.addLine(transformation * Vector4{0, 0, 0, 1}, transformation * Vector4{0, 0, 1, 1}, {0, 0, 1});
+}
+
 void StageFrame::draw3D()
 {
 	_player.advance(_timeline.previousFrameTime());
@@ -56,12 +63,21 @@ void StageFrame::draw3D()
 
 	if (_setTarget)
 	{
-		_chacheCameraObject.setTransformation(_cameraObject.absoluteTransformation());
+		_chacheCameraObject.setTransformation(_activeCamera->object().absoluteTransformationMatrix());
 	}
 	else
 	{
 		addDebugLines();
 	}
+
+	// for (Object3D* object : _objectByID) {
+	// 	addDebugLines(object->absoluteTransformationMatrix());
+	// }
+
+	// addDebugLines(_objectByName["Camera manipulator"]->absoluteTransformationMatrix());
+
+	//addDebugLines(Matrix4());
+
 	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _chacheCameraObject.transformation()[2].xyz();
 	_shadows._shadowLight.setTarget(_lights.size() ? _lights[0].xyz() : Vector3{3, 2, 1}, screenDirection, _cacheCamera);
 	switch (_shadows._shadowMapFaceCullMode)
@@ -95,9 +111,9 @@ void StageFrame::draw3D()
 	// _shadowReceiverShader.setShadowmapMatrices(shadowMatrices)
 	// 	.setShadowmapTexture(_shadows._shadowLight.shadowTexture());
 
-	_camera->draw(_shadowReceivers);
+	_activeCamera->draw(_shadowReceivers);
 
-	_debug.draw(_camera->projectionMatrix() * _camera->cameraMatrix());
+	_debug.draw(_activeCamera->projectionMatrix() * _activeCamera->cameraMatrix());
 }
 
 bool my_tool_active = true;
@@ -143,7 +159,8 @@ void StageFrame::setupGUI()
 // resize viewport eventg
 void StageFrame::viewportEvent(SDLApp::ViewportEvent &event)
 {
-	_camera->setViewport(event.windowSize());
+	for (SceneGraph::Camera3D *_camera : _cameras)
+		_camera->setViewport(event.windowSize());
 }
 
 Vector3 _previousPosition;
@@ -204,11 +221,11 @@ void StageFrame::applyJoystick()
 		// _manipulator.rotateYLocal(-Math::Rad(joystick.GetAxisValue(2) * _deltaTime));
 		// _manipulator.rotateX(-Math::Rad(joystick.GetAxisValue(0) * _deltaTime));
 
-		if (_objectsByID.size() >= 15)
+		if (_objectByID.size() >= 15)
 		{
-			_objectsByID[14]->rotateX(Math::Rad(_joystick.GetAxisValue(1) * _timeline.previousFrameDuration()));
-			_objectsByID[19]->rotateX(Math::Rad(_joystick.GetAxisValue(5) * _timeline.previousFrameDuration()));
-			_objectsByID[6]->rotateZ(-Math::Rad(_joystick.GetAxisValue(2) * _timeline.previousFrameDuration()));
+			_objectByID[14]->rotateX(Math::Rad(_joystick.GetAxisValue(1) * _timeline.previousFrameDuration()));
+			_objectByID[19]->rotateX(Math::Rad(_joystick.GetAxisValue(5) * _timeline.previousFrameDuration()));
+			_objectByID[6]->rotateZ(-Math::Rad(_joystick.GetAxisValue(2) * _timeline.previousFrameDuration()));
 		}
 		// float factor = (joystick.GetAxisValue(3) + 1.f) / 2.f;
 		// _cameraObject.setTranslation(_cameraObject.translation().normalized() * pow(1.15f, factor * 10.f));

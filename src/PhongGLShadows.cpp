@@ -27,6 +27,7 @@
 #endif
 
 #include "Magnum/Shaders/Implementation/CreateCompatibilityShader.h"
+#include "Magnum/Sampler.h"
 
 namespace Magnum
 {

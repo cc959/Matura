@@ -25,12 +25,12 @@ PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Tra
 	if (!_hasNormalMap)
 	{
 		if (!_shaderStandard)
-			_shaderStandard = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::Shadows};
+			_shaderStandard = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::Shadows, stage._lights.size()};
 	}
 	else
 	{
 		if (!_shaderNormalMap)
-			_shaderNormalMap = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent | Shaders::PhongGLShadows::Flag::Shadows};
+			_shaderNormalMap = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent | Shaders::PhongGLShadows::Flag::Shadows, stage._lights.size()};
 	}
 
 	_shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))

@@ -3,25 +3,25 @@
 cmake_policy(SET CMP0009 NEW)
 
 # SourceFiles at CMakeLists.txt:13 (file)
-file(GLOB NEW_GLOB LIST_DIRECTORIES true "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/*.cpp")
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/elias/Documents/GitHub/Matura/src/*.cpp")
 set(OLD_GLOB
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ImageFrame.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterDrawable.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterShader.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowLight.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp"
-  "/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/DebugLines.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/Frame.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/ImageFrame.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/Joystick.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/PhongDrawable.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/PhongGLShadows.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/RadialCamera.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/SerialCom.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/ShadowCasterDrawable.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/ShadowCasterShader.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/ShadowLight.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/Stage.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/StageFrame.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/Viewer.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/cmake.verify_globs")
 endif()

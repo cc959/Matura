@@ -37,7 +37,7 @@ public:
 	vector<float> _radii;
 	vector<Optional<GL::Texture2D>> _textures;
 	vector<Optional<Trade::PhongMaterialData>> _materials;
-	vector<Object3D *> _objectsByID;
+	vector<Object3D *> _objectByID;
 	map<string, Object3D *> _objectByName;
 
 	Containers::Array<Matrix4> shadowMatrices;
@@ -51,8 +51,12 @@ public:
 	vector<Optional<Trade::AnimationData>> _animationData;
 
 	Scene3D _scene{};
-	Object3D _manipulator, _cameraRoot, _cameraObject;
-	SceneGraph::Camera3D *_camera;
+	Object3D _manipulator;
+
+	vector<SceneGraph::Camera3D *> _cameras;
+
+	SceneGraph::Camera3D *_activeCamera = nullptr;
+	Object3D _cameraRoot, _cameraObject;
 	SceneGraph::DrawableGroup3D _shadowReceivers;
 	SceneGraph::DrawableGroup3D _shadowCasters;
 

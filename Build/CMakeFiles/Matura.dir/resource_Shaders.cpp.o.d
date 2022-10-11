@@ -1,5 +1,5 @@
 CMakeFiles/Matura.dir/resource_Shaders.cpp.o: \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/resource_Shaders.cpp \
+ /home/elias/Documents/GitHub/Matura/Build/resource_Shaders.cpp \
  /usr/include/stdc-predef.h /usr/include/Corrade/Corrade.h \
  /usr/include/Corrade/configure.h /usr/include/c++/12.2.0/ciso646 \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \

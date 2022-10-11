@@ -1,7 +1,7 @@
 CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp \
+ /home/elias/Documents/GitHub/Matura/src/RadialCamera.cpp \
  /usr/include/stdc-predef.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/RadialCamera.h \
+ /home/elias/Documents/GitHub/Matura/./include/RadialCamera.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.2.0/cassert \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \

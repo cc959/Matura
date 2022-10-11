@@ -1,5 +1,5 @@
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/Images-dependencies.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/Shaders-dependencies.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/Matura.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/edit_cache.dir
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/rebuild_cache.dir
+/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Images-dependencies.dir
+/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Shaders-dependencies.dir
+/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Matura.dir
+/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/edit_cache.dir
+/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/rebuild_cache.dir

@@ -4,6 +4,10 @@
 			"type": "shell",
 			"label": "Build",
 			"command": "make",
+			"args": [
+				"-j",
+				"4"
+			],
 			"options": {
 				"cwd": "${workspaceFolder}/Build"
 			},

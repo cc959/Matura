@@ -191,9 +191,9 @@ CMakeFiles/Matura.dir/resource_Shaders.cpp.o: resource_Shaders.cpp \
   /usr/include/Corrade/Utility/Utility.h \
   /usr/include/Corrade/Utility/StlForwardString.h
 
-CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp \
+CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/DebugLines.h \
+  /home/elias/Documents/GitHub/Matura/include/DebugLines.h \
   /usr/include/c++/12.2.0/vector \
   /usr/include/c++/12.2.0/bits/stl_algobase.h \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -439,8 +439,8 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/c++/12.2.0/bits/stl_tempbuf.h \
   /usr/include/c++/12.2.0/bits/uniform_int_dist.h \
   /usr/include/Magnum/SceneGraph/visibility.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/Corrade/Containers/constructHelpers.h \
   /usr/include/Corrade/Containers/Optional.h \
@@ -538,6 +538,7 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -797,10 +798,10 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant
 
-CMakeFiles/Matura.dir/src/Frame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp \
+CMakeFiles/Matura.dir/src/Frame.cpp.o: /home/elias/Documents/GitHub/Matura/src/Frame.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Frame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/Frame.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -1141,6 +1142,7 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -1399,7 +1401,7 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Joystick.h \
+  /home/elias/Documents/GitHub/Matura/include/Joystick.h \
   /usr/include/linux/joystick.h \
   /usr/include/linux/types.h \
   /usr/include/asm/types.h \
@@ -1440,17 +1442,17 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/
   /usr/include/poll.h \
   /usr/include/sys/poll.h \
   /usr/include/bits/poll.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h
+  /home/elias/Documents/GitHub/Matura/include/PhongDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/Stage.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
 
-CMakeFiles/Matura.dir/src/ImageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ImageFrame.cpp \
+CMakeFiles/Matura.dir/src/ImageFrame.cpp.o: /home/elias/Documents/GitHub/Matura/src/ImageFrame.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ImageFrame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/ImageFrame.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -1791,6 +1793,7 @@ CMakeFiles/Matura.dir/src/ImageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -2049,7 +2052,7 @@ CMakeFiles/Matura.dir/src/ImageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Joystick.h \
+  /home/elias/Documents/GitHub/Matura/include/Joystick.h \
   /usr/include/linux/joystick.h \
   /usr/include/linux/types.h \
   /usr/include/asm/types.h \
@@ -2090,17 +2093,17 @@ CMakeFiles/Matura.dir/src/ImageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/poll.h \
   /usr/include/sys/poll.h \
   /usr/include/bits/poll.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Frame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h
+  /home/elias/Documents/GitHub/Matura/include/Frame.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/Stage.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
 
-CMakeFiles/Matura.dir/src/Joystick.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp \
+CMakeFiles/Matura.dir/src/Joystick.cpp.o: /home/elias/Documents/GitHub/Matura/src/Joystick.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Joystick.h \
+  /home/elias/Documents/GitHub/Matura/include/Joystick.h \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
   /usr/include/c++/12.2.0/cassert \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -2561,10 +2564,10 @@ CMakeFiles/Matura.dir/src/Joystick.cpp.o: /run/media/elias/01D5A94471A88F00/GitH
   /usr/include/sys/poll.h \
   /usr/include/bits/poll.h
 
-CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp \
+CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: /home/elias/Documents/GitHub/Matura/src/PhongDrawable.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -2905,6 +2908,7 @@ CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: /run/media/elias/01D5A94471A88F00
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -3163,15 +3167,15 @@ CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o: /run/media/elias/01D5A94471A88F00
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/Stage.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
 
-CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp \
+CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: /home/elias/Documents/GitHub/Matura/src/PhongGLShadows.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
   /usr/include/Magnum/GL/AbstractShaderProgram.h \
   /usr/include/c++/12.2.0/string \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -3410,9 +3414,9 @@ CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: /run/media/elias/01D5A94471A88F0
   /usr/include/Magnum/GL/TextureArray.h \
   /usr/include/Magnum/Shaders/Implementation/CreateCompatibilityShader.h
 
-CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp \
+CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: /home/elias/Documents/GitHub/Matura/src/RadialCamera.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/RadialCamera.h \
+  /home/elias/Documents/GitHub/Matura/include/RadialCamera.h \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
   /usr/include/c++/12.2.0/cassert \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -4109,13 +4113,13 @@ CMakeFiles/Matura.dir/src/RadialCamera.cpp.o: /run/media/elias/01D5A94471A88F00/
   /usr/include/colmap/util/string.h \
   /usr/include/colmap/util/math.h
 
-CMakeFiles/Matura.dir/src/SerialCom.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp \
+CMakeFiles/Matura.dir/src/SerialCom.cpp.o: /home/elias/Documents/GitHub/Matura/src/SerialCom.cpp \
   /usr/include/stdc-predef.h
 
-CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterDrawable.cpp \
+CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: /home/elias/Documents/GitHub/Matura/src/ShadowCasterDrawable.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -4456,6 +4460,7 @@ CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: /run/media/elias/01D5A9447
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -4714,11 +4719,11 @@ CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o: /run/media/elias/01D5A9447
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h
 
-CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterShader.cpp \
+CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: /home/elias/Documents/GitHub/Matura/src/ShadowCasterShader.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
   /usr/include/Magnum/GL/AbstractShaderProgram.h \
   /usr/include/c++/12.2.0/string \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -4904,7 +4909,7 @@ CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: /run/media/elias/01D5A94471A
   /usr/include/bits/iscanonical.h \
   /usr/include/Corrade/Containers/Iterable.h \
   /usr/include/Corrade/Containers/AnyReference.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/Corrade/Containers/constructHelpers.h \
   /usr/include/Corrade/Containers/Optional.h \
@@ -5060,6 +5065,7 @@ CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: /run/media/elias/01D5A94471A
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -5319,10 +5325,10 @@ CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o: /run/media/elias/01D5A94471A
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant
 
-CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowLight.cpp \
+CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: /home/elias/Documents/GitHub/Matura/src/ShadowLight.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -5663,6 +5669,7 @@ CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: /run/media/elias/01D5A94471A88F00/G
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -5921,13 +5928,13 @@ CMakeFiles/Matura.dir/src/ShadowLight.cpp.o: /run/media/elias/01D5A94471A88F00/G
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h
 
-CMakeFiles/Matura.dir/src/Stage.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp \
+CMakeFiles/Matura.dir/src/Stage.cpp.o: /home/elias/Documents/GitHub/Matura/src/Stage.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/Stage.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -6268,6 +6275,7 @@ CMakeFiles/Matura.dir/src/Stage.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -6526,16 +6534,16 @@ CMakeFiles/Matura.dir/src/Stage.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h
+  /home/elias/Documents/GitHub/Matura/include/PhongDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
 
-CMakeFiles/Matura.dir/src/StageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp \
+CMakeFiles/Matura.dir/src/StageFrame.cpp.o: /home/elias/Documents/GitHub/Matura/src/StageFrame.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/StageFrame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/StageFrame.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -6876,6 +6884,7 @@ CMakeFiles/Matura.dir/src/StageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -7134,7 +7143,7 @@ CMakeFiles/Matura.dir/src/StageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Joystick.h \
+  /home/elias/Documents/GitHub/Matura/include/Joystick.h \
   /usr/include/linux/joystick.h \
   /usr/include/linux/types.h \
   /usr/include/asm/types.h \
@@ -7175,23 +7184,23 @@ CMakeFiles/Matura.dir/src/StageFrame.cpp.o: /run/media/elias/01D5A94471A88F00/Gi
   /usr/include/poll.h \
   /usr/include/sys/poll.h \
   /usr/include/bits/poll.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Frame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/DebugLines.h \
+  /home/elias/Documents/GitHub/Matura/include/Frame.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/Stage.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h \
+  /home/elias/Documents/GitHub/Matura/include/DebugLines.h \
   /usr/include/Magnum/Shaders/VertexColorGL.h
 
-CMakeFiles/Matura.dir/src/Viewer.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp \
+CMakeFiles/Matura.dir/src/Viewer.cpp.o: /home/elias/Documents/GitHub/Matura/src/Viewer.cpp \
   /usr/include/stdc-predef.h
 
-CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp \
+CMakeFiles/Matura.dir/src/main.cpp.o: /home/elias/Documents/GitHub/Matura/src/main.cpp \
   /usr/include/stdc-predef.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Viewer.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h \
+  /home/elias/Documents/GitHub/Matura/include/Viewer.h \
+  /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h \
   /usr/include/Corrade/Containers/Array.h \
   /usr/include/c++/12.2.0/initializer_list \
   /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -7532,6 +7541,7 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
   /usr/include/Magnum/Animation/Track.h \
   /usr/include/Magnum/Animation/Animation.h \
   /usr/include/Magnum/Animation/Interpolation.h \
+  /usr/include/Magnum/Trade/CameraData.h \
   /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
   /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
   /usr/include/Magnum/Timeline.h \
@@ -7790,7 +7800,7 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
   /usr/include/c++/12.2.0/memory_resource \
   /usr/include/c++/12.2.0/bits/uses_allocator_args.h \
   /usr/include/c++/12.2.0/variant \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Joystick.h \
+  /home/elias/Documents/GitHub/Matura/include/Joystick.h \
   /usr/include/linux/joystick.h \
   /usr/include/linux/types.h \
   /usr/include/asm/types.h \
@@ -7831,26 +7841,24 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
   /usr/include/poll.h \
   /usr/include/sys/poll.h \
   /usr/include/bits/poll.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Frame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/StageFrame.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/DebugLines.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h \
+  /home/elias/Documents/GitHub/Matura/include/Stage.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h \
+  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h \
+  /home/elias/Documents/GitHub/Matura/include/Frame.h \
+  /home/elias/Documents/GitHub/Matura/include/StageFrame.h \
+  /home/elias/Documents/GitHub/Matura/include/DebugLines.h \
   /usr/include/Magnum/Shaders/VertexColorGL.h \
-  /run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ImageFrame.h
+  /home/elias/Documents/GitHub/Matura/include/ImageFrame.h
 
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/StageFrame.h:
+/home/elias/Documents/GitHub/Matura/include/Viewer.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Stage.cpp:
+/home/elias/Documents/GitHub/Matura/include/StageFrame.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowLight.cpp:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/SerialCom.cpp:
+/home/elias/Documents/GitHub/Matura/src/ShadowLight.cpp:
 
 /usr/include/colmap/base/point2d.h:
 
@@ -7872,7 +7880,7 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/ceres/evaluation_callback.h:
 
-/usr/include/ceres/dynamic_autodiff_cost_function.h:
+/usr/include/Eigen/src/StlSupport/StdVector.h:
 
 /usr/include/ceres/dynamic_cost_function.h:
 
@@ -7933,8 +7941,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h:
 
 /usr/include/Eigen/src/Eigenvalues/Tridiagonalization.h:
-
-/usr/include/Eigen/src/Geometry/Umeyama.h:
 
 /usr/include/Eigen/src/Geometry/AlignedBox.h:
 
@@ -8070,8 +8076,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/Eigen/src/Core/ArrayBase.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Viewer.cpp:
-
 /usr/include/Eigen/src/Core/NestByValue.h:
 
 /usr/include/Eigen/src/Core/Assign.h:
@@ -8089,8 +8093,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/Eigen/src/Core/functors/AssignmentFunctors.h:
 
 /usr/include/Eigen/src/Core/functors/StlFunctors.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Viewer.h:
 
 /usr/include/Eigen/src/Core/functors/NullaryFunctors.h:
 
@@ -8134,7 +8136,7 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/Eigen/src/Core/util/Macros.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/RadialCamera.h:
+/home/elias/Documents/GitHub/Matura/src/RadialCamera.cpp:
 
 /usr/include/Magnum/Shaders/Implementation/CreateCompatibilityShader.h:
 
@@ -8142,13 +8144,15 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/Corrade/Containers/EnumSet.hpp:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongDrawable.cpp:
+/home/elias/Documents/GitHub/Matura/src/PhongGLShadows.cpp:
 
 /usr/include/c++/12.2.0/tr1/riemann_zeta.tcc:
 
 /usr/include/c++/12.2.0/tr1/poly_laguerre.tcc:
 
 /usr/include/c++/12.2.0/tr1/poly_hermite.tcc:
+
+/home/elias/Documents/GitHub/Matura/src/Viewer.cpp:
 
 /usr/include/c++/12.2.0/tr1/modified_bessel_func.tcc:
 
@@ -8162,17 +8166,13 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/c++/12.2.0/bits/specfun.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ImageFrame.cpp:
+/home/elias/Documents/GitHub/Matura/src/Joystick.cpp:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterShader.h:
+/home/elias/Documents/GitHub/Matura/src/ImageFrame.cpp:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowCasterDrawable.h:
+/home/elias/Documents/GitHub/Matura/include/Stage.h:
 
-/usr/include/Eigen/src/StlSupport/StdVector.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Stage.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongDrawable.h:
+/home/elias/Documents/GitHub/Matura/include/PhongGLShadows.h:
 
 /usr/include/Eigen/src/Core/MathFunctionsImpl.h:
 
@@ -8230,6 +8230,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/linux/input.h:
 
+/home/elias/Documents/GitHub/Matura/src/StageFrame.cpp:
+
 /usr/include/asm-generic/posix_types.h:
 
 /usr/include/asm/posix_types_64.h:
@@ -8246,13 +8248,19 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/asm/types.h:
 
+/home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h:
+
 /usr/include/linux/types.h:
 
 /usr/include/ceres/covariance.h:
 
 /usr/include/linux/joystick.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Frame.h:
+/home/elias/Documents/GitHub/Matura/include/Joystick.h:
+
+/usr/include/ceres/dynamic_autodiff_cost_function.h:
+
+/home/elias/Documents/GitHub/Matura/include/Frame.h:
 
 /usr/include/Eigen/src/LU/arch/InverseSize4.h:
 
@@ -8326,6 +8334,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/c++/12.2.0/bits/slice_array.h:
 
+/home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h:
+
 /usr/include/c++/12.2.0/bits/valarray_array.h:
 
 /usr/include/c++/12.2.0/valarray:
@@ -8334,11 +8344,13 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/c++/12.2.0/bits/stl_multiset.h:
 
+/home/elias/Documents/GitHub/Matura/src/SerialCom.cpp:
+
 /usr/include/c++/12.2.0/bits/stl_set.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ShadowLight.h:
+/usr/include/eigen3/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
 
-/usr/include/c++/12.2.0/cinttypes:
+/usr/include/c++/12.2.0/queue:
 
 /usr/include/c++/12.2.0/bits/stl_algo.h:
 
@@ -8359,6 +8371,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/asm-generic/ioctl.h:
 
 /usr/include/c++/12.2.0/functional:
+
+/usr/include/Magnum/Trade/CameraData.h:
 
 /usr/include/Corrade/Containers/LinkedList.h:
 
@@ -8396,8 +8410,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/Magnum/SceneGraph/Camera.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterShader.cpp:
-
 /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/mmintrin.h:
 
 /usr/include/Corrade/Containers/ArrayTuple.h:
@@ -8417,8 +8429,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/bits/types/__fpos64_t.h:
 
 /usr/include/Magnum/Trade/ImageData.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/Joystick.h:
 
 /usr/include/stdio.h:
 
@@ -8450,6 +8460,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/c++/12.2.0/bits/enable_special_members.h:
 
+/home/elias/Documents/GitHub/Matura/include/ShadowLight.h:
+
 /usr/include/c++/12.2.0/string:
 
 /usr/include/Eigen/src/Geometry/AngleAxis.h:
@@ -8480,8 +8492,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/SDL2/SDL_scancode.h:
 
-/usr/include/Magnum/Math/RectangularMatrix.h:
-
 /usr/include/Magnum/Math/Matrix.h:
 
 /usr/include/Magnum/Animation/Interpolation.h:
@@ -8490,13 +8500,9 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/bits/iscanonical.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/main.cpp:
-
 /usr/include/Corrade/Containers/sequenceHelpers.h:
 
 /usr/include/bits/mathcalls-narrow.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/PhongGLShadows.h:
 
 /usr/include/bits/fp-fast.h:
 
@@ -8517,6 +8523,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/bits/stdint-uintn.h:
 
 /usr/include/c++/12.2.0/bits/fstream.tcc:
+
+/home/elias/Documents/GitHub/Matura/src/main.cpp:
 
 /usr/include/Magnum/DimensionTraits.h:
 
@@ -8594,6 +8602,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stdint.h:
 
+/home/elias/Documents/GitHub/Matura/src/Frame.cpp:
+
 /usr/include/Magnum/Math/Vector2.h:
 
 /usr/include/sys/types.h:
@@ -8601,10 +8611,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/c++/12.2.0/bits/fs_fwd.h:
 
 /usr/include/Magnum/Types.h:
-
-/usr/include/eigen3/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
-
-/usr/include/c++/12.2.0/queue:
 
 /usr/include/Corrade/Containers/Containers.h:
 
@@ -8732,6 +8738,8 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/c++/12.2.0/new:
 
+/usr/include/c++/12.2.0/type_traits:
+
 /usr/include/ceres/autodiff_manifold.h:
 
 /usr/include/c++/12.2.0/bits/hashtable.h:
@@ -8836,8 +8844,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/bits/types/__FILE.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/DebugLines.h:
-
 /usr/include/Eigen/src/Core/Array.h:
 
 /usr/include/c++/12.2.0/bits/stl_iterator_base_types.h:
@@ -8857,8 +8863,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 /usr/include/bits/endianness.h:
 
 /usr/include/c++/12.2.0/bits/functional_hash.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/GlobalIncludes.h:
 
 /usr/include/libintl.h:
 
@@ -8900,9 +8904,15 @@ CMakeFiles/Matura.dir/src/main.cpp.o: /run/media/elias/01D5A94471A88F00/GitHub/M
 
 /usr/include/Corrade/Utility/visibility.h:
 
+/usr/include/Eigen/src/Geometry/Umeyama.h:
+
+/home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h:
+
 /usr/include/c++/12.2.0/compare:
 
 /usr/include/Magnum/SceneGraph/AbstractTranslation.h:
+
+/home/elias/Documents/GitHub/Matura/src/ShadowCasterShader.cpp:
 
 /usr/include/Corrade/Containers/ArrayView.h:
 
@@ -8954,16 +8964,6 @@ resource_Images.cpp:
 
 /usr/include/c++/12.2.0/bits/shared_ptr_atomic.h:
 
-/usr/include/c++/12.2.0/type_traits:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp:
-
-/usr/include/strings.h:
-
-/usr/include/bits/atomic_wide_counter.h:
-
-/usr/include/signal.h:
-
 /usr/include/Magnum/Shaders/visibility.h:
 
 /usr/include/c++/12.2.0/bits/ptr_traits.h:
@@ -8973,6 +8973,8 @@ resource_Images.cpp:
 /usr/include/bits/time64.h:
 
 /usr/include/bits/stdlib-float.h:
+
+/home/elias/Documents/GitHub/Matura/src/ShadowCasterDrawable.cpp:
 
 /usr/include/Eigen/src/Core/products/TriangularMatrixMatrix.h:
 
@@ -8997,8 +8999,6 @@ resource_Images.cpp:
 /usr/include/bits/waitstatus.h:
 
 /usr/include/bits/wchar.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp:
 
 /usr/include/c++/12.2.0/bits/gslice.h:
 
@@ -9026,9 +9026,7 @@ resource_Images.cpp:
 
 /usr/include/bits/types/wint_t.h:
 
-/usr/include/c++/12.2.0/bits/streambuf_iterator.h:
-
-/usr/include/Magnum/VertexFormat.h:
+/home/elias/Documents/GitHub/Matura/src/Stage.cpp:
 
 /usr/include/ceres/internal/numeric_diff.h:
 
@@ -9037,6 +9035,16 @@ resource_Images.cpp:
 /usr/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h:
 
 /usr/include/bits/posix1_lim.h:
+
+/usr/include/Magnum/Math/RectangularMatrix.h:
+
+/usr/include/Magnum/VertexFormat.h:
+
+/usr/include/c++/12.2.0/bits/streambuf_iterator.h:
+
+/home/elias/Documents/GitHub/Matura/src/DebugLines.cpp:
+
+/usr/include/time.h:
 
 /usr/include/Eigen/src/StlSupport/details.h:
 
@@ -9100,8 +9108,6 @@ resource_Images.cpp:
 
 /usr/include/c++/12.2.0/tr1/ell_integral.tcc:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/include/ImageFrame.h:
-
 /usr/include/c++/12.2.0/bits/stl_map.h:
 
 resource_Shaders.cpp:
@@ -9109,6 +9115,10 @@ resource_Shaders.cpp:
 /usr/include/wchar.h:
 
 /usr/include/c++/12.2.0/vector:
+
+/usr/include/c++/12.2.0/bits/stl_bvector.h:
+
+/usr/include/bits/types/struct_tm.h:
 
 /usr/include/ceres/crs_matrix.h:
 
@@ -9158,10 +9168,6 @@ resource_Shaders.cpp:
 
 /usr/include/c++/12.2.0/bits/alloc_traits.h:
 
-/usr/include/c++/12.2.0/bits/stl_bvector.h:
-
-/usr/include/bits/types/struct_tm.h:
-
 /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/os_defines.h:
 
 /usr/include/c++/12.2.0/ext/alloc_traits.h:
@@ -9189,8 +9195,6 @@ resource_Shaders.cpp:
 /usr/include/c++/12.2.0/cerrno:
 
 /usr/include/MagnumPlugins/GltfImporter/configure.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Joystick.cpp:
 
 /usr/include/sys/ttydefaults.h:
 
@@ -9292,6 +9296,12 @@ resource_Shaders.cpp:
 
 /usr/include/Magnum/GL/Shader.h:
 
+/usr/include/strings.h:
+
+/usr/include/bits/atomic_wide_counter.h:
+
+/usr/include/signal.h:
+
 /usr/include/inttypes.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/float.h:
@@ -9307,8 +9317,6 @@ resource_Shaders.cpp:
 /usr/include/bits/types/__locale_t.h:
 
 /usr/include/SDL2/SDL_error.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/RadialCamera.cpp:
 
 /usr/include/SDL2/SDL_rect.h:
 
@@ -9347,6 +9355,8 @@ resource_Shaders.cpp:
 /usr/include/ceres/problem.h:
 
 /usr/include/Magnum/Trade/AbstractImporter.h:
+
+/home/elias/Documents/GitHub/Matura/include/DebugLines.h:
 
 /usr/include/c++/12.2.0/bits/basic_string.h:
 
@@ -9413,8 +9423,6 @@ resource_Shaders.cpp:
 /usr/include/c++/12.2.0/chrono:
 
 /usr/include/c++/12.2.0/ratio:
-
-/usr/include/time.h:
 
 /usr/include/bits/timex.h:
 
@@ -9568,8 +9576,6 @@ resource_Shaders.cpp:
 
 /usr/include/linux/close_range.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/StageFrame.cpp:
-
 /usr/include/bits/ss_flags.h:
 
 /usr/include/c++/12.2.0/filesystem:
@@ -9609,6 +9615,10 @@ resource_Shaders.cpp:
 /usr/include/Magnum/FileCallback.h:
 
 /usr/include/c++/12.2.0/bits/cxxabi_init_exception.h:
+
+/home/elias/Documents/GitHub/Matura/src/PhongDrawable.cpp:
+
+/home/elias/Documents/GitHub/Matura/include/PhongDrawable.h:
 
 /usr/include/c++/12.2.0/bits/ios_base.h:
 
@@ -9664,9 +9674,11 @@ resource_Shaders.cpp:
 
 /usr/include/fenv.h:
 
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/ShadowCasterDrawable.cpp:
-
 /usr/include/bits/fenv.h:
+
+/home/elias/Documents/GitHub/Matura/include/ImageFrame.h:
+
+/usr/include/c++/12.2.0/cinttypes:
 
 /usr/include/c++/12.2.0/ctgmath:
 
@@ -9681,6 +9693,8 @@ resource_Shaders.cpp:
 /usr/include/SDL2/SDL_endian.h:
 
 /usr/include/c++/12.2.0/pstl/glue_algorithm_defs.h:
+
+/home/elias/Documents/GitHub/Matura/include/RadialCamera.h:
 
 /usr/include/c++/12.2.0/bitset:
 
@@ -9727,8 +9741,6 @@ resource_Shaders.cpp:
 /usr/include/c++/12.2.0/memory:
 
 /usr/include/Eigen/src/misc/RealSvd2x2.h:
-
-/run/media/elias/01D5A94471A88F00/GitHub/Matura/src/Frame.cpp:
 
 /usr/include/c++/12.2.0/bits/align.h:
 

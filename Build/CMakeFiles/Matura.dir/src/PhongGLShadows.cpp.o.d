@@ -1,7 +1,7 @@
 CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o: \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/PhongGLShadows.cpp \
+ /home/elias/Documents/GitHub/Matura/src/PhongGLShadows.cpp \
  /usr/include/stdc-predef.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/PhongGLShadows.h \
+ /home/elias/Documents/GitHub/Matura/./include/PhongGLShadows.h \
  /usr/include/Magnum/GL/AbstractShaderProgram.h \
  /usr/include/c++/12.2.0/string \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \

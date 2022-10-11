@@ -27,7 +27,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 	_cameraObject.setTranslation(Vector3(0, 3, 5));
 	_cameraObject.setRotation(Quaternion::fromMatrix(Matrix4::lookAt(Vector3(0, 3, 5), Vector3(0, 0, 0), Vector3::yAxis(1)).rotation()));
 
-	(*(_camera = new SceneGraph::Camera3D{_cameraObject}))
+	(*(_activeCamera = new SceneGraph::Camera3D{_cameraObject}))
 		.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
 		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 1000.0f))
 		.setViewport(GL::defaultFramebuffer.viewport().size());
@@ -44,51 +44,25 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		Fatal{} << "Cannot load scene" << importer.defaultScene() << importer.sceneName(importer.defaultScene());
 	}
 
-	_objectsByID = vector<Object3D *>{std::size_t(scene->mappingBound())};
+	_objectByID = vector<Object3D *>{std::size_t(scene->mappingBound())};
 
 	Containers::Array<Containers::Pair<UnsignedInt, Int>> parents = scene->parentsAsArray(); // object index, parent
 
 	for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // instantiate objects
-		_objectsByID[parent.first()] = new Object3D{};
+		_objectByID[parent.first()] = new Object3D{};
 
 	for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // set parents of objects
-		_objectsByID[parent.first()]->setParent(parent.second() == -1 ? &_manipulator : _objectsByID[parent.second()]);
+		_objectByID[parent.first()]->setParent(parent.second() == -1 ? &_manipulator : _objectByID[parent.second()]);
 
 	for (int i = 0; i < importer.objectCount(); i++) // object names
 	{
-		_objectByName[importer.objectName(i)] = _objectsByID[i];
+		_objectByName[importer.objectName(i)] = _objectByID[i];
 	}
 
 	for (const Containers::Pair<UnsignedInt, Matrix4> &transformation : scene->transformations3DAsArray()) // object index, transformations
 	{
-		if (Object3D *object = _objectsByID[transformation.first()])
+		if (Object3D *object = _objectByID[transformation.first()])
 			object->setTransformation(transformation.second());
-	}
-
-	for (const Containers::Pair<UnsignedInt, Containers::Pair<UnsignedInt, Int>> &
-			 meshMaterial : scene->meshesMaterialsAsArray())
-	{
-		Object3D *object = _objectsByID[meshMaterial.first()];		   // object to assign material to
-		auto &[mesh, radius] = _meshes[meshMaterial.second().first()]; // mesh to assign material to
-		if (!object || !mesh)
-			continue;
-
-		Int materialId = meshMaterial.second().second();
-
-		new ShadowCasterDrawable(*object, *mesh, radius, _shadowCasters);
-
-		/* Material not available / not loaded, use a default material */
-		if (materialId == -1 || !_materials[materialId])
-		{
-			Debug{} << "Object has no material";
-			// new ColoredDrawable{*object, _coloredShader, *mesh, 0xffffff_rgbf,
-			// 					_drawables};
-		}
-		else
-		{
-			/* Color-only material */
-			new PhongDrawable{*object, *this, *mesh, (*_materials[materialId]), _shadowReceivers};
-		}
 	}
 
 	for (int i = 0; i < importer.lightCount(); i++)
@@ -112,7 +86,90 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		Debug{} << light->color() << " * " << light->intensity();
 	}
 
-	_player = ImportAnimations(importer, _animationData, _objectsByID);
+	for (const Containers::Pair<UnsignedInt, Containers::Pair<UnsignedInt, Int>> &
+			 meshMaterial : scene->meshesMaterialsAsArray())
+	{
+		Object3D *object = _objectByID[meshMaterial.first()];		   // object to assign material to
+		auto &[mesh, radius] = _meshes[meshMaterial.second().first()]; // mesh to assign material to
+		if (!object || !mesh)
+			continue;
+
+		Int materialId = meshMaterial.second().second();
+
+		new ShadowCasterDrawable(*object, *mesh, radius, _shadowCasters);
+
+		/* Material not available / not loaded, use a default material */
+		if (materialId == -1 || !_materials[materialId])
+		{
+			Debug{} << "Object has no material";
+			// new ColoredDrawable{*object, _coloredShader, *mesh, 0xffffff_rgbf,
+			// 					_drawables};
+		}
+		else
+		{
+			/* Color-only material */
+			new PhongDrawable{*object, *this, *mesh, (*_materials[materialId]), _shadowReceivers};
+		}
+	}
+
+	_cameras = vector<SceneGraph::Camera3D *>(importer.cameraCount());
+
+	if (importer.cameraCount())
+		for (auto cameraObject : scene->camerasAsArray())
+		{
+			Object3D *cameraManipulator = new Object3D(_objectByID[cameraObject.first()]);
+
+			_objectByName[importer.cameraName(cameraObject.second()) + " manipulator"] = cameraManipulator;
+			_objectByID.push_back(cameraManipulator);
+
+			_cameras[cameraObject.second()] = new SceneGraph::Camera3D(*cameraManipulator);
+			cameraManipulator->rotateYLocal(-90.0_degf);
+		}
+
+	for (int i = 0; i < importer.cameraCount(); i++)
+	{
+		if (!importer.camera(importer.cameraName(i)))
+		{
+			Warning{} << "Error loading camera" << importer.cameraName(i);
+		}
+
+		Trade::CameraData cameraData = *importer.camera(importer.cameraName(i));
+
+		if (cameraData.type() == Trade::CameraType::Perspective3D)
+		{
+			(*_cameras[i])
+				.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
+				.setProjectionMatrix(Matrix4::perspectiveProjection(cameraData.fov(), cameraData.aspectRatio(), cameraData.near(), cameraData.far()))
+				.setViewport(GL::defaultFramebuffer.viewport().size());
+		}
+		else
+		{
+			(*_cameras[i])
+				.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
+				.setProjectionMatrix(Matrix4::orthographicProjection(cameraData.size(), cameraData.near(), cameraData.far()))
+				.setViewport(GL::defaultFramebuffer.viewport().size());
+		}
+	}
+
+	if (!_cameras.size())
+	{
+		Object3D *cameraObejct = new Object3D{};
+		cameraObejct->setParent(&_manipulator);
+
+		SceneGraph::Camera3D *camera = new SceneGraph::Camera3D(*cameraObejct);
+		(*camera)
+			.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
+			.setProjectionMatrix(Matrix4::perspectiveProjection(30.0_degf, 1, 0.01, 100))
+			.setViewport(GL::defaultFramebuffer.viewport().size());
+
+		_objectByName["Camera"] = cameraObejct;
+		_objectByID.push_back(cameraObejct);
+
+		_cameras.push_back(camera);
+	}
+	_activeCamera = _cameras[0];
+
+	_player = ImportAnimations(importer, _animationData, _objectByID);
 }
 
 Animation::Player<Float> Stage::ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, vector<Object3D *> &objects)

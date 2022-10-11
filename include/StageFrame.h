@@ -19,6 +19,7 @@ class StageFrame : public Frame, public Stage
 	Magnum::Examples::DebugLines _debug;
 
 	void addDebugLines();
+	void addDebugLines(const Matrix4 &transformation);
 	bool _setTarget = true;
 
 	Joystick &_joystick;

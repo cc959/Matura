@@ -1,7 +1,7 @@
 CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/src/DebugLines.cpp \
+ /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp \
  /usr/include/stdc-predef.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/DebugLines.h \
+ /home/elias/Documents/GitHub/Matura/./include/DebugLines.h \
  /usr/include/c++/12.2.0/vector \
  /usr/include/c++/12.2.0/bits/stl_algobase.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -186,8 +186,8 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
  /usr/include/c++/12.2.0/bits/stl_tempbuf.h \
  /usr/include/c++/12.2.0/bits/uniform_int_dist.h \
  /usr/include/Magnum/SceneGraph/visibility.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/ShadowLight.h \
- /run/media/elias/01D5A94471A88F00/GitHub/Matura/./include/GlobalIncludes.h \
+ /home/elias/Documents/GitHub/Matura/./include/ShadowLight.h \
+ /home/elias/Documents/GitHub/Matura/./include/GlobalIncludes.h \
  /usr/include/Corrade/Containers/Array.h \
  /usr/include/Corrade/Containers/constructHelpers.h \
  /usr/include/Corrade/Containers/Optional.h \
@@ -264,6 +264,7 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o: \
  /usr/include/Magnum/Animation/Track.h \
  /usr/include/Magnum/Animation/Animation.h \
  /usr/include/Magnum/Animation/Interpolation.h \
+ /usr/include/Magnum/Trade/CameraData.h \
  /usr/include/MagnumPlugins/AnyImageImporter/AnyImageImporter.h \
  /usr/include/MagnumPlugins/AnyImageImporter/configure.h \
  /usr/include/Magnum/Timeline.h /usr/include/c++/12.2.0/chrono \

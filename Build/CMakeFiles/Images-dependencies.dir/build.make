@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /run/media/elias/01D5A94471A88F00/GitHub/Matura
+CMAKE_SOURCE_DIR = /home/elias/Documents/GitHub/Matura
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build
+CMAKE_BINARY_DIR = /home/elias/Documents/GitHub/Matura/Build
 
 # Utility rule file for Images-dependencies.
 
@@ -78,6 +78,6 @@ CMakeFiles/Images-dependencies.dir/clean:
 .PHONY : CMakeFiles/Images-dependencies.dir/clean
 
 CMakeFiles/Images-dependencies.dir/depend:
-	cd /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /run/media/elias/01D5A94471A88F00/GitHub/Matura /run/media/elias/01D5A94471A88F00/GitHub/Matura /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build /run/media/elias/01D5A94471A88F00/GitHub/Matura/Build/CMakeFiles/Images-dependencies.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/elias/Documents/GitHub/Matura/Build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/elias/Documents/GitHub/Matura /home/elias/Documents/GitHub/Matura /home/elias/Documents/GitHub/Matura/Build /home/elias/Documents/GitHub/Matura/Build /home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Images-dependencies.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Images-dependencies.dir/depend
 
