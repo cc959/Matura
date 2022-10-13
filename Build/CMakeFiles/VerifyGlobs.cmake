@@ -5,7 +5,7 @@ cmake_policy(SET CMP0009 NEW)
 # SourceFiles at CMakeLists.txt:13 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/elias/Documents/GitHub/Matura/src/*.cpp")
 set(OLD_GLOB
-  "/home/elias/Documents/GitHub/Matura/src/DebugLines.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/DebugUI.cpp"
   "/home/elias/Documents/GitHub/Matura/src/Frame.cpp"
   "/home/elias/Documents/GitHub/Matura/src/ImageFrame.cpp"
   "/home/elias/Documents/GitHub/Matura/src/Joystick.cpp"

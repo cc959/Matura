@@ -286,8 +286,20 @@ CMakeFiles/Matura.dir/src/main.cpp.o: \
  /usr/include/Magnum/AbstractResourceLoader.h \
  /usr/include/Magnum/ResourceManager.h \
  /usr/include/Magnum/GL/Framebuffer.h \
- /usr/include/Magnum/GL/TextureArray.h /usr/include/Magnum/GL/Shader.h \
- /usr/include/Magnum/GL/Version.h /usr/include/Magnum/Primitives/Plane.h \
+ /usr/include/Magnum/GL/TextureArray.h \
+ /usr/include/Magnum/Shaders/VertexColorGL.h \
+ /usr/include/Magnum/Shaders/VectorGL.h \
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h \
+ /usr/include/Magnum/Text/Renderer.h /usr/include/Magnum/Text/Text.h \
+ /usr/include/Magnum/Text/Alignment.h \
+ /usr/include/Magnum/Text/visibility.h \
+ /usr/include/Magnum/Text/GlyphCache.h \
+ /usr/include/Magnum/Text/AbstractGlyphCache.h \
+ /usr/include/Magnum/Text/AbstractFont.h \
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h \
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h \
+ /usr/include/Magnum/GL/Shader.h /usr/include/Magnum/GL/Version.h \
+ /usr/include/Magnum/Primitives/Plane.h \
  /usr/include/Magnum/Primitives/visibility.h \
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/12.2.0/cassert /usr/include/c++/12.2.0/cfloat \
@@ -479,6 +491,5 @@ CMakeFiles/Matura.dir/src/main.cpp.o: \
  /home/elias/Documents/GitHub/Matura/./include/ShadowLight.h \
  /home/elias/Documents/GitHub/Matura/./include/Frame.h \
  /home/elias/Documents/GitHub/Matura/./include/StageFrame.h \
- /home/elias/Documents/GitHub/Matura/./include/DebugLines.h \
- /usr/include/Magnum/Shaders/VertexColorGL.h \
+ /home/elias/Documents/GitHub/Matura/./include/DebugUI.h \
  /home/elias/Documents/GitHub/Matura/./include/ImageFrame.h

@@ -84,19 +84,19 @@ resource_Shaders.cpp: /home/elias/Documents/GitHub/Matura/res/ShadowCaster.frag
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/elias/Documents/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Compiling data resource file /home/elias/Documents/GitHub/Matura/Build/resource_Shaders.cpp"
 	cd /home/elias/Documents/GitHub/Matura && /usr/bin/corrade-rc Shaders Shaders.conf /home/elias/Documents/GitHub/Matura/Build/resource_Shaders.cpp
 
-CMakeFiles/Matura.dir/src/DebugLines.cpp.o: CMakeFiles/Matura.dir/flags.make
-CMakeFiles/Matura.dir/src/DebugLines.cpp.o: /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp
-CMakeFiles/Matura.dir/src/DebugLines.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elias/Documents/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Matura.dir/src/DebugLines.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/DebugLines.cpp.o -MF CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d -o CMakeFiles/Matura.dir/src/DebugLines.cpp.o -c /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp
+CMakeFiles/Matura.dir/src/DebugUI.cpp.o: CMakeFiles/Matura.dir/flags.make
+CMakeFiles/Matura.dir/src/DebugUI.cpp.o: /home/elias/Documents/GitHub/Matura/src/DebugUI.cpp
+CMakeFiles/Matura.dir/src/DebugUI.cpp.o: CMakeFiles/Matura.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/elias/Documents/GitHub/Matura/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Matura.dir/src/DebugUI.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Matura.dir/src/DebugUI.cpp.o -MF CMakeFiles/Matura.dir/src/DebugUI.cpp.o.d -o CMakeFiles/Matura.dir/src/DebugUI.cpp.o -c /home/elias/Documents/GitHub/Matura/src/DebugUI.cpp
 
-CMakeFiles/Matura.dir/src/DebugLines.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Matura.dir/src/DebugLines.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp > CMakeFiles/Matura.dir/src/DebugLines.cpp.i
+CMakeFiles/Matura.dir/src/DebugUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Matura.dir/src/DebugUI.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/elias/Documents/GitHub/Matura/src/DebugUI.cpp > CMakeFiles/Matura.dir/src/DebugUI.cpp.i
 
-CMakeFiles/Matura.dir/src/DebugLines.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Matura.dir/src/DebugLines.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp -o CMakeFiles/Matura.dir/src/DebugLines.cpp.s
+CMakeFiles/Matura.dir/src/DebugUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Matura.dir/src/DebugUI.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/elias/Documents/GitHub/Matura/src/DebugUI.cpp -o CMakeFiles/Matura.dir/src/DebugUI.cpp.s
 
 CMakeFiles/Matura.dir/src/Frame.cpp.o: CMakeFiles/Matura.dir/flags.make
 CMakeFiles/Matura.dir/src/Frame.cpp.o: /home/elias/Documents/GitHub/Matura/src/Frame.cpp
@@ -324,7 +324,7 @@ CMakeFiles/Matura.dir/resource_Shaders.cpp.s: cmake_force
 
 # Object files for target Matura
 Matura_OBJECTS = \
-"CMakeFiles/Matura.dir/src/DebugLines.cpp.o" \
+"CMakeFiles/Matura.dir/src/DebugUI.cpp.o" \
 "CMakeFiles/Matura.dir/src/Frame.cpp.o" \
 "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o" \
 "CMakeFiles/Matura.dir/src/Joystick.cpp.o" \
@@ -345,7 +345,7 @@ Matura_OBJECTS = \
 # External object files for target Matura
 Matura_EXTERNAL_OBJECTS =
 
-Matura: CMakeFiles/Matura.dir/src/DebugLines.cpp.o
+Matura: CMakeFiles/Matura.dir/src/DebugUI.cpp.o
 Matura: CMakeFiles/Matura.dir/src/Frame.cpp.o
 Matura: CMakeFiles/Matura.dir/src/ImageFrame.cpp.o
 Matura: CMakeFiles/Matura.dir/src/Joystick.cpp.o
@@ -401,6 +401,8 @@ Matura: /usr/lib/libopencv_xfeatures2d.so.4.6.0
 Matura: /usr/lib/libopencv_xobjdetect.so.4.6.0
 Matura: /usr/lib/libopencv_xphoto.so.4.6.0
 Matura: /usr/lib/libMagnumSdl2Application.a
+Matura: /usr/lib/magnum/fonts/StbTrueTypeFont.so
+Matura: /usr/lib/libMagnumText.so
 Matura: /usr/lib/libMagnumGL.so
 Matura: /usr/lib/libMagnum.so
 Matura: /usr/lib/libMagnumMeshTools.so
@@ -434,6 +436,7 @@ Matura: /usr/lib/libopencv_imgproc.so.4.6.0
 Matura: /usr/lib/libopencv_core.so.4.6.0
 Matura: /usr/lib/libSDL2-2.0.so.0.2400.0
 Matura: /usr/lib/libGLX.so
+Matura: /usr/lib/libMagnumTextureTools.so
 Matura: /usr/lib/libMagnumShaders.so
 Matura: /usr/lib/libimgui.so
 Matura: /usr/lib/libMagnumMeshTools.so

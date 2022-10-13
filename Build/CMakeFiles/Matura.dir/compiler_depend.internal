@@ -193,12 +193,13 @@ CMakeFiles/Matura.dir/resource_Shaders.cpp.o
  /usr/include/Corrade/Utility/Utility.h
  /usr/include/Corrade/Utility/StlForwardString.h
 
-CMakeFiles/Matura.dir/src/DebugLines.cpp.o
- /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp
+CMakeFiles/Matura.dir/src/DebugUI.cpp.o
+ /home/elias/Documents/GitHub/Matura/src/DebugUI.cpp
  /usr/include/stdc-predef.h
- /home/elias/Documents/GitHub/Matura/include/DebugLines.h
- /usr/include/c++/12.2.0/vector
- /usr/include/c++/12.2.0/bits/stl_algobase.h
+ /home/elias/Documents/GitHub/Matura/include/DebugUI.h
+ /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h
+ /usr/include/Corrade/Containers/Array.h
+ /usr/include/c++/12.2.0/initializer_list
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++config.h
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/os_defines.h
  /usr/include/features.h
@@ -211,53 +212,22 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/gnu/stubs-64.h
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/cpu_defines.h
  /usr/include/c++/12.2.0/pstl/pstl_config.h
- /usr/include/c++/12.2.0/bits/functexcept.h
- /usr/include/c++/12.2.0/bits/exception_defines.h
- /usr/include/c++/12.2.0/bits/cpp_type_traits.h
- /usr/include/c++/12.2.0/ext/type_traits.h
- /usr/include/c++/12.2.0/ext/numeric_traits.h
- /usr/include/c++/12.2.0/bits/stl_pair.h
- /usr/include/c++/12.2.0/type_traits
- /usr/include/c++/12.2.0/bits/move.h
- /usr/include/c++/12.2.0/bits/utility.h
- /usr/include/c++/12.2.0/bits/stl_iterator_base_types.h
- /usr/include/c++/12.2.0/bits/stl_iterator_base_funcs.h
- /usr/include/c++/12.2.0/bits/concept_check.h
- /usr/include/c++/12.2.0/debug/assertions.h
- /usr/include/c++/12.2.0/bits/stl_iterator.h
- /usr/include/c++/12.2.0/bits/ptr_traits.h
- /usr/include/c++/12.2.0/debug/debug.h
- /usr/include/c++/12.2.0/bits/predefined_ops.h
- /usr/include/c++/12.2.0/bits/allocator.h
- /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++allocator.h
- /usr/include/c++/12.2.0/bits/new_allocator.h
  /usr/include/c++/12.2.0/new
  /usr/include/c++/12.2.0/bits/exception.h
- /usr/include/c++/12.2.0/bits/memoryfwd.h
- /usr/include/c++/12.2.0/bits/stl_construct.h
- /usr/include/c++/12.2.0/bits/stl_uninitialized.h
- /usr/include/c++/12.2.0/ext/alloc_traits.h
- /usr/include/c++/12.2.0/bits/alloc_traits.h
- /usr/include/c++/12.2.0/bits/stl_vector.h
- /usr/include/c++/12.2.0/initializer_list
- /usr/include/c++/12.2.0/bits/stl_bvector.h
- /usr/include/c++/12.2.0/bits/functional_hash.h
- /usr/include/c++/12.2.0/bits/hash_bytes.h
- /usr/include/c++/12.2.0/bits/refwrap.h
- /usr/include/c++/12.2.0/bits/invoke.h
- /usr/include/c++/12.2.0/bits/stl_function.h
- /usr/include/c++/12.2.0/backward/binders.h
- /usr/include/c++/12.2.0/bits/range_access.h
- /usr/include/c++/12.2.0/bits/vector.tcc
- /usr/include/Magnum/GL/Buffer.h
- /usr/include/c++/12.2.0/cstddef
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stddef.h
+ /usr/include/c++/12.2.0/type_traits
  /usr/include/c++/12.2.0/utility
  /usr/include/c++/12.2.0/bits/stl_relops.h
- /usr/include/Corrade/Containers/ArrayView.h
- /usr/include/Corrade/Containers/Containers.h
+ /usr/include/c++/12.2.0/bits/stl_pair.h
+ /usr/include/c++/12.2.0/bits/move.h
+ /usr/include/c++/12.2.0/bits/utility.h
+ /usr/include/Corrade/Tags.h
  /usr/include/Corrade/configure.h
  /usr/include/c++/12.2.0/ciso646
+ /usr/include/Corrade/Utility/Macros.h
+ /usr/include/Corrade/Containers/ArrayView.h
+ /usr/include/Corrade/Containers/Containers.h
+ /usr/include/c++/12.2.0/cstddef
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stddef.h
  /usr/include/Corrade/Utility/Assert.h
  /usr/include/Corrade/Utility/Move.h
  /usr/include/c++/12.2.0/cstdlib
@@ -301,6 +271,7 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/Corrade/Utility/Debug.h
  /usr/include/c++/12.2.0/iosfwd
  /usr/include/c++/12.2.0/bits/stringfwd.h
+ /usr/include/c++/12.2.0/bits/memoryfwd.h
  /usr/include/c++/12.2.0/bits/postypes.h
  /usr/include/c++/12.2.0/cwchar
  /usr/include/wchar.h
@@ -312,73 +283,38 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/bits/types/__FILE.h
  /usr/include/bits/types/FILE.h
  /usr/include/Corrade/Containers/EnumSet.h
- /usr/include/Corrade/Tags.h
- /usr/include/Corrade/Utility/Macros.h
  /usr/include/Corrade/Utility/TypeTraits.h
  /usr/include/Corrade/Utility/Utility.h
  /usr/include/Corrade/Utility/visibility.h
  /usr/include/Corrade/Utility/VisibilityMacros.h
  /usr/include/Corrade/Utility/DebugAssert.h
- /usr/include/Magnum/Tags.h
- /usr/include/Magnum/configure.h
- /usr/include/Magnum/GL/AbstractObject.h
- /usr/include/Magnum/Magnum.h
- /usr/include/Magnum/Types.h
- /usr/include/c++/12.2.0/cstdint
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stdint.h
- /usr/include/stdint.h
- /usr/include/bits/stdint-uintn.h
- /usr/include/Magnum/Math/Math.h
- /usr/include/Magnum/GL/OpenGL.h
- /usr/include/MagnumExternal/OpenGL/GL/flextGL.h
- /usr/include/Magnum/GL/GL.h
- /usr/include/MagnumExternal/OpenGL/KHR/khrplatform.h
- /usr/include/Magnum/GL/visibility.h
+ /usr/include/Corrade/Containers/constructHelpers.h
+ /usr/include/Corrade/Containers/Optional.h
+ /usr/include/Corrade/Containers/Pair.h
+ /usr/include/Corrade/PluginManager/Manager.h
+ /usr/include/Corrade/PluginManager/AbstractManager.h
+ /usr/include/Corrade/Containers/Pointer.h
+ /usr/include/Corrade/PluginManager/PluginManager.h
+ /usr/include/Corrade/PluginManager/visibility.h
  /usr/include/Corrade/Containers/StringStl.h
  /usr/include/Corrade/Containers/String.h
  /usr/include/Corrade/Containers/StringView.h
  /usr/include/Corrade/Corrade.h
  /usr/include/Corrade/Utility/StlForwardString.h
- /usr/include/Magnum/GL/Mesh.h
- /usr/include/Corrade/Utility/ConfigurationValue.h
- /usr/include/Magnum/GL/Attribute.h
- /usr/include/Magnum/Math/TypeTraits.h
- /usr/include/Corrade/Utility/StlMath.h
- /usr/include/c++/12.2.0/cmath
- /usr/include/math.h
- /usr/include/bits/math-vector.h
- /usr/include/bits/libm-simd-decl-stubs.h
- /usr/include/bits/flt-eval-method.h
- /usr/include/bits/fp-logb.h
- /usr/include/bits/fp-fast.h
- /usr/include/bits/mathcalls-helper-functions.h
- /usr/include/bits/mathcalls.h
- /usr/include/bits/mathcalls-narrow.h
- /usr/include/bits/iscanonical.h
- /usr/include/Magnum/Math/Color.h
- /usr/include/Magnum/Math/Matrix.h
- /usr/include/Magnum/Math/RectangularMatrix.h
- /usr/include/Magnum/Math/Vector.h
- /usr/include/Magnum/visibility.h
- /usr/include/Magnum/Math/Angle.h
- /usr/include/Magnum/Math/Constants.h
- /usr/include/Magnum/Math/Unit.h
- /usr/include/Magnum/Math/Tags.h
- /usr/include/Magnum/Math/BitVector.h
- /usr/include/Corrade/Containers/sequenceHelpers.h
- /usr/include/Magnum/Math/Packing.h
- /usr/include/Magnum/Math/Functions.h
- /usr/include/Magnum/Math/Vector4.h
- /usr/include/Magnum/Math/Vector3.h
- /usr/include/Magnum/Math/Vector2.h
- /usr/include/c++/12.2.0/tuple
- /usr/include/c++/12.2.0/bits/uses_allocator.h
- /usr/include/Magnum/SceneGraph/SceneGraph.h
- /usr/include/Magnum/Shaders/VertexColorGL.h
- /usr/include/Magnum/DimensionTraits.h
- /usr/include/Magnum/GL/AbstractShaderProgram.h
+ /usr/include/Corrade/PluginManager/Manager.hpp
+ /usr/include/Corrade/Utility/Arguments.h
  /usr/include/c++/12.2.0/string
  /usr/include/c++/12.2.0/bits/char_traits.h
+ /usr/include/c++/12.2.0/cstdint
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stdint.h
+ /usr/include/stdint.h
+ /usr/include/bits/stdint-uintn.h
+ /usr/include/c++/12.2.0/bits/allocator.h
+ /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++allocator.h
+ /usr/include/c++/12.2.0/bits/new_allocator.h
+ /usr/include/c++/12.2.0/bits/functexcept.h
+ /usr/include/c++/12.2.0/bits/exception_defines.h
+ /usr/include/c++/12.2.0/bits/cpp_type_traits.h
  /usr/include/c++/12.2.0/bits/localefwd.h
  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++locale.h
  /usr/include/c++/12.2.0/clocale
@@ -388,8 +324,29 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/ctype.h
  /usr/include/c++/12.2.0/bits/ostream_insert.h
  /usr/include/c++/12.2.0/bits/cxxabi_forced.h
+ /usr/include/c++/12.2.0/bits/stl_iterator_base_types.h
+ /usr/include/c++/12.2.0/bits/stl_iterator_base_funcs.h
+ /usr/include/c++/12.2.0/bits/concept_check.h
+ /usr/include/c++/12.2.0/debug/assertions.h
+ /usr/include/c++/12.2.0/bits/stl_iterator.h
+ /usr/include/c++/12.2.0/ext/type_traits.h
+ /usr/include/c++/12.2.0/bits/ptr_traits.h
+ /usr/include/c++/12.2.0/bits/stl_function.h
+ /usr/include/c++/12.2.0/backward/binders.h
+ /usr/include/c++/12.2.0/ext/numeric_traits.h
+ /usr/include/c++/12.2.0/bits/stl_algobase.h
+ /usr/include/c++/12.2.0/debug/debug.h
+ /usr/include/c++/12.2.0/bits/predefined_ops.h
+ /usr/include/c++/12.2.0/bits/refwrap.h
+ /usr/include/c++/12.2.0/bits/invoke.h
+ /usr/include/c++/12.2.0/bits/range_access.h
  /usr/include/c++/12.2.0/bits/basic_string.h
+ /usr/include/c++/12.2.0/ext/alloc_traits.h
+ /usr/include/c++/12.2.0/bits/alloc_traits.h
+ /usr/include/c++/12.2.0/bits/stl_construct.h
  /usr/include/c++/12.2.0/string_view
+ /usr/include/c++/12.2.0/bits/functional_hash.h
+ /usr/include/c++/12.2.0/bits/hash_bytes.h
  /usr/include/c++/12.2.0/bits/string_view.tcc
  /usr/include/c++/12.2.0/ext/string_conversions.h
  /usr/include/c++/12.2.0/cstdio
@@ -409,68 +366,75 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/bits/types/error_t.h
  /usr/include/c++/12.2.0/bits/charconv.h
  /usr/include/c++/12.2.0/bits/basic_string.tcc
- /usr/include/Corrade/Containers/Iterable.h
- /usr/include/Corrade/Containers/AnyReference.h
- /usr/include/Magnum/Shaders/GenericGL.h
- /usr/include/Magnum/Shaders/Shaders.h
- /usr/include/Magnum/Shaders/glShaderWrapper.h
- /usr/include/Magnum/Shaders/visibility.h
- /usr/include/Corrade/Containers/ArrayViewStl.h
- /usr/include/c++/12.2.0/array
- /usr/include/c++/12.2.0/compare
- /usr/include/Magnum/GL/Renderer.h
- /usr/include/Magnum/SceneGraph/Camera.h
- /usr/include/Magnum/Math/Matrix3.h
- /usr/include/Magnum/Math/Matrix4.h
- /usr/include/Magnum/SceneGraph/AbstractFeature.h
- /usr/include/Corrade/Containers/LinkedList.h
- /usr/include/Magnum/SceneGraph/AbstractObject.h
- /usr/include/c++/12.2.0/functional
- /usr/include/c++/12.2.0/bits/std_function.h
- /usr/include/c++/12.2.0/typeinfo
- /usr/include/c++/12.2.0/unordered_map
- /usr/include/c++/12.2.0/ext/aligned_buffer.h
- /usr/include/c++/12.2.0/bits/hashtable.h
- /usr/include/c++/12.2.0/bits/hashtable_policy.h
- /usr/include/c++/12.2.0/bits/enable_special_members.h
- /usr/include/c++/12.2.0/bits/node_handle.h
- /usr/include/c++/12.2.0/bits/unordered_map.h
- /usr/include/c++/12.2.0/bits/erase_if.h
- /usr/include/c++/12.2.0/bits/stl_algo.h
- /usr/include/c++/12.2.0/bits/algorithmfwd.h
- /usr/include/c++/12.2.0/bits/stl_heap.h
- /usr/include/c++/12.2.0/bits/stl_tempbuf.h
- /usr/include/c++/12.2.0/bits/uniform_int_dist.h
- /usr/include/Magnum/SceneGraph/visibility.h
- /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
- /home/elias/Documents/GitHub/Matura/include/GlobalIncludes.h
- /usr/include/Corrade/Containers/Array.h
- /usr/include/Corrade/Containers/constructHelpers.h
- /usr/include/Corrade/Containers/Optional.h
- /usr/include/Corrade/Containers/Pair.h
- /usr/include/Corrade/PluginManager/Manager.h
- /usr/include/Corrade/PluginManager/AbstractManager.h
- /usr/include/Corrade/Containers/Pointer.h
- /usr/include/Corrade/PluginManager/PluginManager.h
- /usr/include/Corrade/PluginManager/visibility.h
- /usr/include/Corrade/PluginManager/Manager.hpp
- /usr/include/Corrade/Utility/Arguments.h
+ /usr/include/Corrade/Utility/ConfigurationValue.h
  /usr/include/Corrade/Utility/StlForwardVector.h
+ /usr/include/c++/12.2.0/vector
+ /usr/include/c++/12.2.0/bits/stl_uninitialized.h
+ /usr/include/c++/12.2.0/bits/stl_vector.h
+ /usr/include/c++/12.2.0/bits/stl_bvector.h
+ /usr/include/c++/12.2.0/bits/vector.tcc
  /usr/include/Corrade/Utility/DebugStl.h
+ /usr/include/c++/12.2.0/tuple
+ /usr/include/c++/12.2.0/bits/uses_allocator.h
+ /usr/include/Corrade/Containers/sequenceHelpers.h
  /usr/include/Magnum/ImageView.h
+ /usr/include/Magnum/DimensionTraits.h
+ /usr/include/Magnum/Math/Math.h
+ /usr/include/Magnum/Types.h
+ /usr/include/Magnum/configure.h
  /usr/include/Magnum/ImageFlags.h
+ /usr/include/Magnum/Magnum.h
+ /usr/include/Magnum/visibility.h
  /usr/include/Magnum/PixelStorage.h
+ /usr/include/Magnum/Math/Vector3.h
+ /usr/include/Magnum/Math/Vector2.h
+ /usr/include/Magnum/Math/Vector.h
+ /usr/include/Corrade/Utility/StlMath.h
+ /usr/include/c++/12.2.0/cmath
+ /usr/include/math.h
+ /usr/include/bits/math-vector.h
+ /usr/include/bits/libm-simd-decl-stubs.h
+ /usr/include/bits/flt-eval-method.h
+ /usr/include/bits/fp-logb.h
+ /usr/include/bits/fp-fast.h
+ /usr/include/bits/mathcalls-helper-functions.h
+ /usr/include/bits/mathcalls.h
+ /usr/include/bits/mathcalls-narrow.h
+ /usr/include/bits/iscanonical.h
+ /usr/include/Magnum/Math/Angle.h
+ /usr/include/Magnum/Math/Constants.h
+ /usr/include/Magnum/Math/Unit.h
+ /usr/include/Magnum/Math/TypeTraits.h
+ /usr/include/Magnum/Math/Tags.h
+ /usr/include/Magnum/Tags.h
+ /usr/include/Magnum/Math/BitVector.h
  /usr/include/Magnum/Mesh.h
  /usr/include/Magnum/PixelFormat.h
  /usr/include/Magnum/GL/DefaultFramebuffer.h
  /usr/include/Magnum/GL/AbstractFramebuffer.h
+ /usr/include/Magnum/GL/GL.h
+ /usr/include/Magnum/GL/AbstractObject.h
+ /usr/include/Magnum/GL/OpenGL.h
+ /usr/include/MagnumExternal/OpenGL/GL/flextGL.h
+ /usr/include/MagnumExternal/OpenGL/KHR/khrplatform.h
+ /usr/include/Magnum/GL/visibility.h
  /usr/include/Magnum/Math/Range.h
+ /usr/include/Magnum/Math/Functions.h
+ /usr/include/Magnum/GL/Mesh.h
+ /usr/include/Magnum/GL/Attribute.h
+ /usr/include/Magnum/GL/Buffer.h
+ /usr/include/Magnum/GL/Renderer.h
  /usr/include/Magnum/GL/Texture.h
  /usr/include/Magnum/Sampler.h
  /usr/include/Magnum/GL/AbstractTexture.h
  /usr/include/Magnum/GL/Sampler.h
  /usr/include/Magnum/Array.h
  /usr/include/Magnum/GL/TextureFormat.h
+ /usr/include/Magnum/Math/Color.h
+ /usr/include/Magnum/Math/Matrix.h
+ /usr/include/Magnum/Math/RectangularMatrix.h
+ /usr/include/Magnum/Math/Packing.h
+ /usr/include/Magnum/Math/Vector4.h
  /usr/include/Magnum/MeshTools/Compile.h
  /usr/include/Magnum/Trade/Trade.h
  /usr/include/Magnum/MeshTools/visibility.h
@@ -505,6 +469,32 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/SDL2/SDL_version.h
  /usr/include/SDL2/SDL_video.h
  /usr/include/SDL2/SDL_scancode.h
+ /usr/include/Magnum/SceneGraph/Camera.h
+ /usr/include/Magnum/Math/Matrix3.h
+ /usr/include/Magnum/Math/Matrix4.h
+ /usr/include/Magnum/SceneGraph/AbstractFeature.h
+ /usr/include/Corrade/Containers/LinkedList.h
+ /usr/include/Magnum/SceneGraph/AbstractObject.h
+ /usr/include/c++/12.2.0/functional
+ /usr/include/c++/12.2.0/bits/std_function.h
+ /usr/include/c++/12.2.0/typeinfo
+ /usr/include/c++/12.2.0/unordered_map
+ /usr/include/c++/12.2.0/ext/aligned_buffer.h
+ /usr/include/c++/12.2.0/bits/hashtable.h
+ /usr/include/c++/12.2.0/bits/hashtable_policy.h
+ /usr/include/c++/12.2.0/bits/enable_special_members.h
+ /usr/include/c++/12.2.0/bits/node_handle.h
+ /usr/include/c++/12.2.0/bits/unordered_map.h
+ /usr/include/c++/12.2.0/bits/erase_if.h
+ /usr/include/c++/12.2.0/array
+ /usr/include/c++/12.2.0/compare
+ /usr/include/c++/12.2.0/bits/stl_algo.h
+ /usr/include/c++/12.2.0/bits/algorithmfwd.h
+ /usr/include/c++/12.2.0/bits/stl_heap.h
+ /usr/include/c++/12.2.0/bits/stl_tempbuf.h
+ /usr/include/c++/12.2.0/bits/uniform_int_dist.h
+ /usr/include/Magnum/SceneGraph/SceneGraph.h
+ /usr/include/Magnum/SceneGraph/visibility.h
  /usr/include/Magnum/SceneGraph/Drawable.h
  /usr/include/Magnum/SceneGraph/AbstractGroupedFeature.h
  /usr/include/Magnum/SceneGraph/FeatureGroup.h
@@ -518,6 +508,13 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/Magnum/Math/Quaternion.h
  /usr/include/Magnum/SceneGraph/Scene.h
  /usr/include/Magnum/Shaders/PhongGL.h
+ /usr/include/Magnum/GL/AbstractShaderProgram.h
+ /usr/include/Corrade/Containers/Iterable.h
+ /usr/include/Corrade/Containers/AnyReference.h
+ /usr/include/Magnum/Shaders/GenericGL.h
+ /usr/include/Magnum/Shaders/Shaders.h
+ /usr/include/Magnum/Shaders/glShaderWrapper.h
+ /usr/include/Magnum/Shaders/visibility.h
  /usr/include/Magnum/Trade/AbstractImporter.h
  /usr/include/Corrade/PluginManager/AbstractManagingPlugin.h
  /usr/include/Corrade/PluginManager/AbstractPlugin.h
@@ -581,6 +578,18 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -800,6 +809,8 @@ CMakeFiles/Matura.dir/src/DebugLines.cpp.o
  /usr/include/c++/12.2.0/memory_resource
  /usr/include/c++/12.2.0/bits/uses_allocator_args.h
  /usr/include/c++/12.2.0/variant
+ /usr/include/Corrade/Containers/ArrayViewStl.h
+ /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
 
 CMakeFiles/Matura.dir/src/Frame.cpp.o
  /home/elias/Documents/GitHub/Matura/src/Frame.cpp
@@ -1186,6 +1197,18 @@ CMakeFiles/Matura.dir/src/Frame.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -1838,6 +1861,18 @@ CMakeFiles/Matura.dir/src/ImageFrame.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -2955,6 +2990,18 @@ CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -4511,6 +4558,18 @@ CMakeFiles/Matura.dir/src/ShadowCasterDrawable.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -5117,6 +5176,18 @@ CMakeFiles/Matura.dir/src/ShadowCasterShader.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -5722,6 +5793,18 @@ CMakeFiles/Matura.dir/src/ShadowLight.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -6329,6 +6412,18 @@ CMakeFiles/Matura.dir/src/Stage.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -6939,6 +7034,18 @@ CMakeFiles/Matura.dir/src/StageFrame.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -7206,8 +7313,7 @@ CMakeFiles/Matura.dir/src/StageFrame.cpp.o
  /home/elias/Documents/GitHub/Matura/include/ShadowCasterDrawable.h
  /home/elias/Documents/GitHub/Matura/include/ShadowCasterShader.h
  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
- /home/elias/Documents/GitHub/Matura/include/DebugLines.h
- /usr/include/Magnum/Shaders/VertexColorGL.h
+ /home/elias/Documents/GitHub/Matura/include/DebugUI.h
 
 CMakeFiles/Matura.dir/src/Viewer.cpp.o
  /home/elias/Documents/GitHub/Matura/src/Viewer.cpp
@@ -7598,6 +7704,18 @@ CMakeFiles/Matura.dir/src/main.cpp.o
  /usr/include/Magnum/ResourceManager.h
  /usr/include/Magnum/GL/Framebuffer.h
  /usr/include/Magnum/GL/TextureArray.h
+ /usr/include/Magnum/Shaders/VertexColorGL.h
+ /usr/include/Magnum/Shaders/VectorGL.h
+ /usr/include/Magnum/Shaders/DistanceFieldVectorGL.h
+ /usr/include/Magnum/Text/Renderer.h
+ /usr/include/Magnum/Text/Text.h
+ /usr/include/Magnum/Text/Alignment.h
+ /usr/include/Magnum/Text/visibility.h
+ /usr/include/Magnum/Text/GlyphCache.h
+ /usr/include/Magnum/Text/AbstractGlyphCache.h
+ /usr/include/Magnum/Text/AbstractFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h
+ /usr/include/MagnumPlugins/StbTrueTypeFont/configure.h
  /usr/include/Magnum/GL/Shader.h
  /usr/include/Magnum/GL/Version.h
  /usr/include/Magnum/Primitives/Plane.h
@@ -7866,7 +7984,6 @@ CMakeFiles/Matura.dir/src/main.cpp.o
  /home/elias/Documents/GitHub/Matura/include/ShadowLight.h
  /home/elias/Documents/GitHub/Matura/include/Frame.h
  /home/elias/Documents/GitHub/Matura/include/StageFrame.h
- /home/elias/Documents/GitHub/Matura/include/DebugLines.h
- /usr/include/Magnum/Shaders/VertexColorGL.h
+ /home/elias/Documents/GitHub/Matura/include/DebugUI.h
  /home/elias/Documents/GitHub/Matura/include/ImageFrame.h
 

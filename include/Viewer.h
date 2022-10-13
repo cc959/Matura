@@ -38,7 +38,7 @@ public:
 		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
 									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
 
-		//GL::Renderer::setClearColor(Color4(1, 0, 0, 1));
+		// GL::Renderer::setClearColor(Color4(1, 0, 0, 1));
 
 		timeline.start();
 

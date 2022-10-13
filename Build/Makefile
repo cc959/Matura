@@ -204,29 +204,29 @@ resource_Shaders.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/resource_Shaders.cpp.s
 .PHONY : resource_Shaders.cpp.s
 
-src/DebugLines.o: src/DebugLines.cpp.o
-.PHONY : src/DebugLines.o
+src/DebugUI.o: src/DebugUI.cpp.o
+.PHONY : src/DebugUI.o
 
 # target to build an object file
-src/DebugLines.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugLines.cpp.o
-.PHONY : src/DebugLines.cpp.o
+src/DebugUI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugUI.cpp.o
+.PHONY : src/DebugUI.cpp.o
 
-src/DebugLines.i: src/DebugLines.cpp.i
-.PHONY : src/DebugLines.i
+src/DebugUI.i: src/DebugUI.cpp.i
+.PHONY : src/DebugUI.i
 
 # target to preprocess a source file
-src/DebugLines.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugLines.cpp.i
-.PHONY : src/DebugLines.cpp.i
+src/DebugUI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugUI.cpp.i
+.PHONY : src/DebugUI.cpp.i
 
-src/DebugLines.s: src/DebugLines.cpp.s
-.PHONY : src/DebugLines.s
+src/DebugUI.s: src/DebugUI.cpp.s
+.PHONY : src/DebugUI.s
 
 # target to generate assembly for a file
-src/DebugLines.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugLines.cpp.s
-.PHONY : src/DebugLines.cpp.s
+src/DebugUI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/DebugUI.cpp.s
+.PHONY : src/DebugUI.cpp.s
 
 src/Frame.o: src/Frame.cpp.o
 .PHONY : src/Frame.o
@@ -581,9 +581,9 @@ help:
 	@echo "... resource_Shaders.o"
 	@echo "... resource_Shaders.i"
 	@echo "... resource_Shaders.s"
-	@echo "... src/DebugLines.o"
-	@echo "... src/DebugLines.i"
-	@echo "... src/DebugLines.s"
+	@echo "... src/DebugUI.o"
+	@echo "... src/DebugUI.i"
+	@echo "... src/DebugUI.s"
 	@echo "... src/Frame.o"
 	@echo "... src/Frame.i"
 	@echo "... src/Frame.s"

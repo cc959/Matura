@@ -6,7 +6,7 @@
 #include "Frame.h"
 #include "Stage.h"
 #include "ShadowLight.h"
-#include "DebugLines.h"
+#include "DebugUI.h"
 
 class StageFrame : public Frame, public Stage
 {
@@ -16,7 +16,7 @@ class StageFrame : public Frame, public Stage
 
 	Object3D _shadowCameraIndicator;
 
-	Magnum::Examples::DebugLines _debug;
+	DebugUI _debug;
 
 	void addDebugLines();
 	void addDebugLines(const Matrix4 &transformation);

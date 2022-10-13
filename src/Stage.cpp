@@ -167,7 +167,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 
 		_cameras.push_back(camera);
 	}
-	_activeCamera = _cameras[0];
+	//_activeCamera = _cameras[0];
 
 	_player = ImportAnimations(importer, _animationData, _objectByID);
 }

@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/elias/Documents/GitHub/Matura/Build",
-  "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/home/elias/Documents/GitHub/Matura/. -I/usr/include/colmap -I/home/elias/Documents/GitHub/Matura/./include -I/usr/include/MagnumExternal/ImGui -isystem /usr/include/opencv4 -isystem /usr/include/SDL2 -g -Wall -Wextra -Wold-style-cast -Winit-self -Werror=return-type -Wmissing-declarations -Wpedantic -fvisibility=hidden -fvisibility-inlines-hidden -Wzero-as-null-pointer-constant -Wdouble-promotion -o CMakeFiles/Matura.dir/src/DebugLines.cpp.o -c /home/elias/Documents/GitHub/Matura/src/DebugLines.cpp",
-  "file": "/home/elias/Documents/GitHub/Matura/src/DebugLines.cpp"
+  "command": "/usr/bin/g++ -DCORRADE_IS_DEBUG_BUILD -I/home/elias/Documents/GitHub/Matura/. -I/usr/include/colmap -I/home/elias/Documents/GitHub/Matura/./include -I/usr/include/MagnumExternal/ImGui -isystem /usr/include/opencv4 -isystem /usr/include/SDL2 -g -Wall -Wextra -Wold-style-cast -Winit-self -Werror=return-type -Wmissing-declarations -Wpedantic -fvisibility=hidden -fvisibility-inlines-hidden -Wzero-as-null-pointer-constant -Wdouble-promotion -o CMakeFiles/Matura.dir/src/DebugUI.cpp.o -c /home/elias/Documents/GitHub/Matura/src/DebugUI.cpp",
+  "file": "/home/elias/Documents/GitHub/Matura/src/DebugUI.cpp"
 },
 {
   "directory": "/home/elias/Documents/GitHub/Matura/Build",

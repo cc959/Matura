@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/elias/Documents/GitHub/Matura/Build/resource_Images.cpp" "CMakeFiles/Matura.dir/resource_Images.cpp.o" "gcc" "CMakeFiles/Matura.dir/resource_Images.cpp.o.d"
   "/home/elias/Documents/GitHub/Matura/Build/resource_Shaders.cpp" "CMakeFiles/Matura.dir/resource_Shaders.cpp.o" "gcc" "CMakeFiles/Matura.dir/resource_Shaders.cpp.o.d"
-  "/home/elias/Documents/GitHub/Matura/src/DebugLines.cpp" "CMakeFiles/Matura.dir/src/DebugLines.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/DebugLines.cpp.o.d"
+  "/home/elias/Documents/GitHub/Matura/src/DebugUI.cpp" "CMakeFiles/Matura.dir/src/DebugUI.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/DebugUI.cpp.o.d"
   "/home/elias/Documents/GitHub/Matura/src/Frame.cpp" "CMakeFiles/Matura.dir/src/Frame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Frame.cpp.o.d"
   "/home/elias/Documents/GitHub/Matura/src/ImageFrame.cpp" "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/ImageFrame.cpp.o.d"
   "/home/elias/Documents/GitHub/Matura/src/Joystick.cpp" "CMakeFiles/Matura.dir/src/Joystick.cpp.o" "gcc" "CMakeFiles/Matura.dir/src/Joystick.cpp.o.d"

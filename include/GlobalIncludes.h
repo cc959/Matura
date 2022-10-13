@@ -48,6 +48,13 @@
 #include <Magnum/GL/Framebuffer.h>
 #include <Magnum/GL/TextureArray.h>
 #include <Magnum/SceneGraph/AbstractFeature.h>
+#include <Magnum/Shaders/VertexColorGL.h>
+#include <Magnum/Shaders/VectorGL.h>
+#include <Magnum/Shaders/DistanceFieldVectorGL.h>
+#include <Magnum/Text/Renderer.h>
+#include <Magnum/Text/GlyphCache.h>
+#include <Magnum/Text/AbstractFont.h>
+#include <MagnumPlugins/StbTrueTypeFont/StbTrueTypeFont.h>
 
 #include <Corrade/Containers/Iterable.h>
 #include <Corrade/Containers/StringView.h>

@@ -64,6 +64,8 @@ void StageFrame::draw3D()
 	if (_setTarget)
 	{
 		_chacheCameraObject.setTransformation(_activeCamera->object().absoluteTransformationMatrix());
+		_debug.reset();
+		_debug.addLine({10, 0, 0}, {0, 20, 0}, Color3{1, 0, 0}, false, "BLUB");
 	}
 	else
 	{
@@ -76,7 +78,7 @@ void StageFrame::draw3D()
 
 	// addDebugLines(_objectByName["Camera manipulator"]->absoluteTransformationMatrix());
 
-	//addDebugLines(Matrix4());
+	// addDebugLines(Matrix4());
 
 	const Vector3 screenDirection = _shadows._shadowStaticAlignment ? Vector3::zAxis() : _chacheCameraObject.transformation()[2].xyz();
 	_shadows._shadowLight.setTarget(_lights.size() ? _lights[0].xyz() : Vector3{3, 2, 1}, screenDirection, _cacheCamera);
@@ -113,7 +115,7 @@ void StageFrame::draw3D()
 
 	_activeCamera->draw(_shadowReceivers);
 
-	_debug.draw(_activeCamera->projectionMatrix() * _activeCamera->cameraMatrix());
+	_debug.draw(*_activeCamera);
 }
 
 bool my_tool_active = true;
