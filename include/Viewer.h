@@ -16,9 +16,10 @@ class Viewer : public Platform::Application
 public:
 	Frame *_currentFrame = nullptr;
 	int _currentFrameIndex;
+	bool postProcess = true;
 	vector<Frame *> _frames;
 
-	PostProcess _postProcesser;
+	PostProcess _postProcessor;
 
 	explicit Viewer(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Robot Arm").setSize(Vector2i(1280, 720), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4).setSrgbCapable(true)}
 	{
@@ -40,6 +41,8 @@ public:
 									   GL::Renderer::BlendEquation::Add);
 		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
 									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
+
+		_postProcessor.setupFramebuffers(framebufferSize(), 5);
 
 		// GL::Renderer::setClearColor(Color4(1, 0, 0, 1));
 
@@ -85,15 +88,18 @@ private:
 
 		FL _currentFrame->setupGUI();
 
-		FL _currentFrame->draw3D();
+		ImGui::Checkbox("Post Processing", &postProcess);
 
+		FL _currentFrame->draw3D();
 
 		GL::Renderer::enable(GL::Renderer::Feature::Blending);
 		GL::Renderer::enable(GL::Renderer::Feature::ScissorTest);
 		GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
 		GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
 
-		_postProcesser.draw();
+		if (postProcess) {
+			_postProcessor.bloom(GL::defaultFramebuffer).vignette(GL::defaultFramebuffer);
+		}
 
 		_imgui.updateApplicationCursor(*this);
 
@@ -118,6 +124,8 @@ private:
 
 		_imgui.relayout(Vector2{event.windowSize()} / event.dpiScaling(),
 						event.windowSize(), event.framebufferSize());
+
+		_postProcessor.setupFramebuffers(event.framebufferSize(), 5);
 
 		FL _currentFrame->viewportEvent(event);
 	}

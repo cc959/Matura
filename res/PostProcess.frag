@@ -1,8 +1,6 @@
 out vec4 fragmentColor;
 
-in highp vec2 _uv;
-uniform ivec2 _srcResolution;
-uniform ivec2 _destResolution;
+in highp vec2 uv;
 
 uniform sampler2D _texture;
 uniform int mode;
@@ -10,14 +8,11 @@ uniform int mode;
 const int downsample = 0;
 const int upsample = 1;
 const int merge = 2;
+const int vignette = 3;
 
 void main() {
 
-	vec2 uv = _uv;
-
 	if(mode == downsample) {
-		uv *= 2;
-		clamp(uv, vec2(0), vec2(_srcResolution) / vec2(textureSize(_texture, 0)));
 
 		highp vec2 pixelSize = 1.0 / textureSize(_texture, 0);
 		float x = pixelSize.x;
@@ -50,13 +45,13 @@ void main() {
 
 	if(mode == upsample) {
 
-		uv /= 2;//vec2(_srcResolution) / vec2(textureSize(_texture, 0));
+		// uv /= 2;//vec2(_srcResolution) / vec2(textureSize(_texture, 0));
 
-		clamp(uv, vec2(0), vec2(_srcResolution) / vec2(textureSize(_texture, 0)));
+		// clamp(uv, vec2(0), vec2(_srcResolution) / vec2(textureSize(_texture, 0)));
 
 		highp vec2 pixelSize = 1.0 / textureSize(_texture, 0);
 
-		vec2 filterRadius = pixelSize;
+		vec2 filterRadius = pixelSize / 2;
 
 		float x = filterRadius.x;
 		float y = filterRadius.y;
@@ -83,7 +78,16 @@ void main() {
 	}
 
 	if(mode == merge) {
-		fragmentColor = vec4(texture2D(_texture, uv).xyz, 0.1);
+		fragmentColor = vec4(texture2D(_texture, uv).xyz, 0.2);
+	}
+
+	if(mode == vignette) {
+
+		vec2 v_uv = uv * (1.0 - uv.yx); // subtle vignette effect
+		float vig = v_uv.x * v_uv.y * 15;
+		vig = pow(vig, 0.05);
+
+		fragmentColor = vec4(texture2D(_texture, uv).xyz * vig, 1);
 	}
 
 }

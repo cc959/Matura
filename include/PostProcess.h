@@ -27,59 +27,67 @@ public:
 		CORRADE_INTERNAL_ASSERT_OUTPUT(link());
 		setUniform(uniformLocation("_texture"), TextureUnit);
 		_modeLocation = uniformLocation("mode");
-		_srcResolutionLocation = uniformLocation("_srcResolution");
-		_destResolutionLocation = uniformLocation("_destResolution");
 
 		_quad = MeshTools::compile(Primitives::planeSolid(Primitives::PlaneFlag::TextureCoordinates));
 	}
 
-	PostProcess &draw()
+	void setupFramebuffers(Vector2i frameSize, int blurLevels)
+	{
+		_frameSize = {frameSize};
+		_blurLevels = {blurLevels};
+
+		_color.resize(blurLevels + 1);
+		_raw.clear();
+
+		for (int i = 0; i <= blurLevels; i++)
+		{
+			_color[i].setWrapping(GL::SamplerWrapping::ClampToEdge).setStorage(1, GL::TextureFormat::RGBA8, frameSize);
+			Range2Di screenRect{{}, frameSize};
+
+			_raw.push_back(GL::Framebuffer{screenRect});
+			_raw.back().attachTexture(GL::Framebuffer::ColorAttachment{0}, _color[i], 0);
+
+			frameSize /= 2;
+		}
+	}
+
+	PostProcess &bloom(GL::AbstractFramebuffer &source)
 	{
 
-		vector<GL::Texture2D> color(2);
-		color[0].setWrapping(GL::SamplerWrapping::ClampToEdge).setStorage(1, GL::TextureFormat::RGBA8, {1280, 720});
-		color[1].setWrapping(GL::SamplerWrapping::ClampToEdge).setStorage(1, GL::TextureFormat::RGBA8, {1280, 720});
-
-		Range2Di screenRect{{}, {1280, 720}};
-
-		vector<GL::Framebuffer> raw;
-		raw.push_back(GL::Framebuffer{screenRect});
-		raw.push_back(GL::Framebuffer{screenRect});
-		raw[0].attachTexture(GL::Framebuffer::ColorAttachment{0}, color[0], 0);
-		raw[1].attachTexture(GL::Framebuffer::ColorAttachment{0}, color[1], 0);
-
-		GL::AbstractFramebuffer::blit(GL::defaultFramebuffer, raw[0], screenRect, screenRect, GL::FramebufferBlitMask(GL::FramebufferBlit::Color), GL::FramebufferBlitFilter::Linear);
-
-		Vector2i size = color[0].imageSize(0);
+		GL::AbstractFramebuffer::blit(source, _raw[0], {{}, _frameSize}, {{}, _frameSize}, GL::FramebufferBlitMask(GL::FramebufferBlit::Color), GL::FramebufferBlitFilter::Linear);
 
 		setUniform(_modeLocation, 0);
 
-		for (int i = 1; i <= 4; i++)
+		for (int i = 1; i <= _blurLevels; i++)
 		{
-			raw[i % 2].bind();
-			Vector2i newSize = size / 2;
-			color[(i - 1) % 2].bind(TextureUnit);
-			setUniform(_srcResolutionLocation, size);
-			setUniform(_destResolutionLocation, newSize);
+			_raw[i].bind();
+			_color[i - 1].bind(TextureUnit);
 			draw(_quad);
-			size = newSize;
 		}
 		setUniform(_modeLocation, 1);
-		for (int i = 3; i >= 0; i--)
+		for (int i = _blurLevels - 1; i >= 0; i--)
 		{
-			raw[i % 2].bind();
-			Vector2i newSize = size * 2;
-			color[(i + 1) % 2].bind(TextureUnit);
-			setUniform(_srcResolutionLocation, size);
-			setUniform(_destResolutionLocation, newSize);
+			_raw[i].bind();
+			_color[i + 1].bind(TextureUnit);
 			draw(_quad);
-			size = newSize;
 		}
 
-		GL::defaultFramebuffer.bind();
+		source.bind();
 
-		color[0].bind(TextureUnit);
+		_color[0].bind(TextureUnit);
 		setUniform(_modeLocation, 2);
+		draw(_quad);
+
+		return *this;
+	}
+
+	PostProcess &vignette(GL::AbstractFramebuffer &source)
+	{
+		GL::AbstractFramebuffer::blit(source, _raw[0], {{}, _frameSize}, {{}, _frameSize}, GL::FramebufferBlitMask(GL::FramebufferBlit::Color), GL::FramebufferBlitFilter::Linear);
+
+		setUniform(_modeLocation, 3);
+		source.bind();
+		_color[0].bind(TextureUnit);
 		draw(_quad);
 
 		return *this;
@@ -95,5 +103,10 @@ private:
 		TextureUnit = 0
 	};
 
-	int _modeLocation, _srcResolutionLocation, _destResolutionLocation;
+	int _modeLocation;
+	vector<GL::Texture2D> _color;
+	vector<GL::Framebuffer> _raw;
+
+	Vector2i _frameSize;
+	int _blurLevels;
 };
