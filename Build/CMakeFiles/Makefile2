@@ -136,12 +136,12 @@ CMakeFiles/Matura.dir/all: CMakeFiles/Images-dependencies.dir/all
 CMakeFiles/Matura.dir/all: CMakeFiles/Shaders-dependencies.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/elias/Documents/GitHub/Matura/Build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target Matura"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/elias/Documents/GitHub/Matura/Build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 "Built target Matura"
 .PHONY : CMakeFiles/Matura.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Matura.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/elias/Documents/GitHub/Matura/Build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/elias/Documents/GitHub/Matura/Build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Matura.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/elias/Documents/GitHub/Matura/Build/CMakeFiles 0
 .PHONY : CMakeFiles/Matura.dir/rule

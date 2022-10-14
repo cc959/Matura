@@ -20,7 +20,7 @@ private:
 	void draw3D() override;
 	void setupGUI() override;
 
-	static GL::Mesh *_mesh;
+	static GL::Mesh *_quad;
 	static Shaders::FlatGL2D *_shader;
 	GL::Texture2D _texture;
 };

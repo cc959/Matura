@@ -492,4 +492,5 @@ CMakeFiles/Matura.dir/src/main.cpp.o: \
  /home/elias/Documents/GitHub/Matura/./include/Frame.h \
  /home/elias/Documents/GitHub/Matura/./include/StageFrame.h \
  /home/elias/Documents/GitHub/Matura/./include/DebugUI.h \
- /home/elias/Documents/GitHub/Matura/./include/ImageFrame.h
+ /home/elias/Documents/GitHub/Matura/./include/ImageFrame.h \
+ /home/elias/Documents/GitHub/Matura/./include/PostProcess.h

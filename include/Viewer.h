@@ -7,6 +7,7 @@
 #include "Frame.h"
 #include "StageFrame.h"
 #include "ImageFrame.h"
+#include "PostProcess.h"
 
 #define FL if (_currentFrame)
 
@@ -16,6 +17,8 @@ public:
 	Frame *_currentFrame = nullptr;
 	int _currentFrameIndex;
 	vector<Frame *> _frames;
+
+	PostProcess _postProcesser;
 
 	explicit Viewer(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Robot Arm").setSize(Vector2i(1280, 720), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4).setSrgbCapable(true)}
 	{
@@ -84,12 +87,15 @@ private:
 
 		FL _currentFrame->draw3D();
 
-		_imgui.updateApplicationCursor(*this);
 
 		GL::Renderer::enable(GL::Renderer::Feature::Blending);
 		GL::Renderer::enable(GL::Renderer::Feature::ScissorTest);
 		GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
 		GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
+
+		_postProcesser.draw();
+
+		_imgui.updateApplicationCursor(*this);
 
 		_imgui.drawFrame();
 

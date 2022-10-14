@@ -1,9 +1,9 @@
 #include "ImageFrame.h"
 
-GL::Mesh *ImageFrame::_mesh = nullptr;
+GL::Mesh *ImageFrame::_quad = nullptr;
 Shaders::FlatGL2D *ImageFrame::_shader = nullptr;
 
-ImageFrame::ImageFrame(Containers::Optional<Trade::ImageData2D>& image, const Timeline &timeline, ImGuiIntegration::Context &guiContext) : ImageFrame{timeline, guiContext}
+ImageFrame::ImageFrame(Containers::Optional<Trade::ImageData2D> &image, const Timeline &timeline, ImGuiIntegration::Context &guiContext) : ImageFrame{timeline, guiContext}
 {
 	FromImage(image);
 }
@@ -38,7 +38,7 @@ ImageFrame::ImageFrame(Containers::ArrayView<const char> raw, const Timeline &ti
 	FromImage(image);
 }
 
-void ImageFrame::FromImage(Containers::Optional<Trade::ImageData2D>& image)
+void ImageFrame::FromImage(Containers::Optional<Trade::ImageData2D> &image)
 {
 	CORRADE_INTERNAL_ASSERT(image);
 
@@ -54,7 +54,7 @@ ImageFrame::ImageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiC
 	if (!_shader)
 		_shader = new Shaders::FlatGL2D(Shaders::FlatGL2D::Flag::Textured);
 
-	if (!_mesh)
+	if (!_quad)
 	{
 
 		struct QuadVertex
@@ -63,15 +63,15 @@ ImageFrame::ImageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiC
 			Vector2 textureCoordinates;
 		};
 
-		_mesh = new GL::Mesh();
+		_quad = new GL::Mesh();
 
-		(*_mesh) = MeshTools::compile(Primitives::planeSolid(Primitives::PlaneFlag::TextureCoordinates));
+		(*_quad) = MeshTools::compile(Primitives::planeSolid(Primitives::PlaneFlag::TextureCoordinates));
 	}
 }
 
 void ImageFrame::draw3D()
 {
-	_shader->setColor(Color4(1, 1, 1, 1)).bindTexture(_texture).draw(*_mesh);
+	_shader->setColor(Color4(1, 1, 1, 1)).bindTexture(_texture).draw(*_quad);
 }
 
 void ImageFrame::setupGUI()

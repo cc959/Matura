@@ -348,6 +348,30 @@ src/PhongGLShadows.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.s
 .PHONY : src/PhongGLShadows.cpp.s
 
+src/PostProcess.o: src/PostProcess.cpp.o
+.PHONY : src/PostProcess.o
+
+# target to build an object file
+src/PostProcess.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PostProcess.cpp.o
+.PHONY : src/PostProcess.cpp.o
+
+src/PostProcess.i: src/PostProcess.cpp.i
+.PHONY : src/PostProcess.i
+
+# target to preprocess a source file
+src/PostProcess.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PostProcess.cpp.i
+.PHONY : src/PostProcess.cpp.i
+
+src/PostProcess.s: src/PostProcess.cpp.s
+.PHONY : src/PostProcess.s
+
+# target to generate assembly for a file
+src/PostProcess.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Matura.dir/build.make CMakeFiles/Matura.dir/src/PostProcess.cpp.s
+.PHONY : src/PostProcess.cpp.s
+
 src/RadialCamera.o: src/RadialCamera.cpp.o
 .PHONY : src/RadialCamera.o
 
@@ -599,6 +623,9 @@ help:
 	@echo "... src/PhongGLShadows.o"
 	@echo "... src/PhongGLShadows.i"
 	@echo "... src/PhongGLShadows.s"
+	@echo "... src/PostProcess.o"
+	@echo "... src/PostProcess.i"
+	@echo "... src/PostProcess.s"
 	@echo "... src/RadialCamera.o"
 	@echo "... src/RadialCamera.i"
 	@echo "... src/RadialCamera.s"

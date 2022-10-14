@@ -11,6 +11,7 @@ set(OLD_GLOB
   "/home/elias/Documents/GitHub/Matura/src/Joystick.cpp"
   "/home/elias/Documents/GitHub/Matura/src/PhongDrawable.cpp"
   "/home/elias/Documents/GitHub/Matura/src/PhongGLShadows.cpp"
+  "/home/elias/Documents/GitHub/Matura/src/PostProcess.cpp"
   "/home/elias/Documents/GitHub/Matura/src/RadialCamera.cpp"
   "/home/elias/Documents/GitHub/Matura/src/SerialCom.cpp"
   "/home/elias/Documents/GitHub/Matura/src/ShadowCasterDrawable.cpp"

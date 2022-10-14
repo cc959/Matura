@@ -65,7 +65,8 @@ void StageFrame::draw3D()
 	{
 		_chacheCameraObject.setTransformation(_activeCamera->object().absoluteTransformationMatrix());
 		_debug.reset();
-		_debug.addLine({10, 0, 0}, {0, 20, 0}, Color3{1, 0, 0}, false, "BLUB");
+		_debug.addLine({10, 0, 0}, Color3{0, 0, 1}, {0, 20, 0}, Color3{1, 0, 0}, false, "20m");
+		_debug.addPoint({20, 0, 0}, Color3{0, 1, 0}, false, "Camera 1");
 	}
 	else
 	{

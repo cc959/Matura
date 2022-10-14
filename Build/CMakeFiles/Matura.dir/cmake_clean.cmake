@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Matura.dir/src/PhongDrawable.cpp.o.d"
   "CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o"
   "CMakeFiles/Matura.dir/src/PhongGLShadows.cpp.o.d"
+  "CMakeFiles/Matura.dir/src/PostProcess.cpp.o"
+  "CMakeFiles/Matura.dir/src/PostProcess.cpp.o.d"
   "CMakeFiles/Matura.dir/src/RadialCamera.cpp.o"
   "CMakeFiles/Matura.dir/src/RadialCamera.cpp.o.d"
   "CMakeFiles/Matura.dir/src/SerialCom.cpp.o"
