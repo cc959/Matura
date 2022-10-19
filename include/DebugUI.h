@@ -63,7 +63,8 @@ protected:
 
 	PluginManager::Manager<Text::AbstractFont> manager;
 	Text::Renderer2D *_textRenderer;
-	Text::GlyphCache _cache{Vector2i(2048 * 2)};
+	Text::GlyphCache _cache{Vector2i(2048 * 2), Vector2i(20)};
 	Text::AbstractFont *_font;
-	Shaders::VectorGL2D _textShader;
+	Shaders::DistanceFieldVectorGL2D _textShader;
+	GL::Texture2D distanceField;
 };

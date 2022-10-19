@@ -44,14 +44,19 @@ DebugUI::DebugUI() : _mesh{GL::MeshPrimitive::Lines}
 
 	_font = manager.loadAndInstantiate("StbTrueTypeFont").release();
 
-	if (!_font || !_font->openFile("res/Fonts/Roboto-Regular.ttf", 256.0f))
+	if (!_font || !_font->openFile("res/Fonts/Roboto-Bold.ttf", 256.0f))
 		Fatal{} << "Can't open res/Fonts/Roboto-Regular.ttf with StbTrueTypeFont";
 
 	_font->fillGlyphCache(_cache, "abcdefghijklmnopqrstuvwxyz"
 								  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 								  "0123456789?!:;,. ");
 
-	_textRenderer = new Text::Renderer2D{*_font, _cache, 0.05f, Text::Alignment::LineCenter};
+	distanceField.setWrapping(GL::SamplerWrapping::ClampToEdge).setStorage(1, GL::TextureFormat::RGBA8, _cache.texture().imageSize(0));
+	TextureTools::DistanceField(7)(_cache.texture(), distanceField, Range2Di{{}, _cache.texture().imageSize(0)});
+
+	Debug{} << _cache.texture().imageSize(0);
+
+	_textRenderer = new Text::Renderer2D{*_font, _cache, 0.025f, Text::Alignment::MiddleCenter};
 	_textRenderer->reserve(32, GL::BufferUsage::DynamicDraw, GL::BufferUsage::StaticDraw);
 }
 
@@ -117,20 +122,27 @@ void DebugUI::draw(SceneGraph::Camera3D &camera)
 			!clampAxis(screenB, screenA, screenB.y(), screenA.y()))
 			continue;
 
-		/* Update the text occasionally */
-		_textRenderer->render(_labels[i]);
+		if (_labels[i].size())
+		{
+			/* Update the text occasionally */
+			_textRenderer->render(_labels[i]);
 
-		GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
-		GL::Renderer::enable(GL::Renderer::Feature::Blending);
+			GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
+			GL::Renderer::enable(GL::Renderer::Feature::Blending);
 
-		/* Draw the text on the screen */
-		_textShader.setTransformationProjectionMatrix(Matrix3::translation((screenA + screenB).xy() / 2.f))
-			.setColor((_lines[0][i * 2].color + _lines[0][i * 2 + 1].color) / 2.f)
-			.bindVectorTexture(_cache.texture())
-			.draw(_textRenderer->mesh());
+			Vector2 aspect = Vector2(camera.viewport()) / float(camera.viewport().x());
 
-		GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
-		GL::Renderer::enable(GL::Renderer::Feature::Blending);
+			/* Draw the text on the screen */
+			_textShader.setTransformationProjectionMatrix(Matrix3::projection(aspect) * Matrix3::translation((screenA + screenB).xy() / 2.f * (aspect / 2.f)))
+				.setColor((_lines[0][i * 2].color + _lines[0][i * 2 + 1].color) / 2.f)
+				.setOutlineColor(Color4(1, 1, 1, 1))
+				.setOutlineRange(0.7, 0.1)
+				.bindVectorTexture(distanceField)
+				.draw(_textRenderer->mesh());
+
+			GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
+			GL::Renderer::enable(GL::Renderer::Feature::Blending);
+		}
 	}
 }
 

@@ -21,7 +21,7 @@ public:
 
 	PostProcess _postProcessor;
 
-	explicit Viewer(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Robot Arm").setSize(Vector2i(1280, 720), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4).setSrgbCapable(true)}
+	explicit Viewer(const Arguments &arguments) : Platform::Application{arguments, Configuration{}.setTitle("Robot Arm").setSize(Vector2i(1500, 1000), Vector2(1, 1)).addWindowFlags(Configuration::WindowFlag::Resizable), GLConfiguration{}.setSampleCount(4).setSrgbCapable(true)}
 	{
 		_imgui = ImGuiIntegration::Context(Vector2{windowSize()} / dpiScaling(),
 										   windowSize(), framebufferSize());
@@ -34,7 +34,8 @@ public:
 		// addFrame(new StageFrame("/home/elias/Downloads/untitled4.fbx", timeline, _imgui, joystick));
 		// addFrame(new StageFrame("/home/elias/Downloads/autumn tree001-coronafbx.FBX", timeline, _imgui, joystick));
 		// addFrame(new StageFrame("/home/elias/Downloads/audi_r8/scene.gltf", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/tag.fbx", timeline, _imgui, joystick));
+		//addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
 		addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,
@@ -42,7 +43,7 @@ public:
 		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
 									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
 
-		_postProcessor.setupFramebuffers(framebufferSize(), 5);
+		_postProcessor.setupFramebuffers(framebufferSize(), 4);
 
 		// GL::Renderer::setClearColor(Color4(1, 0, 0, 1));
 
@@ -59,14 +60,17 @@ private:
 		{
 			_currentFrame = newFrame;
 			_currentFrameIndex = _frames.size() - 1;
+			FL _currentFrame->Enter();
 		}
 		return _frames.size() - 1;
 	}
 
 	void setFrame(int frameID)
 	{
+		FL _currentFrame->Leave();
 		_currentFrame = _frames[frameID];
 		_currentFrameIndex = frameID;
+		FL _currentFrame->Enter();
 	}
 
 	void nextFrame()
@@ -97,7 +101,8 @@ private:
 		GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
 		GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
 
-		if (postProcess) {
+		if (postProcess)
+		{
 			_postProcessor.bloom(GL::defaultFramebuffer).vignette(GL::defaultFramebuffer);
 		}
 
@@ -125,7 +130,7 @@ private:
 		_imgui.relayout(Vector2{event.windowSize()} / event.dpiScaling(),
 						event.windowSize(), event.framebufferSize());
 
-		_postProcessor.setupFramebuffers(event.framebufferSize(), 5);
+		_postProcessor.setupFramebuffers(event.framebufferSize(), 4);
 
 		FL _currentFrame->viewportEvent(event);
 	}

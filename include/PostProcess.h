@@ -36,8 +36,9 @@ public:
 		_frameSize = {frameSize};
 		_blurLevels = {blurLevels};
 
-		_color.resize(blurLevels + 1);
 		_raw.clear();
+		_color.clear();
+		_color.resize(blurLevels + 1);
 
 		for (int i = 0; i <= blurLevels; i++)
 		{
@@ -74,9 +75,15 @@ public:
 
 		source.bind();
 
+		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
+									   GL::Renderer::BlendFunction::One);
+
 		_color[0].bind(TextureUnit);
 		setUniform(_modeLocation, 2);
 		draw(_quad);
+
+		GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
+									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
 
 		return *this;
 	}

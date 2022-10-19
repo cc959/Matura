@@ -22,15 +22,6 @@ Stage::Stage()
 
 void Stage::Import(Trade::AnySceneImporter &importer)
 {
-	_cameraRoot.setParent(&_scene);
-	_cameraObject.setParent(&_cameraRoot);
-	_cameraObject.setTranslation(Vector3(0, 3, 5));
-	_cameraObject.setRotation(Quaternion::fromMatrix(Matrix4::lookAt(Vector3(0, 3, 5), Vector3(0, 0, 0), Vector3::yAxis(1)).rotation()));
-
-	(*(_activeCamera = new SceneGraph::Camera3D{_cameraObject}))
-		.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
-		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 1000.0f))
-		.setViewport(GL::defaultFramebuffer.viewport().size());
 
 	_manipulator.setParent(&_scene);
 
@@ -119,7 +110,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		{
 			Object3D *cameraManipulator = new Object3D(_objectByID[cameraObject.first()]);
 
-			_objectByName[importer.cameraName(cameraObject.second()) + " manipulator"] = cameraManipulator;
+			_objectByName[importer.cameraName(cameraObject.second()) + "_Blender"] = cameraManipulator;
 			_objectByID.push_back(cameraManipulator);
 
 			_cameras[cameraObject.second()] = new SceneGraph::Camera3D(*cameraManipulator);
@@ -141,6 +132,8 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 				.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
 				.setProjectionMatrix(Matrix4::perspectiveProjection(cameraData.fov(), cameraData.aspectRatio(), cameraData.near(), cameraData.far()))
 				.setViewport(GL::defaultFramebuffer.viewport().size());
+
+			Debug{} << cameraData.fov();
 		}
 		else
 		{
@@ -151,25 +144,21 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		}
 	}
 
-	if (!_cameras.size())
+	if (_cameras.empty())
 	{
-		Object3D *cameraObejct = new Object3D{};
-		cameraObejct->setParent(&_manipulator);
-
-		SceneGraph::Camera3D *camera = new SceneGraph::Camera3D(*cameraObejct);
-		(*camera)
-			.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
-			.setProjectionMatrix(Matrix4::perspectiveProjection(30.0_degf, 1, 0.01, 100))
-			.setViewport(GL::defaultFramebuffer.viewport().size());
-
-		_objectByName["Camera"] = cameraObejct;
-		_objectByID.push_back(cameraObejct);
-
-		_cameras.push_back(camera);
+        addCamera(30.0_degf, 0.1, 1000, "Camera");
 	}
-	//_activeCamera = _cameras[0];
 
 	_player = ImportAnimations(importer, _animationData, _objectByID);
+}
+
+int Stage::getCameraID(SceneGraph::Camera3D *camera)
+{
+	auto it = find(_cameras.begin(), _cameras.end(), camera);
+	if (it == _cameras.end())
+		return -1;
+	else
+		return it - _cameras.begin();
 }
 
 Animation::Player<Float> Stage::ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, vector<Object3D *> &objects)

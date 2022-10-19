@@ -7,12 +7,13 @@
 #include "Stage.h"
 #include "ShadowLight.h"
 #include "DebugUI.h"
+#include "CameraLocator.h"
 
 class StageFrame : public Frame, public Stage
 {
 	string _path;
 
-	void setupShadows();
+	void setup();
 
 	Object3D _shadowCameraIndicator;
 
@@ -23,6 +24,12 @@ class StageFrame : public Frame, public Stage
 	bool _setTarget = true;
 
 	Joystick &_joystick;
+
+	Object3D *_cameraRoot, *_cameraObject;
+
+	float pauseTime = 0;
+
+	CameraLocator locator{vector<Matrix4>{Matrix4::translation({0, 0, 0}), Matrix4::translation({0, 0, 0})} /*_objectByName["Plane"]->absoluteTransformation()}*/};
 
 public:
 	Object3D _chacheCameraObject{&_scene};
@@ -45,13 +52,16 @@ public:
 
 	Vector3 _previousPosition;
 
+	void Enter() override;
+	void Leave() override;
+
 	void mousePressEvent(SDLApp::MouseEvent &event) override;
-
 	void mouseReleaseEvent(SDLApp::MouseEvent &event) override;
-
 	void mouseMoveEvent(SDLApp::MouseMoveEvent &event) override;
-
 	void mouseScrollEvent(SDLApp::MouseScrollEvent &event) override;
+
+	void keyPressEvent(SDLApp::KeyEvent &event) override;
+	void keyReleaseEvent(SDLApp::KeyEvent &event) override;
 
 	void applyJoystick();
 };

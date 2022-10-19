@@ -78,13 +78,13 @@ void main() {
 	}
 
 	if(mode == merge) {
-		fragmentColor = vec4(texture2D(_texture, uv).xyz, 0.2);
+		fragmentColor = vec4(texture2D(_texture, uv).xyz, 0.05);
 	}
 
 	if(mode == vignette) {
 
 		vec2 v_uv = uv * (1.0 - uv.yx); // subtle vignette effect
-		float vig = v_uv.x * v_uv.y * 15;
+		float vig = v_uv.x * v_uv.y * 10;
 		vig = pow(vig, 0.05);
 
 		fragmentColor = vec4(texture2D(_texture, uv).xyz * vig, 1);

@@ -1,5 +1,0 @@
-/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Images-dependencies.dir
-/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Shaders-dependencies.dir
-/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/Matura.dir
-/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/edit_cache.dir
-/home/elias/Documents/GitHub/Matura/Build/CMakeFiles/rebuild_cache.dir

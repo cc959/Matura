@@ -73,6 +73,7 @@
 #include <Magnum/SceneGraph/FeatureGroup.h>
 #include <Magnum/SceneGraph/MatrixTransformation3D.h>
 #include <Magnum/SceneGraph/Scene.h>
+#include <Magnum/TextureTools/DistanceField.h>
 
 #include <Magnum/Primitives/Plane.h>
 

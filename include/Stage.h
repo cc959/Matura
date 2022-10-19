@@ -56,7 +56,6 @@ public:
 	vector<SceneGraph::Camera3D *> _cameras;
 
 	SceneGraph::Camera3D *_activeCamera = nullptr;
-	Object3D _cameraRoot, _cameraObject;
 	SceneGraph::DrawableGroup3D _shadowReceivers;
 	SceneGraph::DrawableGroup3D _shadowCasters;
 
@@ -74,4 +73,31 @@ public:
 	static vector<Optional<GL::Texture2D>> ImportTextures(Trade::AnySceneImporter &importer);
 	static vector<Optional<Trade::PhongMaterialData>> ImportMaterials(Trade::AnySceneImporter &importer);
 	static vector<std::pair<Optional<GL::Mesh>, float>> ImportMeshes(Trade::AnySceneImporter &importer);
+
+	int getCameraID(SceneGraph::Camera3D* camera);
+
+    int addCamera(Deg fov, float near, float far, const string& name, Matrix4 baseTransformation = Matrix4::translation({}) ) {
+        auto *cameraObejct = new Object3D{};
+        cameraObejct->setParent(&_manipulator);
+
+        auto *cameraManipulator = new Object3D{};
+        cameraManipulator->setParent(cameraObejct);
+
+        auto *camera = new SceneGraph::Camera3D(*cameraManipulator);
+
+        (*camera)
+                .setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
+                .setProjectionMatrix(Matrix4::perspectiveProjection(fov, 1, near, far))
+                .setViewport(GL::defaultFramebuffer.viewport().size());
+
+        _objectByName[name]= cameraObejct;
+        _objectByID.push_back(cameraObejct);
+
+        _objectByName[name + " manipulator"] = cameraManipulator;
+        _objectByID.push_back(cameraManipulator);
+
+        _cameras.push_back(camera);
+
+        return int(_cameras.size()) - 1;
+    }
 };

@@ -6,6 +6,9 @@ void Frame::draw3D() {}
 
 void Frame::setupGUI() {}
 
+void Frame::Enter() {}
+void Frame::Leave() {}
+
 void Frame::viewportEvent(SDLApp::ViewportEvent &event) {}
 void Frame::mousePressEvent(SDLApp::MouseEvent &event) {}
 void Frame::mouseReleaseEvent(SDLApp::MouseEvent &event) {}

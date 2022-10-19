@@ -2,28 +2,52 @@
 
 StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{}, _joystick{joystick}
 {
-	setupShadows();
+	setup();
 }
 
 StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{path}, _path{path}, _joystick{joystick}
 {
 	_player.play(_timeline.previousFrameTime());
+	pauseTime = _player.elapsed(_timeline.previousFrameTime()).second;
+
 	_player.setPlayCount(0);
 
-	setupShadows();
+	setup();
 }
 
-void StageFrame::setupShadows()
+void StageFrame::Enter()
+{
+	_player.play(_timeline.previousFrameTime() - pauseTime);
+	locator.Start(0);
+}
+
+void StageFrame::Leave()
+{
+	pauseTime = _player.elapsed(_timeline.previousFrameTime()).second;
+	locator.Stop();
+}
+
+void StageFrame::setup()
 {
 	_cacheCamera.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
 		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 100.0f))
 		.setViewport(GL::defaultFramebuffer.viewport().size());
 	_shadows._shadowLight.setupShadowmaps(3, _shadows._shadowMapSize);
 	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
-	//_shadows._layerSplitExponent = 2.f;
 
-	//_shadowCameraIndicator.setParent(&_scene);
-	// new PhongDrawable(_shadowCameraIndicator, *(Stage*)this, *_meshes[0], *_materials[0], _shadowReceivers);
+	_cameraRoot = new Object3D();
+	_cameraObject = new Object3D();
+	_cameraRoot->setParent(&_scene);
+	_cameraObject->setParent(_cameraRoot);
+	_cameraObject->setTranslation(Vector3(0, 3, 5));
+	_cameraObject->setRotation(Quaternion::fromMatrix(Matrix4::lookAt(Vector3(0, 3, 5), Vector3(0, 0, 0), Vector3::yAxis(1)).rotation()));
+
+	(*(_activeCamera = new SceneGraph::Camera3D{*_cameraObject}))
+		.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
+		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 1000.0f))
+		.setViewport(GL::defaultFramebuffer.viewport().size());
+
+	_cameras.push_back(_activeCamera);
 }
 void StageFrame::addDebugLines()
 {
@@ -56,17 +80,32 @@ void StageFrame::addDebugLines(const Matrix4 &transformation)
 void StageFrame::draw3D()
 {
 	_player.advance(_timeline.previousFrameTime());
+
 	if (_player.state() != Animation::State::Playing)
 		applyJoystick();
 
+    _debug.reset();
+
 	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
+
+	Matrix4 transformation = locator.getTransformation();
+    addDebugLines(transformation);
+
+    _objectByName["Camera"]->setTransformation(transformation);
 
 	if (_setTarget)
 	{
 		_chacheCameraObject.setTransformation(_activeCamera->object().absoluteTransformationMatrix());
-		_debug.reset();
+
 		_debug.addLine({10, 0, 0}, Color3{0, 0, 1}, {0, 20, 0}, Color3{1, 0, 0}, false, "20m");
-		_debug.addPoint({20, 0, 0}, Color3{0, 1, 0}, false, "Camera 1");
+
+		for (auto camera : _cameras)
+		{
+			if (camera == _activeCamera)
+				continue;
+			_debug.addFrustum((camera->projectionMatrix() * camera->cameraMatrix()).inverted(), Color3{0, 1, 0});
+			_debug.addPoint(camera->object().absoluteTransformationMatrix() * Vector4(0, 0, 0, 1), Color3{0, 1, 0}, false, "Camera");
+		}
 	}
 	else
 	{
@@ -127,25 +166,7 @@ void StageFrame::setupGUI()
 	if (my_tool_active)
 	{
 		// Create a window called "My First Tool", with a menu bar.
-		ImGui::Begin(_path.c_str(), &my_tool_active, ImGuiWindowFlags_MenuBar);
-		if (ImGui::BeginMenuBar())
-		{
-			if (ImGui::BeginMenu("File"))
-			{
-				if (ImGui::MenuItem("Open..", "Ctrl+O"))
-				{ /* Do stuff */
-				}
-				if (ImGui::MenuItem("Save", "Ctrl+S"))
-				{ /* Do stuff */
-				}
-				if (ImGui::MenuItem("Close", "Ctrl+W"))
-				{
-					my_tool_active = false;
-				}
-				ImGui::EndMenu();
-			}
-			ImGui::EndMenuBar();
-		}
+		ImGui::Begin(_path.c_str(), &my_tool_active, 0);
 
 		ImGui::SliderFloat("Bias", &_shadows._shadowBias, 0, 0.01, "%.5f");
 		ImGui::SliderFloat("Power", &_shadows._layerSplitExponent, 0, 10);
@@ -203,8 +224,8 @@ void StageFrame::mouseMoveEvent(SDLApp::MouseMoveEvent &event)
 	if (_previousPosition.length() < 0.001f)
 		return;
 
-	_cameraRoot.rotateXLocal(-Math::Rad(diff.y() / 100.f));
-	_cameraRoot.rotateY(-Math::Rad(diff.x() / 100.f));
+	_cameraRoot->rotateXLocal(-Math::Rad(diff.y() / 100.f));
+	_cameraRoot->rotateY(-Math::Rad(diff.x() / 100.f));
 	_previousPosition = currentPosition;
 }
 
@@ -214,8 +235,21 @@ void StageFrame::mouseScrollEvent(SDLApp::MouseScrollEvent &event)
 		return;
 	/* Move 15% of the distance back or forward */
 	// if (!joystick.IsLoaded())
-	_cameraObject.setTranslation(_cameraObject.translation() * (event.offset().y() > 0 ? 1 / 0.85f : 0.85f));
+	_cameraObject->setTranslation(_cameraObject->translation() * (event.offset().y() > 0 ? 1 / 0.85f : 0.85f));
 }
+
+void StageFrame::keyPressEvent(SDLApp::KeyEvent &event)
+{
+	if (event.key() == SDLApp::KeyEvent::Key::Left)
+	{
+		_activeCamera = _cameras[(getCameraID(_activeCamera) - 1 + _cameras.size()) % _cameras.size()];
+	}
+	if (event.key() == SDLApp::KeyEvent::Key::Right)
+	{
+		_activeCamera = _cameras[(getCameraID(_activeCamera) + 1 + _cameras.size()) % _cameras.size()];
+	}
+}
+void StageFrame::keyReleaseEvent(SDLApp::KeyEvent &event) {}
 
 void StageFrame::applyJoystick()
 {
