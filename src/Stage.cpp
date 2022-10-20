@@ -22,8 +22,7 @@ Stage::Stage()
 
 void Stage::Import(Trade::AnySceneImporter &importer)
 {
-
-	_manipulator.setParent(&_scene);
+    reset();
 
 	_textures = ImportTextures(importer);
 	_materials = ImportMaterials(importer);
@@ -35,15 +34,13 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		Fatal{} << "Cannot load scene" << importer.defaultScene() << importer.sceneName(importer.defaultScene());
 	}
 
-    reset();
-
 	Containers::Array<Containers::Pair<UnsignedInt, Int>> parents = scene->parentsAsArray(); // object index, parent
 
 	for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // instantiate objects
         addObject(new Object3D{}, parent.first(), importer.objectName(parent.first()));
 
 	for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // set parents of objects
-        getObject(parent.first())->setParent(parent.second() == -1 ? &_manipulator : getObject(parent.second()));
+        getObject(parent.first())->setParent(parent.second() == -1 ? &_scene : getObject(parent.second()));
 
 	for (const Containers::Pair<UnsignedInt, Matrix4> &transformation : scene->transformations3DAsArray()) // object index, transformations
 	{
@@ -51,7 +48,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 			object->setTransformation(transformation.second());
 	}
 
-	for (int i = 0; i < importer.lightCount(); i++)
+    for (int i = 0; i < importer.lightCount(); i++)
 	{
 		Optional<Trade::LightData> light = importer.light(i);
 

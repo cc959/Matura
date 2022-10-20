@@ -42,7 +42,11 @@ void StageFrame::setup()
 	_cameraObject->setTranslation(Vector3(0, 3, 5));
 	_cameraObject->setRotation(Quaternion::fromMatrix(Matrix4::lookAt(Vector3(0, 3, 5), Vector3(0, 0, 0), Vector3::yAxis(1)).rotation()));
 
-	(*(_activeCamera = new SceneGraph::Camera3D{*_cameraObject}))
+    addObject(_cameraObject, "Turntable camera");
+    addObject(_cameraRoot, "Turntable camera root");
+
+
+    (*(_activeCamera = new SceneGraph::Camera3D{*_cameraObject}))
 		.setAspectRatioPolicy(SceneGraph::AspectRatioPolicy::Extend)
 		.setProjectionMatrix(Matrix4::perspectiveProjection(35.0_degf, 1.0f, 0.01f, 1000.0f))
 		.setViewport(GL::defaultFramebuffer.viewport().size());
@@ -161,10 +165,6 @@ void StageFrame::draw3D()
 bool my_tool_active = true;
 float my_color[4] = {1, 1, 1, 1};
 
-void recurseSceneTree(Object3D* object) {
-
-}
-
 void StageFrame::setupGUI()
 {
 	if (my_tool_active)
@@ -179,10 +179,45 @@ void StageFrame::setupGUI()
 
 		ImGui::Text(("Fps: " + to_string(1 / _timeline.previousFrameDuration())).c_str());
 
+        std::function<void(Object3D*)> recursiveSceneTree;
+
+        recursiveSceneTree = [&](Object3D* object) {
+            string name = getName(object);
+            if (name.size() && ImGui::TreeNode(name.c_str())) {
+                if (ImGui::TreeNode("Transform")) {
+                    Vector3 translation = object->translation();
+                    Vector3 rotation = Vector3(object->rotation().toEuler());
+                    Vector3 scale = object->scaling();
+
+                    rotation *= 180.0 / M_PI;
+
+                    ImGui::DragFloat3("Translation", translation.data(), 0.1);
+                    ImGui::DragFloat3("Rotation", rotation.data());
+                    ImGui::DragFloat3("Scale", scale.data(), 0.1);
+
+                    rotation *= M_PI / 180.0;
+
+
+                    object->setTranslation(translation);
+                    object->setRotation(
+                            Quaternion::rotation(Rad(rotation.z()), Vector3::zAxis()) *
+                            Quaternion::rotation(Rad(rotation.y()), Vector3::yAxis()) *
+                            Quaternion::rotation(Rad(rotation.x()), Vector3::xAxis())
+                            );
+                    object->setScaling(scale);
+                }
+
+                for (auto& child : object->children()) {
+                    recursiveSceneTree(&child);
+                }
+                ImGui::TreePop();
+            }
+        };
+
         if (ImGui::TreeNode("Scene")) {
-
-
-
+            for (auto& child : _scene.children()) {
+                recursiveSceneTree(&child);
+            }
             ImGui::TreePop();
         }
 

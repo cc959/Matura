@@ -50,7 +50,6 @@ public:
 	vector<Optional<Trade::AnimationData>> _animationData;
 
 	Scene3D _scene{};
-	Object3D _manipulator;
 
 	vector<SceneGraph::Camera3D *> _cameras;
 
@@ -77,7 +76,7 @@ public:
 
     int addCamera(Deg fov, float near, float far, const string& name, Matrix4 baseTransformation = Matrix4::translation({}) ) {
         auto *cameraObject = new Object3D{};
-        cameraObject->setParent(&_manipulator);
+        cameraObject->setParent(&_scene);
 
         auto *cameraManipulator = new Object3D{};
         cameraManipulator->setParent(cameraObject);
