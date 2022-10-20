@@ -29,7 +29,7 @@ class StageFrame : public Frame, public Stage
 
 	float pauseTime = 0;
 
-	CameraLocator locator{vector<Matrix4>{Matrix4::translation({0, 0, 0}), Matrix4::translation({0, 0, 0})} /*_objectByName["Plane"]->absoluteTransformation()}*/};
+	CameraLocator locator{vector<Matrix4>{getObject("Plane")->absoluteTransformation()}};
 
 public:
 	Object3D _chacheCameraObject{&_scene};

@@ -35,24 +35,19 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		Fatal{} << "Cannot load scene" << importer.defaultScene() << importer.sceneName(importer.defaultScene());
 	}
 
-	_objectByID = vector<Object3D *>{std::size_t(scene->mappingBound())};
+    reset();
 
 	Containers::Array<Containers::Pair<UnsignedInt, Int>> parents = scene->parentsAsArray(); // object index, parent
 
 	for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // instantiate objects
-		_objectByID[parent.first()] = new Object3D{};
+        addObject(new Object3D{}, parent.first(), importer.objectName(parent.first()));
 
 	for (const Containers::Pair<UnsignedInt, Int> &parent : parents) // set parents of objects
-		_objectByID[parent.first()]->setParent(parent.second() == -1 ? &_manipulator : _objectByID[parent.second()]);
-
-	for (int i = 0; i < importer.objectCount(); i++) // object names
-	{
-		_objectByName[importer.objectName(i)] = _objectByID[i];
-	}
+        getObject(parent.first())->setParent(parent.second() == -1 ? &_manipulator : getObject(parent.second()));
 
 	for (const Containers::Pair<UnsignedInt, Matrix4> &transformation : scene->transformations3DAsArray()) // object index, transformations
 	{
-		if (Object3D *object = _objectByID[transformation.first()])
+		if (Object3D *object = getObject(transformation.first()))
 			object->setTransformation(transformation.second());
 	}
 
@@ -66,12 +61,12 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 			_ambientLight += light->color() * light->intensity();
 		if (light->type() == Trade::LightData::Type::Directional)
 		{
-			_lights.push_back(Vector4{_objectByName[importer.lightName(i)]->translation(), 0});
+			_lights.push_back(Vector4{getObject(importer.lightName(i))->translation(), 0});
 			_lightColors.push_back(light->color() * light->intensity());
 		}
 		if (light->type() == Trade::LightData::Type::Point)
 		{
-			_lights.push_back(Vector4{_objectByName[importer.lightName(i)]->translation(), 1});
+			_lights.push_back(Vector4{getObject(importer.lightName(i))->translation(), 1});
 			_lightColors.push_back(light->color() * light->intensity());
 		}
 		Debug{} << light->color() << " * " << light->intensity();
@@ -80,7 +75,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 	for (const Containers::Pair<UnsignedInt, Containers::Pair<UnsignedInt, Int>> &
 			 meshMaterial : scene->meshesMaterialsAsArray())
 	{
-		Object3D *object = _objectByID[meshMaterial.first()];		   // object to assign material to
+		Object3D *object = getObject(meshMaterial.first());		   // object to assign material to
 		auto &[mesh, radius] = _meshes[meshMaterial.second().first()]; // mesh to assign material to
 		if (!object || !mesh)
 			continue;
@@ -108,10 +103,9 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 	if (importer.cameraCount())
 		for (auto cameraObject : scene->camerasAsArray())
 		{
-			Object3D *cameraManipulator = new Object3D(_objectByID[cameraObject.first()]);
+			Object3D *cameraManipulator = new Object3D(getObject(cameraObject.first()));
 
-			_objectByName[importer.cameraName(cameraObject.second()) + "_Blender"] = cameraManipulator;
-			_objectByID.push_back(cameraManipulator);
+            addObject(cameraManipulator, importer.cameraName(cameraObject.second()) + "_Blender");
 
 			_cameras[cameraObject.second()] = new SceneGraph::Camera3D(*cameraManipulator);
 			cameraManipulator->rotateYLocal(-90.0_degf);
@@ -149,7 +143,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
         addCamera(30.0_degf, 0.1, 1000, "Camera");
 	}
 
-	_player = ImportAnimations(importer, _animationData, _objectByID);
+	_player = ImportAnimations(importer, _animationData, *this);
 }
 
 int Stage::getCameraID(SceneGraph::Camera3D *camera)
@@ -161,7 +155,7 @@ int Stage::getCameraID(SceneGraph::Camera3D *camera)
 		return it - _cameras.begin();
 }
 
-Animation::Player<Float> Stage::ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, vector<Object3D *> &objects)
+Animation::Player<Float> Stage::ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, Objects &objects)
 {
 	Animation::Player<Float> player;
 	// import animations
@@ -181,7 +175,7 @@ Animation::Player<Float> Stage::ImportAnimations(Trade::AnySceneImporter &import
 
 		for (UnsignedInt i = 0; i != data->trackCount(); ++i)
 		{
-			Object3D &animatedObject = *objects[data->trackTarget(i)];
+			Object3D &animatedObject = *objects.getObject(data->trackTarget(i));
 			Debug{} << data->trackTarget(i) << ":" << data->trackTargetType(i);
 			if (data->trackTargetType(i) == Trade::AnimationTrackTargetType::Translation3D)
 			{

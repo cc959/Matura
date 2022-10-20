@@ -2,15 +2,15 @@
 
 #include "Magnum/Shaders/PhongGL.h"
 
-#define _shader (*(_hasNormalMap ? _shaderNormalMap : _shaderStandard))
+#define shader (*(_hasNormalMap ? _shaderNormalMap : _shaderStandard))
 
 Shaders::PhongGLShadows *PhongDrawable::_shaderStandard = nullptr;
 Shaders::PhongGLShadows *PhongDrawable::_shaderNormalMap = nullptr;
 
-PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _object(object), _mesh(mesh), _stage(stage), _material{material}
+PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _mesh(mesh), _stage(stage), _material{material}, _object(object)
 {
 	auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
-	Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, move(diffuseData));
+	Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, std::move(diffuseData));
 
 	_defaultDiffuse
 		.setMagnificationFilter(SamplerFilter::Linear)
@@ -25,15 +25,15 @@ PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Tra
 	if (!_hasNormalMap)
 	{
 		if (!_shaderStandard)
-			_shaderStandard = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::Shadows, stage._lights.size()};
+			_shaderStandard = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::Shadows, static_cast<UnsignedInt>(stage._lights.size())};
 	}
 	else
 	{
 		if (!_shaderNormalMap)
-			_shaderNormalMap = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent | Shaders::PhongGLShadows::Flag::Shadows, stage._lights.size()};
+			_shaderNormalMap = new Shaders::PhongGLShadows{Shaders::PhongGLShadows::Flag::DiffuseTexture | Shaders::PhongGLShadows::Flag::NormalTexture | Shaders::PhongGLShadows::Flag::Bitangent | Shaders::PhongGLShadows::Flag::Shadows, static_cast<UnsignedInt>(stage._lights.size())};
 	}
 
-	_shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
+	shader.setAmbientColor(Color4(0.1, 0.1, 0.1, 1))
 		.setSpecularColor(Color4(1, 1, 1, 1))
 		.setShininess(80.f);
 }
@@ -45,12 +45,12 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 {
 
 	if (_material.hasAttribute(Trade::MaterialAttribute::DiffuseTexture) && _stage._textures[_material.diffuseTexture()])
-		_shader.bindDiffuseTexture(*_stage._textures[_material.diffuseTexture()]);
+		shader.bindDiffuseTexture(*_stage._textures[_material.diffuseTexture()]);
 	else
-		_shader.bindDiffuseTexture(_defaultDiffuse);
+		shader.bindDiffuseTexture(_defaultDiffuse);
 
 	if (_hasNormalMap)
-		_shader.bindNormalTexture(*_stage._textures[_material.normalTexture()]);
+		shader.bindNormalTexture(*_stage._textures[_material.normalTexture()]);
 
 	Containers::ArrayView<Color3> colors{&_stage._lightColors[0], _stage._lightColors.size()};
 	Containers::Array<Vector4> positions{_stage._lights.size()};
@@ -65,7 +65,7 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 			positions[i] = Vector4(worldToCamera.transformPoint(_stage._lights[i].xyz()), 1);
 	}
 
-	_shader.setShadowmapMatrices(_stage.shadowMatrices)
+	shader.setShadowmapMatrices(_stage.shadowMatrices)
 		.setShadowmapTexture(_stage._shadows._shadowLight.shadowTexture())
 		.setModelMatrix(_object.absoluteTransformationMatrix())
 		.setShadowBias(_stage._shadows._shadowBias)
@@ -73,18 +73,18 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 
 	if (positions.size() && colors.size())
 	{
-		_shader
+		shader
 			.setLightPositions(positions)
 			.setLightColors(colors);
 	}
 	else
 	{
-		_shader
+		shader
 			.setLightPositions({Vector4{worldToCamera.transformVector({0.7071, 0.7071, 0}), 0}})
 			.setLightColors({Color3{1, 1, 1}});
 	}
 
-	_shader
+	shader
 		.setShininess(max(_material.shininess(), 1.f)) // 0.01f because shader acts wierd at  0
 		.setSpecularColor({_material.shininess() / 100.f, _material.shininess() / 100.f, _material.shininess() / 100.f, 1})
 		.setDiffuseColor(_material.diffuseColor())

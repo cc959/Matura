@@ -35,7 +35,7 @@ public:
 		// addFrame(new StageFrame("/home/elias/Downloads/autumn tree001-coronafbx.FBX", timeline, _imgui, joystick));
 		// addFrame(new StageFrame("/home/elias/Downloads/audi_r8/scene.gltf", timeline, _imgui, joystick));
 		addFrame(new StageFrame("/home/elias/Downloads/tag.fbx", timeline, _imgui, joystick));
-		//addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
+		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
 		addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,

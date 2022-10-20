@@ -91,7 +91,7 @@ void StageFrame::draw3D()
 	Matrix4 transformation = locator.getTransformation();
     addDebugLines(transformation);
 
-    _objectByName["Camera"]->setTransformation(transformation);
+    getObject("Camera")->setTransformation(transformation);
 
 	if (_setTarget)
 	{
@@ -161,6 +161,10 @@ void StageFrame::draw3D()
 bool my_tool_active = true;
 float my_color[4] = {1, 1, 1, 1};
 
+void recurseSceneTree(Object3D* object) {
+
+}
+
 void StageFrame::setupGUI()
 {
 	if (my_tool_active)
@@ -175,7 +179,14 @@ void StageFrame::setupGUI()
 
 		ImGui::Text(("Fps: " + to_string(1 / _timeline.previousFrameDuration())).c_str());
 
-		ImGui::EndChild();
+        if (ImGui::TreeNode("Scene")) {
+
+
+
+            ImGui::TreePop();
+        }
+
+
 		ImGui::End();
 	}
 }
@@ -258,11 +269,11 @@ void StageFrame::applyJoystick()
 		// _manipulator.rotateYLocal(-Math::Rad(joystick.GetAxisValue(2) * _deltaTime));
 		// _manipulator.rotateX(-Math::Rad(joystick.GetAxisValue(0) * _deltaTime));
 
-		if (_objectByID.size() >= 15)
+		if (objectCount() >= 15)
 		{
-			_objectByID[14]->rotateX(Math::Rad(_joystick.GetAxisValue(1) * _timeline.previousFrameDuration()));
-			_objectByID[19]->rotateX(Math::Rad(_joystick.GetAxisValue(5) * _timeline.previousFrameDuration()));
-			_objectByID[6]->rotateZ(-Math::Rad(_joystick.GetAxisValue(2) * _timeline.previousFrameDuration()));
+			getObject(14)->rotateX(Math::Rad(_joystick.GetAxisValue(1) * _timeline.previousFrameDuration()));
+			getObject(19)->rotateX(Math::Rad(_joystick.GetAxisValue(5) * _timeline.previousFrameDuration()));
+			getObject(6)->rotateZ(-Math::Rad(_joystick.GetAxisValue(2) * _timeline.previousFrameDuration()));
 		}
 		// float factor = (joystick.GetAxisValue(3) + 1.f) / 2.f;
 		// _cameraObject.setTranslation(_cameraObject.translation().normalized() * pow(1.15f, factor * 10.f));

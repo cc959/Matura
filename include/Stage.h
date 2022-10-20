@@ -5,8 +5,9 @@
 #include "PhongDrawable.h"
 #include "ShadowCasterDrawable.h"
 #include "ShadowLight.h"
+#include "Objects.h"
 
-class Stage
+class Stage : public Objects
 {
 public:
 	struct Shadows
@@ -37,8 +38,6 @@ public:
 	vector<float> _radii;
 	vector<Optional<GL::Texture2D>> _textures;
 	vector<Optional<Trade::PhongMaterialData>> _materials;
-	vector<Object3D *> _objectByID;
-	map<string, Object3D *> _objectByName;
 
 	Containers::Array<Matrix4> shadowMatrices;
 
@@ -63,13 +62,13 @@ public:
 
 	Stage();
 
-	Stage(string path);
+	explicit Stage(string path);
 
-	Stage(Trade::AnySceneImporter &importer);
+	explicit Stage(Trade::AnySceneImporter &importer);
 
 	void Import(Trade::AnySceneImporter &importer);
 
-	static Animation::Player<Float> ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, vector<Object3D *> &objects);
+	static Animation::Player<Float> ImportAnimations(Trade::AnySceneImporter &importer, vector<Optional<Trade::AnimationData>> &animationData, Objects &objects);
 	static vector<Optional<GL::Texture2D>> ImportTextures(Trade::AnySceneImporter &importer);
 	static vector<Optional<Trade::PhongMaterialData>> ImportMaterials(Trade::AnySceneImporter &importer);
 	static vector<std::pair<Optional<GL::Mesh>, float>> ImportMeshes(Trade::AnySceneImporter &importer);
@@ -77,11 +76,13 @@ public:
 	int getCameraID(SceneGraph::Camera3D* camera);
 
     int addCamera(Deg fov, float near, float far, const string& name, Matrix4 baseTransformation = Matrix4::translation({}) ) {
-        auto *cameraObejct = new Object3D{};
-        cameraObejct->setParent(&_manipulator);
+        auto *cameraObject = new Object3D{};
+        cameraObject->setParent(&_manipulator);
 
         auto *cameraManipulator = new Object3D{};
-        cameraManipulator->setParent(cameraObejct);
+        cameraManipulator->setParent(cameraObject);
+        cameraManipulator->setTransformation(baseTransformation);
+
 
         auto *camera = new SceneGraph::Camera3D(*cameraManipulator);
 
@@ -90,11 +91,9 @@ public:
                 .setProjectionMatrix(Matrix4::perspectiveProjection(fov, 1, near, far))
                 .setViewport(GL::defaultFramebuffer.viewport().size());
 
-        _objectByName[name]= cameraObejct;
-        _objectByID.push_back(cameraObejct);
+        addObject(cameraObject, name);
 
-        _objectByName[name + " manipulator"] = cameraManipulator;
-        _objectByID.push_back(cameraManipulator);
+        addObject(cameraManipulator, name + " manipulator");
 
         _cameras.push_back(camera);
 
