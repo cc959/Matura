@@ -2,18 +2,17 @@
 
 
 Matrix4 getMatrix(const apriltag_pose_t& pose) {
-    // transform OpenCV matrix to Magnum and transform coordinate system -> must transform because of different storage format
-    auto rotationMatrix = Matrix3(Matrix3d::from(pose.R->data).transposed());
-    auto translation = Vector3(Vector3d::from(pose.t->data) * Math::Vector3<double>{-1, 1, 1});
+    const Vector3 mapping = {1, -1, -1};
 
+    // transform OpenCV matrix to Magnum and transform coordinate system -> must transform because of different storage format
+    auto translation = Vector3(Vector3d::from(pose.t->data)) * mapping;
+
+    auto rotationMatrix = Matrix3(Matrix3d::from(pose.R->data).transposed());
     auto rotation = Quaternion::fromMatrix(rotationMatrix);
     auto eulerAngles = rotation.toEuler();
-
-    eulerAngles.x() *= -1;
-
-    rotation =  Quaternion::rotation(eulerAngles.z(), Vector3::zAxis()) *
-                Quaternion::rotation(eulerAngles.y(), Vector3::yAxis()) *
-                Quaternion::rotation(eulerAngles.x(), Vector3::xAxis());
+    rotation =  Quaternion::rotation(eulerAngles.z() * mapping.z(), Vector3::zAxis()) *
+                Quaternion::rotation(eulerAngles.y() * mapping.y(), Vector3::yAxis()) *
+                Quaternion::rotation(eulerAngles.x() * mapping.x(), Vector3::xAxis());
 
     return Matrix4::from(rotation.toMatrix(), translation);
 }
@@ -56,7 +55,7 @@ void CameraLocator::processFrame()
 
 		Matrix4 transformationTag = (det->id >= 0 && det->id < _tagTransformations.size()) ? _tagTransformations[det->id] : Matrix4::translation({});
 
-		_cameraTransformation = transformationTag * getMatrix(pose);
+		_cameraTransformation =getMatrix(pose).inverted();
 
 		line(_undistortedFrame, Point(det->p[0][0], det->p[0][1]),
 			 Point(det->p[1][0], det->p[1][1]),
