@@ -20,7 +20,7 @@ corrade_add_resource(Shaders Shaders.conf)
 
 include_directories( ${OpenCV_INCLUDE_DIRS} ${apriltag_INCLUDE_DIRS} ./ /usr/include/colmap ./include/ /usr/include/MagnumExternal/ImGui/  /usr/local/include/apriltag )
 
-add_executable( ${PROJECT_NAME} ${SourceFiles} ${Images} ${Shaders} include/Objects.h src/Objects.cpp)
+add_executable( ${PROJECT_NAME} ${SourceFiles} ${Images} ${Shaders} include/Objects.h src/Objects.cpp include/FlatDrawable.h src/FlatDrawable.cpp)
 
 target_link_libraries( ${PROJECT_NAME} PRIVATE ${OpenCV_LIBS} ) 
 target_link_libraries( ${PROJECT_NAME} PRIVATE -lapriltag ) 

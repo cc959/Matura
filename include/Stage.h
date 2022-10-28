@@ -4,6 +4,7 @@
 
 #include "PhongDrawable.h"
 #include "ShadowCasterDrawable.h"
+#include "FlatDrawable.h"
 #include "ShadowLight.h"
 #include "Objects.h"
 
@@ -34,7 +35,9 @@ public:
 		}
 	};
 
-	vector<std::pair<Optional<GL::Mesh>, float>> _meshes;
+    unordered_set<int> _selected;
+
+    vector<std::pair<Optional<GL::Mesh>, float>> _meshes;
 	vector<float> _radii;
 	vector<Optional<GL::Texture2D>> _textures;
 	vector<Optional<Trade::PhongMaterialData>> _materials;
@@ -55,9 +58,11 @@ public:
 
 	SceneGraph::Camera3D *_activeCamera = nullptr;
 	SceneGraph::DrawableGroup3D _shadowReceivers;
-	SceneGraph::DrawableGroup3D _shadowCasters;
+    SceneGraph::DrawableGroup3D _shadowCasters;
+    SceneGraph::DrawableGroup3D _selectables;
 
 	Shadows _shadows{_scene};
+
 
 	Stage();
 

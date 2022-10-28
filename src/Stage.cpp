@@ -79,7 +79,8 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 
 		Int materialId = meshMaterial.second().second();
 
-		new ShadowCasterDrawable(*object, *mesh, radius, _shadowCasters);
+        new ShadowCasterDrawable(*object, *mesh, radius, _shadowCasters);
+        new FlatDrawable(*object, int(meshMaterial.first()), *this, *mesh, _selectables);
 
 		/* Material not available / not loaded, use a default material */
 		if (materialId == -1 || !_materials[materialId])
@@ -91,7 +92,7 @@ void Stage::Import(Trade::AnySceneImporter &importer)
 		else
 		{
 			/* Color-only material */
-			new PhongDrawable{*object, *this, *mesh, (*_materials[materialId]), _shadowReceivers};
+			new PhongDrawable{*object, int(meshMaterial.first()), *this, *mesh, (*_materials[materialId]), _shadowReceivers};
 		}
 	}
 

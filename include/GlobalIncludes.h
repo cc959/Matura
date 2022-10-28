@@ -77,6 +77,9 @@
 
 #include <Magnum/Primitives/Plane.h>
 
+#include <Magnum/GL/Renderbuffer.h>
+#include <Magnum/GL/RenderbufferFormat.h>
+
 #include <bits/stdc++.h>
 
 using namespace std;

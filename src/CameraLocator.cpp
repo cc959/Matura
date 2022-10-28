@@ -87,6 +87,9 @@ void CameraLocator::mainLoop(int captureDevice)
 {
 	_cap.open(captureDevice);
 
+    _cap.set(CAP_PROP_FRAME_WIDTH, 640);
+    cout << _cap.get(CAP_PROP_FRAME_WIDTH) << "x" << _cap.get(CAP_PROP_FRAME_HEIGHT) << " at " << _cap.get(CAP_PROP_FPS) << "\n";
+
 	if (!_cap.isOpened())
 	{
 		cerr << "Could not open capture device " << captureDevice << "!\n";

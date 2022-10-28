@@ -36,7 +36,8 @@ public:
 		// addFrame(new StageFrame("/home/elias/Downloads/audi_r8/scene.gltf", timeline, _imgui, joystick));
 		addFrame(new StageFrame("/home/elias/Downloads/tag.fbx", timeline, _imgui, joystick));
 		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
-		addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
+        addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
+        addFrame(new ImageFrame(string("/home/elias/Downloads/bigtag.png"), timeline, _imgui));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,
 									   GL::Renderer::BlendEquation::Add);
@@ -44,8 +45,6 @@ public:
 									   GL::Renderer::BlendFunction::OneMinusSourceAlpha);
 
 		_postProcessor.setupFramebuffers(framebufferSize(), 4);
-
-		// GL::Renderer::setClearColor(Color4(1, 0, 0, 1));
 
 		timeline.start();
 
@@ -132,7 +131,9 @@ private:
 
 		_postProcessor.setupFramebuffers(event.framebufferSize(), 4);
 
-		FL _currentFrame->viewportEvent(event);
+        for (auto frame : _frames) {
+            frame->viewportEvent(event);
+        }
 	}
 
 	void mousePressEvent(MouseEvent &event) override

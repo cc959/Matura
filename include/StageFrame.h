@@ -31,6 +31,12 @@ class StageFrame : public Frame, public Stage
 
 	CameraLocator locator{vector<Matrix4>{getObject("Plane")->absoluteTransformation()}};
 
+    GL::Framebuffer _fb;
+    GL::Renderbuffer _color, _depth, _objectId;
+
+    bool _shift;
+    bool _moved;
+
 public:
 	Object3D _chacheCameraObject{&_scene};
 
@@ -64,4 +70,6 @@ public:
 	void keyReleaseEvent(SDLApp::KeyEvent &event) override;
 
 	void applyJoystick();
+
+    void setupRenderBuffers();
 };

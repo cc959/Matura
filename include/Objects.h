@@ -4,10 +4,9 @@
 
 class Objects {
 
-    map<int, Object3D *> _objects;
-    map<Object3D *, string> _objectNames;
-    map<string, int> _objectIDs;
-
+    unordered_map<int, Object3D *> _objects;
+    unordered_map<Object3D *, string> _objectNames;
+    unordered_map<string, int> _objectIDs;
 public:
 
     void reset();

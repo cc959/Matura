@@ -1,11 +1,11 @@
 #include "StageFrame.h"
 
-StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{}, _joystick{joystick}
+StageFrame::StageFrame(const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{}, _joystick{joystick}, _fb{GL::defaultFramebuffer.viewport()}
 {
 	setup();
 }
 
-StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{path}, _path{path}, _joystick{joystick}
+StageFrame::StageFrame(string path, const Timeline &timeline, ImGuiIntegration::Context &guiContext, Joystick &joystick) : Frame{timeline, guiContext}, Stage{path}, _path{path}, _joystick{joystick}, _fb{GL::defaultFramebuffer.viewport()}
 {
 	_player.play(_timeline.previousFrameTime());
 	pauseTime = _player.elapsed(_timeline.previousFrameTime()).second;
@@ -24,6 +24,7 @@ void StageFrame::Enter()
 void StageFrame::Leave()
 {
 	pauseTime = _player.elapsed(_timeline.previousFrameTime()).second;
+
 	locator.Stop();
 }
 
@@ -52,7 +53,25 @@ void StageFrame::setup()
 		.setViewport(GL::defaultFramebuffer.viewport().size());
 
 	_cameras.push_back(_activeCamera);
+
+    setupRenderBuffers();
+
 }
+
+void StageFrame::setupRenderBuffers() {
+    _fb = GL::Framebuffer{GL::defaultFramebuffer.viewport()};
+
+    _color.setStorage(GL::RenderbufferFormat::RGBA8, GL::defaultFramebuffer.viewport().size());
+    _objectId.setStorage(GL::RenderbufferFormat::R32UI, GL::defaultFramebuffer.viewport().size());
+    _depth.setStorage(GL::RenderbufferFormat::DepthComponent24, GL::defaultFramebuffer.viewport().size());
+    _fb.attachRenderbuffer(GL::Framebuffer::ColorAttachment{0}, _color)
+            .attachRenderbuffer(GL::Framebuffer::ColorAttachment{1}, _objectId)
+            .attachRenderbuffer(GL::Framebuffer::BufferAttachment::Depth, _depth)
+            .mapForDraw({{Shaders::PhongGL::ColorOutput, GL::Framebuffer::ColorAttachment{0}},
+                         {Shaders::PhongGL::ObjectIdOutput, GL::Framebuffer::ColorAttachment{1}}});
+    CORRADE_INTERNAL_ASSERT(_fb.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
+}
+
 void StageFrame::addDebugLines()
 {
 
@@ -83,7 +102,10 @@ void StageFrame::addDebugLines(const Matrix4 &transformation)
 
 void StageFrame::draw3D()
 {
-	_player.advance(_timeline.previousFrameTime());
+    _fb.clear(GL::FramebufferClear::Color | GL::FramebufferClear::Depth);
+
+
+    _player.advance(_timeline.previousFrameTime());
 
 	if (_player.state() != Animation::State::Playing)
 		applyJoystick();
@@ -152,13 +174,11 @@ void StageFrame::draw3D()
 	for (std::size_t layerIndex = 0; layerIndex != _shadows._shadowLight.layerCount(); ++layerIndex)
 		shadowMatrices[layerIndex] = _shadows._shadowLight.layerMatrix(layerIndex);
 
-	//_shadowCameraIndicator.setTransformation(_shadows._shadowLight._layers[0].shadowCameraMatrix);
+    _fb.bind();
+    _activeCamera->draw(_selectables);
 
-	// _shadowReceiverShader.setShadowmapMatrices(shadowMatrices)
-	// 	.setShadowmapTexture(_shadows._shadowLight.shadowTexture());
-
+    GL::defaultFramebuffer.bind();
 	_activeCamera->draw(_shadowReceivers);
-
 	_debug.draw(*_activeCamera);
 }
 
@@ -231,6 +251,8 @@ void StageFrame::viewportEvent(SDLApp::ViewportEvent &event)
 {
 	for (SceneGraph::Camera3D *_camera : _cameras)
 		_camera->setViewport(event.windowSize());
+
+    setupRenderBuffers();
 }
 
 Vector3 _previousPosition;
@@ -255,8 +277,45 @@ void StageFrame::mousePressEvent(SDLApp::MouseEvent &event)
 
 void StageFrame::mouseReleaseEvent(SDLApp::MouseEvent &event)
 {
-	if (event.button() == SDLApp::MouseEvent::Button::Left)
-		_previousPosition = Vector3();
+	if (event.button() == SDLApp::MouseEvent::Button::Left) {
+        const Vector2i position = event.position();
+
+        if (!_moved) {
+
+            const Vector2i fbPosition{position.x(), GL::defaultFramebuffer.viewport().sizeY() - position.y() - 1};
+
+            /* Read object ID at given click position, and then switch to the color
+               attachment again so drawEvent() blits correct buffer */
+            _fb.mapForRead(GL::Framebuffer::ColorAttachment{1});
+            Image2D data = _fb.read(
+                    Range2Di::fromSize(fbPosition, {1, 1}),
+                    {PixelFormat::R32UI});
+            _fb.mapForRead(GL::Framebuffer::ColorAttachment{0});
+
+            /* Highlight object under mouse and deselect all other */
+            UnsignedInt id = data.pixels<UnsignedInt>()[0][0];
+
+            if (_selected.count(id)) {
+                if (_shift)
+                    _selected.erase(id);
+                else {
+                    bool addAgain = _selected.size() > 1;
+                    _selected.clear();
+                    if (addAgain)
+                        _selected.insert(id);
+                }
+            } else {
+                if (!_shift)
+                    _selected.clear();
+                _selected.insert(id);
+            }
+        }
+
+        _previousPosition = Vector3();
+
+    }
+
+    _moved = false;
 }
 
 void StageFrame::mouseMoveEvent(SDLApp::MouseMoveEvent &event)
@@ -273,6 +332,8 @@ void StageFrame::mouseMoveEvent(SDLApp::MouseMoveEvent &event)
 	_cameraRoot->rotateXLocal(-Math::Rad(diff.y() / 100.f));
 	_cameraRoot->rotateY(-Math::Rad(diff.x() / 100.f));
 	_previousPosition = currentPosition;
+
+    _moved = true;
 }
 
 void StageFrame::mouseScrollEvent(SDLApp::MouseScrollEvent &event)
@@ -294,8 +355,15 @@ void StageFrame::keyPressEvent(SDLApp::KeyEvent &event)
 	{
 		_activeCamera = _cameras[(getCameraID(_activeCamera) + 1 + _cameras.size()) % _cameras.size()];
 	}
+    if (event.key() == SDLApp::KeyEvent::Key::LeftShift || event.key() == SDLApp::KeyEvent::Key::RightShift) {
+        _shift = true;
+    }
 }
-void StageFrame::keyReleaseEvent(SDLApp::KeyEvent &event) {}
+void StageFrame::keyReleaseEvent(SDLApp::KeyEvent &event) {
+    if (event.key() == SDLApp::KeyEvent::Key::LeftShift || event.key() == SDLApp::KeyEvent::Key::RightShift) {
+        _shift = false;
+    }
+}
 
 void StageFrame::applyJoystick()
 {

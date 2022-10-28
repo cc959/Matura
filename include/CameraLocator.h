@@ -44,7 +44,7 @@ class CameraLocator
 							   0, 531.89050725948039, 240,
 							   0, 0, 1};
 
-	double distortionCoefficients[4] = {0.090356664956049604, -0.070991149612318186, 0.0045443094634366422, 0.0055652050488018776};
+	double distortionCoefficients[4] = {0, 0, 0, 0};//{0.090356664956049604, -0.070991149612318186, 0.0045443094634366422, 0.0055652050488018776};
 
 public:
 	explicit CameraLocator(vector<Matrix4> tagTransformations, double tagsize = 0.1);

@@ -7,7 +7,7 @@
 Shaders::PhongGLShadows *PhongDrawable::_shaderStandard = nullptr;
 Shaders::PhongGLShadows *PhongDrawable::_shaderNormalMap = nullptr;
 
-PhongDrawable::PhongDrawable(Object3D &object, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _mesh(mesh), _stage(stage), _material{material}, _object(object)
+PhongDrawable::PhongDrawable(Object3D &object, int objectID, Stage &stage, GL::Mesh &mesh, Trade::PhongMaterialData &material, SceneGraph::DrawableGroup3D &group) : SceneGraph::Drawable3D{object, &group}, _objectID(objectID), _mesh(mesh), _stage(stage), _material{material}, _object(object)
 {
 	auto diffuseData = Containers::array<char>({-1, -1, -1, -1});
 	Image2D diffuseImage(PixelFormat::RGBA8Unorm, {1, 1}, std::move(diffuseData));
@@ -84,7 +84,12 @@ void PhongDrawable::draw(const Matrix4 &transformationMatrix, SceneGraph::Camera
 			.setLightColors({Color3{1, 1, 1}});
 	}
 
-	shader
+    if (_stage._selected.count(_objectID))
+        shader.setAmbientColor({0.5, 0.5, 0.5, 0});
+    else
+        shader.setAmbientColor({0.1, 0.1, 0.1, 1});
+
+    shader
 		.setShininess(max(_material.shininess(), 1.f)) // 0.01f because shader acts wierd at  0
 		.setSpecularColor({_material.shininess() / 100.f, _material.shininess() / 100.f, _material.shininess() / 100.f, 1})
 		.setDiffuseColor(_material.diffuseColor())
