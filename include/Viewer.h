@@ -8,6 +8,7 @@
 #include "StageFrame.h"
 #include "ImageFrame.h"
 #include "PostProcess.h"
+#include "VideoFrame.h"
 
 #define FL if (_currentFrame)
 
@@ -34,9 +35,10 @@ public:
 		// addFrame(new StageFrame("/home/elias/Downloads/untitled4.fbx", timeline, _imgui, joystick));
 		// addFrame(new StageFrame("/home/elias/Downloads/autumn tree001-coronafbx.FBX", timeline, _imgui, joystick));
 		// addFrame(new StageFrame("/home/elias/Downloads/audi_r8/scene.gltf", timeline, _imgui, joystick));
-		addFrame(new StageFrame("/home/elias/Downloads/tag.fbx", timeline, _imgui, joystick));
+        addFrame(new VideoFrame("res/Video.avi", timeline, _imgui));
+        addFrame(new StageFrame("/home/elias/Downloads/tag.fbx", timeline, _imgui, joystick));
 		addFrame(new StageFrame("/home/elias/Downloads/untitled.fbx", timeline, _imgui, joystick));
-        addFrame(new ImageFrame(Utility::Resource("Images").getRaw("Shang.png"), timeline, _imgui));
+        addFrame(new ImageFrame(string("res/Shang.png"), timeline, _imgui));
         addFrame(new ImageFrame(string("/home/elias/Downloads/bigtag.png"), timeline, _imgui));
 
 		GL::Renderer::setBlendEquation(GL::Renderer::BlendEquation::Add,

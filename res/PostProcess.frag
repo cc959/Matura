@@ -45,9 +45,9 @@ void main() {
 
 	if(mode == upsample) {
 
-		// uv /= 2;//vec2(_srcResolution) / vec2(textureSize(_texture, 0));
+		// uv /= 2;//vec2(_srcResolution) / vec2(textureSize(_textures, 0));
 
-		// clamp(uv, vec2(0), vec2(_srcResolution) / vec2(textureSize(_texture, 0)));
+		// clamp(uv, vec2(0), vec2(_srcResolution) / vec2(textureSize(_textures, 0)));
 
 		highp vec2 pixelSize = 1.0 / textureSize(_texture, 0);
 

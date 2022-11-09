@@ -20,10 +20,10 @@ corrade_add_resource(Shaders Shaders.conf)
 
 include_directories( ${OpenCV_INCLUDE_DIRS} ${apriltag_INCLUDE_DIRS} ./ /usr/include/colmap ./include/ /usr/include/MagnumExternal/ImGui/  /usr/local/include/apriltag )
 
-add_executable( ${PROJECT_NAME} ${SourceFiles} ${Images} ${Shaders} include/Objects.h src/Objects.cpp include/FlatDrawable.h src/FlatDrawable.cpp)
+add_executable( ${PROJECT_NAME} ${SourceFiles} ${Images} ${Shaders} include/Objects.h src/Objects.cpp include/FlatDrawable.h src/FlatDrawable.cpp src/ParabolaPredictor.cpp include/ParabolaPredictor.h)
 
 target_link_libraries( ${PROJECT_NAME} PRIVATE ${OpenCV_LIBS} ) 
-target_link_libraries( ${PROJECT_NAME} PRIVATE -lapriltag ) 
+target_link_libraries( ${PROJECT_NAME} PRIVATE -lapriltag -lmpv )
 target_link_libraries( ${PROJECT_NAME} PRIVATE Corrade::Main Magnum::Application MagnumPlugins::StbTrueTypeFont Magnum::Text Magnum::GL Magnum::Magnum Magnum::MeshTools Magnum::SceneGraph Magnum::Shaders Magnum::Trade Magnum::AnySceneImporter MagnumPlugins::GltfImporter Magnum::AnyImageImporter MagnumIntegration::ImGui Magnum::Primitives )
 
 add_compile_options( -std=c++20 -g -pthread )

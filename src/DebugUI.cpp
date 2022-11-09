@@ -155,3 +155,11 @@ void DebugUI::addFrustum(const Matrix4 &imvp, const Color3 &col, const Float z0,
 	addLine(worldPointsToCover[7], worldPointsToCover[6], col);
 	addLine(worldPointsToCover[6], worldPointsToCover[4], col);
 }
+
+void DebugUI::addPrediction(const ParabolaPredictor &prediction, const Color3 &col, float t0, float t1, int steps) {
+
+    for (int i = 0; i < steps; i++) {
+        addLine(prediction(Math::lerp(t0, t1, (float(i) / float(steps)))), prediction(Math::lerp(t0, t1, (float(i+1) / float(steps)))), col);
+    }
+
+}

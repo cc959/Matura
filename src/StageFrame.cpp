@@ -56,19 +56,20 @@ void StageFrame::setup()
 
     setupRenderBuffers();
 
+    _predictor.addPoint(0, {0, -0.02, 0});
+    _predictor.addPoint(1, {1, -9.81/2 + 1, 0});
+    _predictor.addPoint(2, {2, -9.81*2 + 2, 0});
+
 }
 
 void StageFrame::setupRenderBuffers() {
     _fb = GL::Framebuffer{GL::defaultFramebuffer.viewport()};
 
-    _color.setStorage(GL::RenderbufferFormat::RGBA8, GL::defaultFramebuffer.viewport().size());
     _objectId.setStorage(GL::RenderbufferFormat::R32UI, GL::defaultFramebuffer.viewport().size());
     _depth.setStorage(GL::RenderbufferFormat::DepthComponent24, GL::defaultFramebuffer.viewport().size());
-    _fb.attachRenderbuffer(GL::Framebuffer::ColorAttachment{0}, _color)
-            .attachRenderbuffer(GL::Framebuffer::ColorAttachment{1}, _objectId)
+    _fb.attachRenderbuffer(GL::Framebuffer::ColorAttachment{0}, _objectId)
             .attachRenderbuffer(GL::Framebuffer::BufferAttachment::Depth, _depth)
-            .mapForDraw({{Shaders::PhongGL::ColorOutput, GL::Framebuffer::ColorAttachment{0}},
-                         {Shaders::PhongGL::ObjectIdOutput, GL::Framebuffer::ColorAttachment{1}}});
+            .mapForDraw({{Shaders::PhongGL::ObjectIdOutput, GL::Framebuffer::ColorAttachment{0}}});
     CORRADE_INTERNAL_ASSERT(_fb.checkStatus(GL::FramebufferTarget::Draw) == GL::Framebuffer::Status::Complete);
 }
 
@@ -111,6 +112,8 @@ void StageFrame::draw3D()
 		applyJoystick();
 
     _debug.reset();
+
+    _debug.addPrediction(_predictor, Color3{1,0,1}, 0, 2);
 
 	_shadows._shadowLight.setupSplitDistances(0.01f, 100.f, _shadows._layerSplitExponent);
 
@@ -286,11 +289,9 @@ void StageFrame::mouseReleaseEvent(SDLApp::MouseEvent &event)
 
             /* Read object ID at given click position, and then switch to the color
                attachment again so drawEvent() blits correct buffer */
-            _fb.mapForRead(GL::Framebuffer::ColorAttachment{1});
             Image2D data = _fb.read(
                     Range2Di::fromSize(fbPosition, {1, 1}),
                     {PixelFormat::R32UI});
-            _fb.mapForRead(GL::Framebuffer::ColorAttachment{0});
 
             /* Highlight object under mouse and deselect all other */
             UnsignedInt id = data.pixels<UnsignedInt>()[0][0];

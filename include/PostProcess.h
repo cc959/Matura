@@ -25,7 +25,7 @@ public:
 		attachShaders({vert, frag});
 
 		CORRADE_INTERNAL_ASSERT_OUTPUT(link());
-		setUniform(uniformLocation("_texture"), TextureUnit);
+		setUniform(uniformLocation("_textures"), TextureUnit);
 		_modeLocation = uniformLocation("mode");
 
 		_quad = MeshTools::compile(Primitives::planeSolid(Primitives::PlaneFlag::TextureCoordinates));

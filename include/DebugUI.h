@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GlobalIncludes.h"
+#include "ParabolaPredictor.h"
 
 class DebugUI
 {
@@ -52,6 +53,8 @@ public:
 	void addFrustum(const Matrix4 &imvp, const Color3 &col, Float z0, Float z1);
 
 	void draw(SceneGraph::Camera3D &camera);
+
+    void addPrediction(const ParabolaPredictor &prediction, const Color3 &col, float t0, float t1, int steps = 32);
 
 protected:
 	vector<Point> _lines[2];
